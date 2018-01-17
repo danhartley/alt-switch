@@ -1,1 +1,1 @@
-Testing for Readme text display
+Object literal alternative to the switch statement
