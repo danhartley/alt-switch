@@ -26,13 +26,11 @@ cases.push(obj2);
 //switcher(cases, 1);
 
 const options = {
-    'wait': () => console.log('wait'),
-    'run': () => console.log('run'),
-    'stop': () => console.log('stop')
+    'wait': () => 'wait',
+    'run': () => 'run',
+    'stop': () => 'stop'
 };
 
-const opter = (key, options) => {
-    options[key]();
-};
+const opter = (key, options) => options[key]();
 
-opter('wait', options);
+module.exports = opter;

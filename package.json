@@ -1,0 +1,25 @@
+{
+  "name": "alt-switch",
+  "version": "1.0.0",
+  "description": "Object literal alternative to the switch statement",
+  "main": "switcher.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danhartley/alt-switch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danhartley/alt-switch/issues"
+  },
+  "homepage": "https://github.com/danhartley/alt-switch#readme",
+  "devDependencies": {
+    "jest": "^22.1.2"
+  },
+  "jest": {
+    "verbose": true
+  }
+}
