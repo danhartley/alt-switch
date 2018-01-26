@@ -16,7 +16,3 @@ NB Run npm init first to create a package.json file
 Add touch .gitignore. If necessary:
 * git rm -rf --cached .
 * git add .
-
-ES6 Support
-
-* jsconfig.json

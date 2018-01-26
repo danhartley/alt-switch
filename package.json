@@ -4,7 +4,8 @@
   "description": "Object literal alternative to the switch statement",
   "main": "switcher.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "watch": "jest --watch *.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,22 @@
   },
   "homepage": "https://github.com/danhartley/alt-switch#readme",
   "devDependencies": {
-    "jest": "^22.1.2"
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "baconjs": "^1.0.1",
+    "http-server": "^0.11.1",
+    "jest": "^22.1.2",
+    "jquery": "^3.3.1",
+    "react-dom": "^16.2.0"
   },
   "jest": {
     "verbose": true
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.2",
+    "isomorphic-fetch": "^2.2.1",
+    "koa": "^2.4.1",
+    "ramda": "^0.25.0",
+    "whatwg-fetch": "^2.0.3"
   }
 }
