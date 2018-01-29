@@ -4,90 +4,90 @@ const inat = 'https://api.inaturalist.org/v1/';
 const inatTaxa = `${inat}taxa/autocomplete?q=`;
 
 const flora = [ 
-  'Erica erigena', 'Verbascum levanticum', 'Fumaria agraria', 'Rosmarinus officialis'
-  
+  'Narcissus papyraceus', 'Fumaria agraria', 'Erica erigena', 'Verbascum levanticum', 'Rosmarinus officialis'
 ];
 //'Narcissus papyraceus', 'Iris planifolia',  'Polypodium interjectum', 'Chamaemelum fuscatum', 'Calendula arvensis'
 //, 'Fraxinus angustifolia'
+
+//'Oxalis purpurea', 'Borago officinalis', 'Cistus monspeliensis', 'Veronica persica', 'Bellis perennis'
 
 const cards = [];
 
 const renderCard = card => {
     imgElem = document.getElementById('cardImage');
-    imgElem.src = card.url;
+    imgElem.src = card[0].url;
 }
 
-const addCardToDeck = observation => {
-    cards.push(observation);
-    let card = cards[cards.length - 1];
-    if(cards.length === 1) {
-      renderCard(card);
-    }
-  };
+const fetchObservations = uri => {
+  const promise = fetch(uri)
+    .then(res => res.json());             
+      const stream = Bacon.fromPromise(promise);
+      return stream;
+    };
 
-  // const fetchObservations = (uri, config) => {
-  //   fetch(uri, config)
-  //     .then(res => res.json())
-  //       .then(json => {
-  //           let observations = json.results.filter(observation => (observation && observation.default_photo && observation.default_photo.url));
-  //           observations.map(observation => {
-  //             let { name='', preferred_common_name: common='', default_photo: { url } } = observation;            
-  //             addCardToDeck({ name, common, url });
-  //           });
-  //         })
-  //       .catch(error => console.error('Error:', error))
-  //     };
+const filterObservations = observation => (observation && observation.default_photo && observation.default_photo.url);
+const createCardObservation = observations => { 
+    return observations.map(observation => {
+      let { name='', preferred_common_name: common='', default_photo: { url } } = observation;            
+      return { name, common, url};            
+  });
+};
 
-      const fetchObservations = (uri) => {
-        const promise = fetch(uri)
-          .then(res => res.json());             
-            const stream = Bacon.fromPromise(promise);
-            return stream;
-          };
-  
 const stream = new Bacon.Bus();
-
-// stream
-//   .flatMap(species => fetchObservations(species))
-//   .map(json => {
-//     let observations = json.results.filter(observation => (observation && observation.default_photo && observation.default_photo.url));
-//         observations.map(observation => {
-//           let { name='', preferred_common_name: common='', default_photo: { url } } = observation;            
-//           addCardToDeck({ name, common, url});
-//         });
-//     return observations;
-//   })
-//   .onValue(observation => console.log('next observation is ', observation))
-
-stream
-  .flatMap(species => fetchObservations(species))
-  // .map(json => {return json.results.filter(observation => (observation && observation.default_photo && observation.default_photo.url))})
-  .map(observations => { 
-          observations.map(observation => {
-          let { name='', preferred_common_name: common='', default_photo: { url } } = observation;            
-          addCardToDeck({ name, common, url});
-        })
-        return observations;  
-      })
-  .onValue(observation => console.log('next observation is ', observation))
 
 const encodeQuery = q => encodeURIComponent(q.trim());
 
-// load into memory
+const urls = flora.map(species => `${inatTaxa}${encodeQuery(species)}`);
+console.log(urls);
 
-// flora.map(species => fetchObservations(`${inatTaxa}${encodeQuery(species)}`, {}));
-flora.map(species => stream.push(`${inatTaxa}${encodeQuery(species)}`));
+const promises = url => { return fetch(url).then(res => res.json()) };
+
+const hasPhotos = observation => (observation.default_photo && observation.default_photo.url);
+
+const observationToCard = observations => { 
+  return observations.map(observation => {
+    let { name='', preferred_common_name: common='', default_photo: { url } } = observation;            
+    return { name, common, url};            
+})};
+
+
+// const deckGenerator = cards => {
+//   let nextIndex = 0;
+//   while(nextIndex < cards.length) {
+//     yield cards[nextIndex++];
+//   }
+// };
+
+
+let iterator;
+
+Promise.all(urls.map(promises))
+  .then(list => {
+    const collections = list
+      .map(list => list.results)
+      .map(observations => { return observations.filter(hasPhotos)})
+      .map(observationToCard)      
+      .filter(card => card.length > 0)
+      .map(card => cards.push(card));
+      console.log(cards);
+      iterator = cards[Symbol.iterator]();
+      flipCard();
+  });
+
+const flipCard = () => {
+  let card = iterator.next();
+  if(card.done) {
+    iterator = cards[Symbol.iterator]();
+    card = iterator.next();
+  }        
+  renderCard(card.value); 
+};
 
 $(document).ready(function(){
-    let flipCard = $('#cardImage').asEventStream('click');
-    flipCard
-    .map(function(event) { 
-      console.log(cards[cards.length - 1]);
-      if(cards.length > 0) {
-        cards.pop();
-      }      
-      renderCard(cards[cards.length - 1]);
-      console.log(cards[cards.length - 1]); return event.target 
-    })
+    const deck = $('#cardImage').asEventStream('click');    
+    deck
+      .map(function(event) {
+        flipCard();
+      })
     .onValue(function(element) { console.log(element) });
   });

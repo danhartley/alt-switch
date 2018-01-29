@@ -1,11 +1,27 @@
-.grid {
-    display:grid;
-    
-    grid-template-columns: repeat(4, 1fr);    
-    grid-gap: 10px;    
-}
+* {box-sizing: border-box;}  
 
-.grid > div {
-    background-color: lightblue;
-    padding: 10px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, fr);
+  grid-template-rows: 140px 140px ;
+  grid-gap: 20px;
+  grid-auto-flow:column; 
+}
+ /* change the grid-auto-flow to "column" to see the difference */
+.grid div:nth-child(8) {order:5;}
+.grid div:nth-child(4) {order:2;}
+.grid div:nth-child(7) {order:3;}
+
+.grid div {
+  order:4;
+  background-color:rgba(0,95,107,0.8);
+  color: #fff;
+  border: 14px;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  }
+
+.grid div:nth-child(odd) {
+  background-color:rgba(0,195,107,0.8);
 }
