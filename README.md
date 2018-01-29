@@ -26,3 +26,6 @@ Typical vi session
 * Type new text
 * Type ESC to go back to command mode
 * type ":wq" and ENTER to write the file and quit
+
+Server: http-server (see in node-modules)
+* No caches:http-server -c-1

@@ -1,24 +1,18 @@
 * {box-sizing: border-box;}  
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, fr);
-  grid-template-rows: 140px 140px ;
-  grid-gap: 20px;
-  grid-auto-flow:column; 
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 520px ;
+    grid-gap: 10px;
 }
- /* change the grid-auto-flow to "column" to see the difference */
-.grid div:nth-child(8) {order:5;}
-.grid div:nth-child(4) {order:2;}
-.grid div:nth-child(7) {order:3;}
 
 .grid div {
-  order:4;
   background-color:rgba(0,95,107,0.8);
   color: #fff;
-  border: 14px;
+  border: 10px;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   font-size: 150%;
   }
 
