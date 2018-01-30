@@ -1,3 +1,10 @@
+const log = msg => { 
+  return array => {
+    console.log(msg, array); 
+    return array; 
+  }
+};
+
 const grid = document.getElementById('grid');
 
 const inat = 'https://api.inaturalist.org/v1/';
@@ -17,16 +24,9 @@ const february = [
   'Astragalus lusitanicus', 'Oxalis pes-caprae', 'Euphorbia characias', 'Euphorbia pedroi', 'Lavatera cretica'
 ]
 
-const cards = [];
+//const dan = danObservations.map(observation => {return ({ id, scientific, common } = observation)}).map(log('Dan\'s observations'));
 
-const renderCard = card => {
-    const imgElem = document.getElementById('image');
-    imgElem.src = card[0].url;
-    const labelElem = document.getElementById('name');  
-    labelElem.innerHTML = card[0].name;
-    const labelElem2 = document.getElementById('common');  
-    labelElem2.innerHTML = card[0].common;
-}
+// results/community_taxon/taxon_photos
 
 const encodeQuery = q => encodeURIComponent(q.trim());
 
@@ -42,64 +42,20 @@ const observationToCard = observations => {
     return { name, common, url};            
 })};
 
-
-// const deckGenerator = cards => {
-//   let nextIndex = 0;
-//   while(nextIndex < cards.length) {
-//     yield cards[nextIndex++];
-//   }
-// };
-
-
-let iterator;
-
-const log = msg => { 
-  return array => {
-    console.log(msg, array); 
-    return array; 
-  }
-};
-
-const fetchFromInat = () =>
+export const fetchFromInat = () =>
 {
   Promise.all(urls.map(promises))
   .then(list => {
-    const collections = list
+    return list
       .map(list => list.results)
       .map(observations => { return observations.filter(hasPhotos)})
       .map(observationToCard)
       .filter(card => card.length > 0)
-      .map(log('The set of filtered cards from inat: '))
-      .map(card => cards.push(card));      
-      iterator = cards[Symbol.iterator]();
-      flipCard();
+      .map(log('The set of filtered cards from inat: '));
   });
 }
 
-const fetchFromLocal = () => {
-  data
-    .map(log('The set of filtered cards from local: '))
-    .map(card => cards.push(card)); 
-    iterator = cards[Symbol.iterator]();
-    flipCard();
+export const fetchFromLocal = () => {
+  return data.map(log('The set of filtered cards from local: '));
 };
 
-const flipCard = () => {
-  let card = iterator.next();
-  if(card.done) {
-    iterator = cards[Symbol.iterator]();
-    card = iterator.next();
-  }        
-  renderCard(card.value); 
-};
-
-$(document).ready(function(){
-  //fetchFromInat();
-  fetchFromLocal();
-  const deck = $('#image').asEventStream('click');
-  deck
-    .map(function(event) {
-      flipCard();
-    })
-  .onValue(function(element) { console.log(element) });
-});

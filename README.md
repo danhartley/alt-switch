@@ -27,5 +27,5 @@ Typical vi session
 * Type ESC to go back to command mode
 * type ":wq" and ENTER to write the file and quit
 
-Server: http-server (see in node-modules)
-* No caches:http-server -c-1
+To run the app in Terminal e.g. http-server (http-server can be found in node-modules)
+* No cache option: http-server -c-1
