@@ -1,18 +1,31 @@
-import { fetchFromInat, fetchFromLocal } from './inat.js';
-import { newDeck } from './card.js';
+import { fetchInatData } from './inat.js';
+import { createDeck } from './card.js';
+import { createStore, reducer } from './store.js';
+import { getEOLSpeciesData, fetchLiveDataFromEOL } from './eol.js';
 
-const live = false;
-let fn = live ? fetchFromInat : fetchFromLocal;
+const deck = createDeck();
+const store = createStore(reducer);
+const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
+const render = () => {
+    const promises = store.getState();
+    promises.forEach(element => {
+        element.then(species => {
+            deck.add(species);
+            deck.flip();
+        }); 
+    });    
+};
 
-const deck = newDeck();
+store.subscribe(render);
+
+//dispatchToStore(fetchInatData(), 'Inat');
+dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
 
 $(function() {
-    fn().map(card => deck.add(card));
-    deck.flip();
     const twists = $('#image').asEventStream('click');
     twists
         .map(function(event) {
         deck.flip();
-        })
-        .onValue(function(element) { console.log(element) });
+    })
+    .onValue(function(element) { console.log(element) });
 });

@@ -33,6 +33,7 @@
     "es6-promise": "^4.2.2",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.4.1",
+    "lodash": "^4.17.4",
     "ramda": "^0.25.0",
     "whatwg-fetch": "^2.0.3"
   }

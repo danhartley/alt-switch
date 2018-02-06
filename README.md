@@ -1,4 +1,16 @@
-Object literal alternative to the switch statement
+Simple flip card game for botanical identification
+
+* main.js: handles maintaining state (and something of a controller)
+* card.js handles rendering ui
+* inat.js handles loading data
+
+To run the app in Terminal e.g. http-server (http-server can be found in node-modules)
+* No cache option: http-server -c-1
+
+Bacon library used to handle the stream of events (clicks) in main.js
+Lodash library used for piping functions
+
+Import used for Chrome (note the type module on the main file)
 
 Good practice for pushing updates to github (local --> central):
 
@@ -27,5 +39,3 @@ Typical vi session
 * Type ESC to go back to command mode
 * type ":wq" and ENTER to write the file and quit
 
-To run the app in Terminal e.g. http-server (http-server can be found in node-modules)
-* No cache option: http-server -c-1

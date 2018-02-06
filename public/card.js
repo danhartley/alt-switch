@@ -21,7 +21,7 @@ const render = card => {
                 renderImage(c.value, 'image');
                 renderLabel(c.value, 'name');
                 renderLabel(c.value, 'common');            
-                r(3000)(iterator.next());
+                r(1000)(iterator.next());
             }
         }, interval)
     }};
@@ -30,7 +30,7 @@ const render = card => {
 
 };
 
-export const newDeck = () => {
+export const createDeck = () => {
     const cards = [];
     let iterator = null;
     return {

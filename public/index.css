@@ -2,20 +2,33 @@
 
 .grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 520px ;
-    grid-gap: 10px;
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
 }
 
 .grid div {
-  background-color:rgba(0,95,107,0.8);
-  color: #fff;
-  border: 10px;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 150%;
+    border: 1px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color:#256262;
   }
 
-.grid div:nth-child(odd) {
-  background-color:rgba(0,195,107,0.8);
+/* .grid div:nth-child(odd) {
+  
+} */
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px 1fr;
+  grid-template-rows: 1fr 400px 1fr;
+}
+
+/* .image-grid > div {
+  overflow: hidden;  
+} */
+
+img.resize {
+  max-width:75%;
+  max-height:75%;
 }

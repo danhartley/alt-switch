@@ -4,22 +4,38 @@
         <link rel="stylesheet" type="text/css" href="./index.css"></link>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="./Bacon.js"></script>
+        <script type="text/javascript" src="./api/utils.js"></script>
+        <script type="text/javascript" src="./api/species.js"></script>
         <script type="text/javascript" src="./api/data.js"></script>
         <script type="text/javascript" src="./api/inat-dan-data.js"></script>
+        <script type="text/javascript" src="./api/eol-dan-vale-do-tejo.js"></script>
     </head>
 
     <div class="grid">
-        <div>
-            <img id="image" title="flower image" href="#" />
-        </div>        
-        <div>
-            <label id="name"></label>
+        <div class="image-grid">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>
+                <div><img class="resize" id="image" title="flower image" href="#"/></div>
+            </div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>            
         </div>
         <div>            
+            <label id="name"></label>            
             <label id="common"></label>
         </div>
       </div>
 
     <script src="./main.js" type="module"></script>
+    <script src="./eol.js" type="module"></script>
+
+    <button id="eol">Get Dan's EOL Tejo Vally Flora</button>
+
+    <button id="create">Create file</button> <a download="info.txt" id="downloadlink" style="display: none">Download</a>
 
 </html>
