@@ -12,46 +12,25 @@ let eolCollection = tejo[0].collection_items
 
 export const getEOLSpeciesData = () => {    
     return eolCollection
-        .filter(species => species.id === 578523 || species.id === 1247200)
-        .map(species => {
-            species.detailsUrl = createLookupUrl(species.id);
-            return species;
-        });
-    };
-
-const btnEOL = document.getElementById('eol');
-btnEOL.onclick = getEOLSpeciesData;
+    // .filter(species => species.id === 578523 || species.id === 1247200)
+    .map(species => {
+        species.detailsUrl = createLookupUrl(species.id);
+        return species;
+    });
+};
 
 export const fetchLiveDataFromEOL = (collection) => {
     return collection.map(collectionItem => {
         return fetch(collectionItem.detailsUrl)
         .then(res => res.json())
         .then(results => {
-            return results.dataObjects
-                .filter(item => item.mediaURL || item.eolMediaURL)
-                .map(media => {                
-                    let { eolMediaURL: url } = media;
-                    var currCollection = {...collectionItem, ...{ url }};              
-                    return currCollection;
-                });
+                const imagesCollection = results.dataObjects
+                    .filter(item => item.mediaURL || item.eolMediaURL)
+                    .map(media => media.eolMediaURL);
+                const namesCollection = results.vernacularNames
+                    .filter(item => item.language === 'en' ||item.language === 'de');            
+                return { id: collectionItem.id,  name: collectionItem.name, images: imagesCollection, names: namesCollection };
             });            
     });
 };
-
-const create = document.getElementById('create');
-
-create.addEventListener('click', function () {
-let blob = new Blob([JSON.stringify(allCollections, null, 2)], {type : 'application/json'});
-let myBlobUrl = URL.createObjectURL(blob);
-var link = document.getElementById('downloadlink');
-link.href = myBlobUrl;
-link.style.display = 'block';
-}, false);
-
-// "vernacularNames": [
-//     {
-//       "vernacularName": "Italienische Steinkiefer",
-//       "language": "de"
-//     }
-// dataObjects with : mediaURL, eolMediaURL
 

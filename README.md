@@ -3,6 +3,7 @@ Simple flip card game for botanical identification
 * main.js: handles maintaining state (and something of a controller)
 * card.js handles rendering ui
 * inat.js handles loading data
+* eol.js handles loading data
 
 To run the app in Terminal e.g. http-server (http-server can be found in node-modules)
 * No cache option: http-server -c-1

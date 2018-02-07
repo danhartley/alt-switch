@@ -9,9 +9,9 @@ const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data
 const render = () => {
     const promises = store.getState();
     promises.forEach(element => {
-        element.then(species => {
-            deck.add(species);
-            deck.flip();
+        element.then(card => {
+            deck.add(card);
+            //deck.flip();
         }); 
     });    
 };
