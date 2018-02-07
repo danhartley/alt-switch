@@ -11,7 +11,7 @@ const render = () => {
     promises.forEach(element => {
         element.then(card => {
             deck.add(card);
-            //deck.flip();
+            deck.flip();
         }); 
     });    
 };
@@ -22,10 +22,23 @@ store.subscribe(render);
 dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
 
 $(function() {
-    const twists = $('#image').asEventStream('click');
-    twists
-        .map(function(event) {
+    $('#next').asEventStream('click')    
+    .map(function(event) {
         deck.flip();
     })
     .onValue(function(element) { console.log(element) });
 });
+
+const autoHandler = () => {
+    Bacon.fromBinder(function(callback) {
+        var id = setInterval(function() {
+            deck.flip();
+        }, 5000)
+        return function() {
+            clearInterval(id)
+        }
+    }).onValue(function(element) { console.log(element) });
+}
+
+const auto = document.getElementById('auto');
+auto.addEventListener('click', autoHandler);

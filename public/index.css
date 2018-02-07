@@ -25,12 +25,18 @@ body {
 
 #1 {
   display: grid;
-  grid-template-columns: 1fr 400px 1fr;
-  grid-template-rows: 1fr 400px 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 #2 {
   padding: 15px;
+}
+
+ul {
+  font-size: 10px;
+  list-style: none;
+  padding: 0 10px;
 }
 
 img {

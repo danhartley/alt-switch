@@ -13,26 +13,26 @@ const renderNames = (label, collection) => {
     labelElem.innerHTML = orderedList;    
 };
 
-const renderImage = (label, url) => {
-    const imgElem = document.getElementById(label);
+const renderImage = (url) => {
+    const imgElem = document.getElementById('image');
     imgElem.src = url;
 };
 
-const imageRotator = images => ({
+const iterateCollection = (items, delay, fn) => ({
     iterator : null,
-    nextImage : null,
+    nextItem : null,
     renderNext : true,
     interval : null,
     change() {
-        this.iterator = images[Symbol.iterator]();
-        this.nextImage = this.iterator.next();
+        this.iterator = items[Symbol.iterator]();
+        this.nextItem = this.iterator.next();
         this.renderNext = true;
         this.interval = setInterval(() => {
-            if(!this.nextImage.done && this.renderNext) {
-                renderImage('image', this.nextImage.value);
-                this.nextImage = this.iterator.next();
+            if(!this.nextItem.done && this.renderNext) {
+                fn(this.nextItem.value);
+                this.nextItem = this.iterator.next();
             }
-        }, 1000);
+        }, delay);
         return this.interval;
     }
 });
@@ -54,7 +54,7 @@ export const createDeck = () => {
                 card = iterator.next();
                 iterator = null;
             }        
-            imageInterval = imageRotator(card.value.images).change();
+            imageInterval = iterateCollection(card.value.images, 1000, renderImage).change();
             renderLabel('name', card.value.name);
             renderNames('vernacularName', card.value.names);
         },
