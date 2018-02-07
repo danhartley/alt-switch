@@ -64,46 +64,4 @@ export const createDeck = () => {
     }
 };
 
-// const renderImages = card => {
 
-//     let iterator = card.images[Symbol.iterator]();
-//     let nextImage = iterator.next();
-//     let renderNext = true;
-
-//     const imageRotation = function(interval) {        
-//         return function (c) {
-//             const timer = setTimeout(() => {
-//                 if(!c.done && renderNext){
-//                     renderImage('image', c.value);
-//                     imageRotation(2500)(iterator.next());
-//                 }
-//             }, interval); 
-//             return timer;
-//     }};
-
-//     imageRotation(0)(nextImage);
-
-//     const stopRotation = () => renderNext = false;
-// };
-
-// iterator = iterator || cards[Symbol.iterator]();
-// if(card && card.done) {
-//     iterator = cards[Symbol.iterator]();                
-// }        
-// card = iterator.next();
-// render(card.value); 
-
-// function* cardFlipper() {
-//   let nextIndex = 0;
-//   while(nextIndex < cards.length) {
-//     yield cards[nextIndex++];
-//   }
-// };
-
-// function* idMaker() {
-//     var index = 0;
-//     while(true)
-//       yield index++;
-//   }
-  
-//   var gen = idMaker();
