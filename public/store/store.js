@@ -1,7 +1,7 @@
-export const createStore = (reducer) => {
+const createStore = (reducer) => {
 
     let state;
-    const listeners = [];
+    let listeners = [];
 
     const getState = () => state;
 
@@ -22,15 +22,19 @@ export const createStore = (reducer) => {
     return { getState, dispatch, subscribe };
 };
 
-export const reducer = (state = [], action) => {
+const reducer = (state = [], action) => {
     switch(action.type) {
         case 'Inat':
         case 'EOL':
         return [...state, ...action.data];
+        case 'Species':
+        return [...state, action.data];
         default:
         return state;
     }
 };
+
+export const store = createStore(reducer);
 
 // const { createStore } = Redux;
 // const createStore = Redux.createStore;

@@ -1,3 +1,5 @@
+import { tejo } from '../api/eol-dan-vale-do-tejo.js';
+
 const createLookupUrl = id => {
     return `http://eol.org/api/pages/1.0.json?
     batch=false&id=${utils.encodeQuery(id)}&images_per_page=10&images_page=1

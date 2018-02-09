@@ -1,44 +1,47 @@
-import { fetchInatData } from './inat.js';
-import { createDeck } from './card.js';
-import { createStore, reducer } from './store.js';
-import { getEOLSpeciesData, fetchLiveDataFromEOL } from './eol.js';
+import { fetchInatData } from './inat/inat.js';
+import { createDeck } from './card/card.js';
+import { store } from './store/store.js';
+import { getEOLSpeciesData, fetchLiveDataFromEOL } from './eol/eol.js';
+import { getWiki } from './wikipedia/wikipedia.js';
+import { tejoSpeciesAll } from './api/eol-tejo.js';
 
 const deck = createDeck();
-const store = createStore(reducer);
 const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
 const render = () => {
     const promises = store.getState();
     promises.forEach(element => {
         element.then(card => {
-            deck.add(card);
-            deck.flip();
+            deck.add(card);            
         }); 
     });    
 };
 
-store.subscribe(render);
+const renderWiki = () => {
+    const wikiText = document.getElementById('wiki');
+        wikiText.innerHTML = '';
+        let state = store.getState();
+        let species = state[state.length - 1].card.name;
+        let wiki = getWiki(species)            
+        .then(json => {
+            json.forEach(data => {
+                wikiText.innerHTML += `<li>${data}</li>`;  
+            });                
+        });
+};
 
+// store.subscribe(render);
+store.subscribe(renderWiki);
 //dispatchToStore(fetchInatData(), 'Inat');
-dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
+//dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
+
+tejoSpeciesAll.forEach(
+    species => { return deck.add(species); }
+);
 
 $(function() {
-    $('#next').asEventStream('click')    
-    .map(function(event) {
-        deck.flip();
+    $('#next').asEventStream('click')
+    .map(function(event) {        
+        deck.next();
     })
     .onValue(function(element) { console.log(element) });
 });
-
-const autoHandler = () => {
-    Bacon.fromBinder(function(callback) {
-        var id = setInterval(function() {
-            deck.flip();
-        }, 5000)
-        return function() {
-            clearInterval(id)
-        }
-    }).onValue(function(element) { console.log(element) });
-}
-
-const auto = document.getElementById('auto');
-auto.addEventListener('click', autoHandler);

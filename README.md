@@ -13,6 +13,8 @@ Lodash library used for piping functions
 
 Import used for Chrome (note the type module on the main file)
 
+NB sudo npm install --save-dev babel-jest babel-core regenerator-runtime
+
 Good practice for pushing updates to github (local --> central):
 
 * git log --oneline

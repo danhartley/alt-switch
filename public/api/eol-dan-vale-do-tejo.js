@@ -1,4 +1,4 @@
-const tejo = [
+export const tejo = [
     {
         "name": "Flora Lisboa e Vale do Tejo",
         "description": null,

@@ -62,7 +62,7 @@ const fetch = require('isomorphic-fetch');
 //import 'whatwg-fetch'; // client only
 
 var fs = require('fs', 'utf8');
-fs.readFile('./arb2.json', (err, data) => {
+fs.readFile('./arbutus2.json', (err, data) => {
   if (err) throw err;
   const arbutus = JSON.parse(data);
   const treeMedia = specimen => specimen.media.map(medium => { return {id: specimen.key, format: medium.format, urL: medium.identifier} } );

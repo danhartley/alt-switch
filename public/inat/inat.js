@@ -1,7 +1,10 @@
+import { inatDanSpecies, inatSpecies, danObservations } from '../api/inat-data.js';
+import { utils } from '../utils/utils.js';
+
 const inat = 'https://api.inaturaresponse.org/v1/';
 const inatTaxa = `${inat}taxa/autocomplete?q=`;
 
-const urls = species.february.map(species => `${inatTaxa}${utils.encodeQuery(species)}`);
+const urls = inatSpecies.february.map(species => `${inatTaxa}${utils.encodeQuery(species)}`);
 const promisesToJson = url => { return fetch(url).then(res => res.json()) };
 const observationsWithPhotos = observations => { return observations.filter(observation => (observation.default_photo && observation.default_photo.medium_url))};
 const observationsToCards = observations => { 
@@ -23,7 +26,7 @@ export const fetchLiveDataFromInat = () => {
 }
 
 export const fetchSavedDataFromLocal = () => {
-  return data
+  return danObservations
   .map(log('The set of filtered cards from local: '));
 };
 
