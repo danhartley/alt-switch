@@ -26,16 +26,38 @@ const encodeQuery = q => {
 const timer = function (sink, delay) {
   let id = null;
   Bacon.fromBinder(function() {
-  id = setInterval(function() {
-      sink();
-    }, delay);    
-  })
+    id = setInterval(function() {
+        sink();
+      }, delay);    
+    })
   .onValue(function(element) { console.log(element) });
   return id;
+};
+
+function intervalTimer (sink, delay) {
+  var timerId;
+
+  this.pause = function() {
+      window.clearInterval(timerId);
+  };
+
+  this.resume = function() {
+      window.clearInterval(timerId);
+      timerId = timer(sink, delay);
+  };
+
+  this.getId = function (){
+    return timerId;
+  }
+
+  this.resume();
+
+  return this;
 };
 
 export const utils = {
   log,
   encodeQuery,
-  timer
+  timer, 
+  intervalTimer
 };

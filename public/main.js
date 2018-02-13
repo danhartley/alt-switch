@@ -18,15 +18,17 @@ const render = () => {
 
 const renderWiki = () => {
     const wikiText = document.getElementById('wiki');
-        wikiText.innerHTML = '';
-        let state = store.getState();
-        let species = state[state.length - 1].card.name;
-        let wiki = getWiki(species)            
+    wikiText.innerHTML = '';
+    let state = store.getState();
+    let species = state.card.name;
+    window.setTimeout(()=>{
+        getWiki(species)            
         .then(json => {
             json.forEach(data => {
                 wikiText.innerHTML += `<li>${data}</li>`;  
             });                
         });
+    }, 3000);
 };
 
 // store.subscribe(render);
@@ -34,14 +36,52 @@ store.subscribe(renderWiki);
 //dispatchToStore(fetchInatData(), 'Inat');
 //dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
 
-tejoSpeciesAll.forEach(
-    species => { return deck.add(species); }
-);
+tejoSpeciesAll.forEach(species => deck.add(species));
 
-$(function() {
-    $('#next').asEventStream('click')
+const pause = document.getElementById('pause');
+const resume = document.getElementById('resume');
+
+let timer = null;
+
+let paused = false;
+
+$(function() {    
+    $('#start').asEventStream('click')
     .map(function(event) {        
-        deck.next();
+        deck.next();        
     })
     .onValue(function(element) { console.log(element) });
+
+    $('#pause').asEventStream('click')
+    .map(function(event) {        
+        timer = store.getState().timer;
+        timer.pause();
+        paused = true;
+    })
+    .onValue(function(element) { console.log(element) });
+
+    $('#resume').asEventStream('click')
+    .map(function(event) {        
+        timer = store.getState().timer;
+        timer.resume();
+        paused = false;      
+    })
+    .onValue(function(element) { console.log(element) });
+
+    document.addEventListener('keypress', event => {
+        if(event.keyCode === 13) {
+            deck.next();
+        }
+        if(event.keyCode === 32) {
+            timer = store.getState().timer;
+            if(paused) {
+                timer.resume();
+                paused = false;
+            }
+            else {
+                timer.pause();
+                paused = true;
+            }
+        }
+    });
 });

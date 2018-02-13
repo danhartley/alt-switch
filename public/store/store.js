@@ -28,7 +28,11 @@ const reducer = (state = [], action) => {
         case 'EOL':
         return [...state, ...action.data];
         case 'Species':
-        return [...state, action.data];
+            state.card = action.data;
+            return state;
+        case 'CurrentTimer':
+            state.timer = action.data;
+            return state;
         default:
         return state;
     }

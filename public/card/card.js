@@ -37,36 +37,38 @@ export const iterateOverItems = (iterator, callback, iteratorFunction) => {
 export const createDeck = () => {
     const cards = [];
     let iterator = null;
+    const delay = 2000;
     return {
         next: function next() {        
             iterator = iterator || cards[Symbol.iterator]();
             let card = iterator.next();
-            dispatchToStore({ card: card.value}, 'Species');
+            dispatchToStore(card.value, 'Species');
             if(card.done) {
                 iterator = cards[Symbol.iterator]();
                 card = iterator.next();
                 iterator = null;
-            }
-            this.renderImages(card.value.images);        
+            }                 
             setTimeout(() => {
                 renderLabel('name', card.value.name);
                 renderNames('vernacularName', card.value.names);
-            }, 1000);
+            }, delay);
+            this.renderImages(card.value.images);
         },
         add: function add(card) {
             cards.push(card)
         },
         renderImages: function (images) {
-            this.imageInterval = null;
-            this.imageIterator = images[Symbol.iterator]();
-            this.imageIteratorDone = () => {
-                clearInterval(this.imageInterval);
-                this.imageInterval = null;
-                this.imageIterator = null;
+            let imageInterval = null;
+            let imageIterator = images[Symbol.iterator]();
+            let imageIteratorDone = () => {            
+                clearInterval(imageInterval.getId());
+                imageInterval = null;
+                imageIterator = null;
                 this.next();                
             };            
-            const iterateOverImages = iterateOverItems(this.imageIterator, this.imageIteratorDone, renderImage);
-            this.imageInterval = utils.timer(iterateOverImages, 1000);
+            const iterateOverImages = iterateOverItems(imageIterator, imageIteratorDone, renderImage);
+            imageInterval = utils.intervalTimer(iterateOverImages, delay);    
+            dispatchToStore(imageInterval, 'CurrentTimer');            
         }
     }
 };
