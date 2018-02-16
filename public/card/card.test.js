@@ -1,6 +1,6 @@
 import { iterateOverItems } from './card.js';
 
-it('should itereate over collection', ()=>{
+it('should itereate over collection', () => {
 
     let arr = [1,3,4,5];
     let arr2 = [];

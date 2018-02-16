@@ -5,7 +5,7 @@
   "main": "switcher.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --watch *.js"
+    "watch": "jest --watch stopwatch.test.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "babel-preset-react": "^6.24.1",
     "baconjs": "^1.0.1",
     "http-server": "^0.11.1",
+    "is-pure-function": "^1.0.4",
     "jest": "^22.1.2",
     "jquery": "^3.3.1",
     "react-dom": "^16.2.0",
