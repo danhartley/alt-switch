@@ -1,3 +1,4 @@
+import { utils } from '../utils/utils.js';
 import { tejo } from '../api/eol-dan-vale-do-tejo.js';
 
 const createLookupUrl = id => {
@@ -14,7 +15,7 @@ let eolCollection = tejo[0].collection_items
 
 export const getEOLSpeciesData = () => {    
     return eolCollection
-    .filter(species => species.id === 578523 || species.id === 1247200)
+    // .filter(species => species.id === 578523 || species.id === 1247200)
     .map(species => {
         species.detailsUrl = createLookupUrl(species.id);
         return species;
@@ -30,7 +31,17 @@ export const fetchLiveDataFromEOL = (collection) => {
                     .filter(item => item.mediaURL || item.eolMediaURL)
                     .map(media => media.eolMediaURL);
                 const namesCollection = results.vernacularNames
-                    .filter(item => item.language === 'en' ||item.language === 'de');            
+                    .filter(item => 
+                        item.language === 'en' ||
+                        item.language === 'fr' ||
+                        item.language === 'es' ||
+                        item.language === 'pt-BR' ||
+                        item.language === 'de' ||
+                        item.language === 'de' ||
+                        item.language === 'it' ||
+                        item.language === 'ar' ||
+                        item.language === 'zh'
+                    );
                 return { id: collectionItem.id,  name: collectionItem.name, images: imagesCollection, names: namesCollection };
             });            
     });

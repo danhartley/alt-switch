@@ -2,41 +2,29 @@ import { fetchInatData } from './inat/inat.js';
 import { createDeck } from './card/card.js';
 import { store } from './store/store.js';
 import { getEOLSpeciesData, fetchLiveDataFromEOL } from './eol/eol.js';
-import { getWiki } from './wikipedia/wikipedia.js';
+import { wikiListener } from './wikipedia/wikipedia.js';
 import { tejoSpeciesAll } from './api/eol-tejo.js';
+import { utils } from './utils/utils.js';
 
 const deck = createDeck();
 const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
 const render = () => {
     const promises = store.getState();
+    let count = 0;
     promises.forEach(element => {
         element.then(card => {
-            deck.add(card);            
-        }); 
+            deck.add(card);
+        });         
     });    
 };
 
-const renderWiki = () => {
-    const wikiText = document.getElementById('wiki');
-    wikiText.innerHTML = '';
-    let state = store.getState();
-    let species = state.card.name;
-    window.setTimeout(()=>{
-        getWiki(species)            
-        .then(json => {
-            json.forEach(data => {
-                wikiText.innerHTML += `<li>${data}</li>`;  
-            });                
-        });
-    }, 3000);
-};
-
 // store.subscribe(render);
-store.subscribe(renderWiki);
+store.subscribe(wikiListener);
 //dispatchToStore(fetchInatData(), 'Inat');
-//dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
+// dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
 
-tejoSpeciesAll.forEach(species => deck.add(species));
+const randomSpecies = utils.shuffleArray(tejoSpeciesAll);
+randomSpecies.forEach(species => deck.add(species));
 
 const pause = document.getElementById('pause');
 const resume = document.getElementById('resume');
@@ -50,7 +38,7 @@ $(function() {
     .map(function(event) {        
         deck.next();        
     })
-    .onValue(function(element) { console.log(element) });
+    .onValue(function() {});
 
     $('#pause').asEventStream('click')
     .map(function(event) {        
@@ -58,7 +46,7 @@ $(function() {
         timer.pause();
         paused = true;
     })
-    .onValue(function(element) { console.log(element) });
+    .onValue(function() {});
 
     $('#resume').asEventStream('click')
     .map(function(event) {        
@@ -66,7 +54,7 @@ $(function() {
         timer.resume();
         paused = false;      
     })
-    .onValue(function(element) { console.log(element) });
+    .onValue(function() {});
 
     document.addEventListener('keypress', event => {
         if(event.keyCode === 13) {

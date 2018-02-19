@@ -1,29 +1,37 @@
 <html>
-
     <head>
         <link rel="stylesheet" type="text/css" href="./index.css"></link>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <!-- <script src='https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)'></script> -->
         <script src="./Bacon.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
     </head>
-
-    <div class="grid">
-        <div id="1">
-            <div>
-                <img id="image" title="flower image" href="#"/>
+    <body>
+        <div class="grid">
+            <div class="specimen-grid">
+                    <div id="img-holder">
+                    <img id="image" src="https://media.eol.org/content/2014/08/15/05/17177_orig.jpg"
+                        alt="Specimen pictures go here...">
+                    </div>
             </div>
-            <div>
-                <button id="start">Start</button>
-                <button id="pause">Pause</button>
-                <button id="resume">Resume</button>
-            </div>
+            <div class="species-grid">
+                <div id="name">scientific name</div>
+                <div id="synonyms">
+                    <ul id="vernacular">
+                        <li>Common names</li>
+                    </ul>             
+                </div>
+                <div id="control-panel">
+                    <p><button id="start">Start</button></p>
+                    <p><button id="pause">Pause</button></p>
+                    <p><button id="resume">Resume</button></p>
+                </div>
+                <div id="wiki-text">
+                    <h4>Wikipedia entry</h4>
+                    <ul id="wiki">
+                    </ul>                    
+                </div>
         </div>
-        <div id="2">            
-            <div><label id="name"></label></div>
-            <div><label id="vernacularName"></label></div>
-            <div><ul id="wiki"></ul></div>
-        </div>
-      </div>
-
-    <script src="./main.js" type="module"></script>
-
+        <script src="./main.js" type="module"></script>
+    </body>
 </html>

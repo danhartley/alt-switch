@@ -8,14 +8,18 @@ const renderLabel = (label, value) => {
     labelElem.innerHTML = value;
 };
 
-const renderNames = (label, collection) => { 
-    const labelElem = document.getElementById(label);
-    let orderedList = `<ul>`;
+const renderNames = (collection) => { 
+    const vernacularList = document.getElementById('vernacular');
+    vernacularList.innerHTML = '';
     collection.forEach(name => {
-        orderedList += `<li><p>${name.language}: ${name.vernacularName}`;
+        if(name.length) {
+            name.forEach(en => {
+                vernacularList.innerHTML += `<li>${en.language}: ${en.vernacularName}</li>`;    
+            });
+        } else {
+            vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName}</li>`;
+        }
     });
-    orderedList += `</ul>`;
-    labelElem.innerHTML = orderedList;    
 };
 
 const renderImage = (url) => {
@@ -50,7 +54,20 @@ export const createDeck = () => {
             }                 
             setTimeout(() => {
                 renderLabel('name', card.value.name);
-                renderNames('vernacularName', card.value.names);
+                let names = [
+                    R.reject(R.isEmpty, R.take(3, card.value.names.filter(x=>x.language==='en'))),
+                    R.head(card.value.names.filter(x=>x.language==='fr')),
+                    R.head(card.value.names.filter(x=>x.language==='es')),
+                    R.head(card.value.names.filter(x=>x.language==='pt')),
+                    R.head(card.value.names.filter(x=>x.language==='de')),
+                    R.head(card.value.names.filter(x=>x.language==='it')),
+                    R.head(card.value.names.filter(x=>x.language==='ar')),
+                    R.head(card.value.names.filter(x=>x.language==='zh')),
+                ];
+                names = R.reject(R.isEmpty, R.reject(R.isNil, names));
+                if(names.length > 0) {
+                    renderNames(names);
+                }                
             }, delay);
             this.renderImages(card.value.images);
         },
