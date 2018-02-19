@@ -10,16 +10,19 @@ const renderLabel = (label, value) => {
 
 const renderNames = (collection) => { 
     const vernacularList = document.getElementById('vernacular');
-    vernacularList.innerHTML = '';
-    collection.forEach(name => {
-        if(name.length) {
-            name.forEach(en => {
-                vernacularList.innerHTML += `<li>${en.language}: ${en.vernacularName}</li>`;    
-            });
-        } else {
-            vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName}</li>`;
-        }
-    });
+    if(collection.length === 0) vernacularList.innerHTML = '';
+    else {        
+        vernacularList.innerHTML = '';
+        collection.forEach(name => {
+            if(name.length) {
+                name.forEach(en => {
+                    vernacularList.innerHTML += `<li>${en.language}: ${en.vernacularName}</li>`;    
+                });
+            } else {
+                vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName}</li>`;
+            }
+        });
+    }
 };
 
 const renderImage = (url) => {
@@ -65,9 +68,7 @@ export const createDeck = () => {
                     R.head(card.value.names.filter(x=>x.language==='zh')),
                 ];
                 names = R.reject(R.isEmpty, R.reject(R.isNil, names));
-                if(names.length > 0) {
-                    renderNames(names);
-                }                
+                renderNames(names);
             }, delay);
             this.renderImages(card.value.images);
         },

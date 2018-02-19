@@ -1,12 +1,19 @@
 import { utils } from '../utils/utils.js';
 import { store } from '../store/store.js';
 
-const wikiURL = `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&limit=1&search=`;
+const root = `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&limit=1&search=`;
 
-const fetchWiki = species => { 
-    let strArr = species.split(' ');
-    let binomial = strArr[0] + ' ' + strArr[1];
-    let url = wikiURL + utils.encodeQuery(binomial);    
+const getUrl = (name, root, encode) => {
+    let binomial = name;
+    if(name.indexOf(' ') > 0) {
+        let ranks = name.split(' ');
+        binomial = ranks[0] + ' ' + ranks[1];
+    }    
+    return root + encode(binomial);
+};
+
+const fetchWiki = name => { 
+    const url = getUrl(name, root, utils.encodeQuery);
     let config = { 
         method: 'GET'
     };
@@ -15,28 +22,10 @@ const fetchWiki = species => {
         .then(R.flatten);
 };
 
-const cleanupWiki = (wiki, binomial) => {
-    const genus = binomial.split(' ')[0];
-    const species = binomial.split(' ')[1];
-    const regex = new RegExp(species.toUpperCase(), 'i');
-    const unique = wiki.map(response => {
-        return response.replace(regex, species);
-        //   if(Array.isArray(response)) { 
-        //       return response[0].replace(regex, species);
-        //   }
-        //   else { 
-        //       return response.replace(regex, species);
-        //   }
-        });
-    const entry = R.uniq(R.flatten(unique));
-    return {
-        genus,
-        entry
-    };
-};
-
 const formatWiki = (entry) => {
     let html = '';
+    if(entry.length === 1)
+        return `<li><i>Species: ${entry[0]}</i></li>`;
     if(entry[0]) html += `<li><h3>${entry[0]}</h3></li>`;
     if(entry[1]) html += `<li><p>${entry[1]}</p></li>`;
     if(entry[2])
@@ -56,16 +45,16 @@ const renderWiki = (wikiNode, state) => {
         window.setTimeout(()=>{            
             fetchWiki(binomial)         
                 .then(entry => {            
-                    const genus = binomial.split(' ')[0];  
-                    // const {genus, entry} = cleanupWiki(wiki, binomial);
-                    wikiNode.innerHTML = formatWiki(entry.slice(1));
-                    if(entry.length === 1 || entry.length === 2) {
+                    if(entry.length > 1) 
+                        wikiNode.innerHTML = formatWiki(entry.slice(1));
+                    else {                        
+                        const genus = binomial.split(' ')[0];                
                         fetchWiki(genus).
                             then(genusEntry => {
-                                // const {entry:genusEntry} = cleanupWiki(wiki, binomial);
+                                wikiNode.innerHTML = formatWiki(entry);
                                 wikiNode.innerHTML+= formatWiki(genusEntry.slice(1));
                             });
-                    }
+                    }                    
                 });
         }, 2000);
     }
@@ -78,7 +67,6 @@ const wikiListener = () => {
 };
 
 export {
-    cleanupWiki,
     formatWiki,
     wikiListener
 };
