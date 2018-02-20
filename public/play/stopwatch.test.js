@@ -11,7 +11,7 @@ it('Calls the update callback and iterates until the end of the collection', () 
     
     const update = jest.fn();
 
-    const stopstart = stopwatch(iter, delay, update);
+    const stopstart = stopwatch(iter, delay, update, ()=>{});
     
     stopstart.start();
 

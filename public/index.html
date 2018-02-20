@@ -2,7 +2,6 @@
     <head>
         <link rel="stylesheet" type="text/css" href="./index.css"></link>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <!-- <script src='https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)'></script> -->
         <script src="./Bacon.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
     </head>
@@ -11,7 +10,8 @@
             <div class="specimen-grid">
                     <div id="img-holder">
                     <img id="image" src="https://media.eol.org/content/2014/08/15/05/17177_orig.jpg"
-                        alt="Specimen pictures go here...">
+                        alt="Specimen image is not available..."
+                        onError="this.src='https://media.eol.org/content/2015/04/30/18/20117_orig.jpg';">
                     </div>
             </div>
             <div class="species-grid">

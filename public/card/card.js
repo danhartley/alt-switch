@@ -3,12 +3,14 @@ import { utils } from '../utils/utils.js';
 
 const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
 
-const renderLabel = (label, value) => {
-    const labelElem = document.getElementById(label);
-    labelElem.innerHTML = value;
+const renderBinomialName = (value) => {
+    const binomial = document.getElementById('name');
+    binomial.innerHTML = value;
+    if(binomial.length > 40)
+        binomial.style.fontSize = '1.1em';
 };
 
-const renderNames = (collection) => { 
+const renderCommonNames = (collection) => { 
     const vernacularList = document.getElementById('vernacular');
     if(collection.length === 0) vernacularList.innerHTML = '';
     else {        
@@ -56,7 +58,7 @@ export const createDeck = () => {
                 iterator = null;
             }                 
             setTimeout(() => {
-                renderLabel('name', card.value.name);
+                renderBinomialName(card.value.name);
                 let names = [
                     R.reject(R.isEmpty, R.take(3, card.value.names.filter(x=>x.language==='en'))),
                     R.head(card.value.names.filter(x=>x.language==='fr')),
@@ -68,7 +70,7 @@ export const createDeck = () => {
                     R.head(card.value.names.filter(x=>x.language==='zh')),
                 ];
                 names = R.reject(R.isEmpty, R.reject(R.isNil, names));
-                renderNames(names);
+                renderCommonNames(names);
             }, delay);
             this.renderImages(card.value.images);
         },

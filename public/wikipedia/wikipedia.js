@@ -3,7 +3,7 @@ import { store } from '../store/store.js';
 
 const root = `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&limit=1&search=`;
 
-const getUrl = (name, root, encode) => {
+const formatUrl = (name, root, encode) => {
     let binomial = name;
     if(name.indexOf(' ') > 0) {
         let ranks = name.split(' ');
@@ -12,8 +12,15 @@ const getUrl = (name, root, encode) => {
     return root + encode(binomial);
 };
 
-const fetchWiki = name => { 
-    const url = getUrl(name, root, utils.encodeQuery);
+const fetchWiki = name => {
+    if(name === undefined) {
+        const errorPromise = new Promise((resolve, reject) => {
+            resolve('No Wikipedia entry is avilable for this plant. Sorry!')
+        });
+        return errorPromise;
+    }
+    
+    const url = formatUrl(name, root, utils.encodeQuery);
     let config = { 
         method: 'GET'
     };
@@ -42,6 +49,7 @@ const formatWiki = (entry) => {
 const renderWiki = (wikiNode, state) => {
     if(state.card) {
         let binomial = state.card.name;
+        wikiNode.innerHTML = "";
         window.setTimeout(()=>{            
             fetchWiki(binomial)         
                 .then(entry => {            
@@ -60,13 +68,19 @@ const renderWiki = (wikiNode, state) => {
     }
 }
 
-const wikiListener = () => {
+let currentId = 0;
+
+const wikiListener = () => {    
     const wikiNode = document.getElementById('wiki')
     const state = store.getState();
-    renderWiki(wikiNode, state);
+    if(currentId !== state.card.id) {
+        renderWiki(wikiNode, state);
+        currentId = state.card.id;
+    }    
 };
 
 export {
+    formatUrl,
     formatWiki,
     wikiListener
 };

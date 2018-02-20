@@ -343,15 +343,7 @@ export const tejo = [
           },
           {
             "name": "Crepis capillaris",
-            "object_type": "TaxonConcept",
-            "object_id": 46321664,
-            "title": null,
-            "created": "2017-05-09T09:33:08Z",
-            "updated": "2017-05-09T09:33:08Z",
-            "annotation": null,
-            "sort_field": null,
-            "references": [],
-            "richness_score": 0
+            "object_id": 578199
           },
           {
             "name": "Cistus monspeliensis L.",
@@ -641,6 +633,46 @@ export const tejo = [
             "sort_field": null,
             "references": [],
             "richness_score": 100
+          },
+          {
+            "name": "Narcissus bulbocodium",
+            "object_id": "1115916"
+          },
+          {
+            "name": "Bellis sylvestris",
+            "object_id": "6239667"
+          },
+          {
+            "name": "Barlia robertiana",
+            "object_id": "46326718"
+          },
+          {
+            "name": "Antirrhinum cirrhigerum",
+            "object_id": "5671650"
+          },
+          {
+            "name": "Calendula arvensis",
+            "object_id": "467731"
+          },
+          {
+            "name": "Anemone palmata",
+            "object_id": "5518914"
+          },
+          {
+            "name": "Brassica barrelieri",
+            "object_id": "5148519"
+          },
+          {
+            "name": "Lobularia maritima",
+            "object_id": "583860"
+          },
+          {
+            "name": "Oxalis pes-caprae",
+            "object_id": "582422"
+          },
+          {
+            "name": "Carpobrotus edulis",
+            "object_id": "588586"
           }
         ]
       }
