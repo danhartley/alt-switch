@@ -24,7 +24,7 @@ store.subscribe(wikiListener);
 // dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
 
 // const randomSpecies = utils.shuffleArray(tejoSpeciesAll.filter(species => species.id === 578523 || species.id === 1247200 || species.id === 586697));
-const randomSpecies = utils.shuffleArray(tejoSpeciesAll.filter(species => species.id === 46321664));
+const randomSpecies = utils.shuffleArray(tejoSpeciesAll);
 randomSpecies.forEach(species => deck.add(species));
 
 const pause = document.getElementById('pause');
