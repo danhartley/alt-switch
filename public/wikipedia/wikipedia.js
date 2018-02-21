@@ -12,10 +12,10 @@ const formatUrl = (name, root, encode) => {
     return root + encode(binomial);
 };
 
-const fetchWiki = name => {
+const fetchWiki = (name, missingMessage) => {
     if(name === undefined) {
         const errorPromise = new Promise((resolve, reject) => {
-            resolve('No Wikipedia entry is avilable for this plant. Sorry!')
+            resolve(missingMessage)
         });
         return errorPromise;
     }
@@ -37,23 +37,26 @@ const formatWiki = (entry) => {
     if(entry[1]) html += `<li><p>${entry[1]}</p></li>`;
     if(entry[2])
         if(entry[2].indexOf('https')!== -1)
-        html += `<li><a target="_blank" href="${entry[2]}">${entry[2]}</a></li>`;
+        html += `<li><a target="_blank" href="${entry[2]}">${entry[0]}</a></li>`;
         else html += `<li><p>${entry[2]}</p></li>`;
     if(entry[3]) 
         if(entry[3].indexOf('https')!== -1)
-        html += `<li><a target="_blank" href="${entry[3]}">${entry[3]}</a></li>`;
+        html += `<li><a target="_blank" href="${entry[3]}">${entry[0]}</a></li>`;
         else html += `<li><p>${entry[3]}</p></li>`;
     return html;
 };
 
 const renderWiki = (wikiNode, state) => {
+    const missingMessage = 'No Wikipedia entry is available for this plant. Sorry!';
     if(state.card) {
         let binomial = state.card.name;
         wikiNode.innerHTML = "";
         window.setTimeout(()=>{            
-            fetchWiki(binomial)         
+            fetchWiki(binomial, missingMessage)         
                 .then(entry => {            
-                    if(entry.length > 1) 
+                    if(entry === missingMessage)
+                    wikiNode.innerHTML = missingMessage;
+                    else if(entry.length > 1) 
                         wikiNode.innerHTML = formatWiki(entry.slice(1));
                     else {                        
                         const genus = binomial.split(' ')[0];                
