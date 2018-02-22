@@ -75,7 +75,7 @@ const renderWiki = (wikiNode, state) => {
                             });
                     } 
                 });
-        }, 500);
+        }, 3000);
     }
 }
 
