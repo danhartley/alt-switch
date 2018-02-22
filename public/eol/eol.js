@@ -15,7 +15,7 @@ let eolCollection = tejo[0].collection_items
 
 export const getEOLSpeciesData = () => {    
     return eolCollection
-    // .filter(species => species.id === 578523 || species.id === 1247200 || species.id === 586697)
+    .filter(species => species.id === 1114783)
     .map(species => {
         species.detailsUrl = createLookupUrl(species.id);
         return species;
@@ -36,10 +36,11 @@ export const fetchLiveDataFromEOL = (collection) => {
                         item.language === 'fr' ||
                         item.language === 'es' ||
                         item.language === 'pt-BR' ||
-                        item.language === 'de' ||
+                        item.language === 'pt' ||
                         item.language === 'de' ||
                         item.language === 'it' ||
                         item.language === 'ar' ||
+                        item.language === 'cat' ||
                         item.language === 'zh'
                     );
                 return { id: collectionItem.id,  name: collectionItem.name, images: imagesCollection, names: namesCollection };

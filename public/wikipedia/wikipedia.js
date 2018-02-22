@@ -56,7 +56,15 @@ const renderWiki = (wikiNode, state) => {
                 .then(entry => {            
                     if(entry === missingMessage)
                     wikiNode.innerHTML = missingMessage;
-                    else if(entry.length > 1) 
+                    else if(entry.length > 3 && entry[2] === '') {                        
+                        const genus = binomial.split(' ')[0];                
+                        fetchWiki(genus).
+                            then(genusEntry => {
+                                wikiNode.innerHTML = `<li><i>Species: ${entry[0]}</i></li>`;
+                                wikiNode.innerHTML+= formatWiki(genusEntry.slice(1));
+                            });
+                    }
+                    else if(entry.length > 3)
                         wikiNode.innerHTML = formatWiki(entry.slice(1));
                     else {                        
                         const genus = binomial.split(' ')[0];                
@@ -65,7 +73,7 @@ const renderWiki = (wikiNode, state) => {
                                 wikiNode.innerHTML = formatWiki(entry);
                                 wikiNode.innerHTML+= formatWiki(genusEntry.slice(1));
                             });
-                    }                    
+                    } 
                 });
         }, 2000);
     }
@@ -76,7 +84,7 @@ let currentId = 0;
 const wikiListener = () => {    
     const wikiNode = document.getElementById('wiki')
     const state = store.getState();
-    if(currentId !== state.card.id) {
+    if(state && state.card && currentId !== state.card.id) {
         renderWiki(wikiNode, state);
         currentId = state.card.id;
     }    

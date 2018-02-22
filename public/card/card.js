@@ -46,7 +46,7 @@ export const iterateOverItems = (iterator, callback, iteratorFunction) => {
 export const createDeck = () => {
     const cards = [];
     let iterator = null;
-    const delay = 2000;
+    const delay = 1000;
     return {
         next: function next() {        
             iterator = iterator || cards[Symbol.iterator]();
