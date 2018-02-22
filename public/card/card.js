@@ -16,13 +16,14 @@ const renderCommonNames = (collection) => {
     else {        
         vernacularList.innerHTML = '';
         collection.forEach(name => {
-            if(name.length) {
-                name.forEach(en => {
-                    vernacularList.innerHTML += `<li>${en.language}: ${en.vernacularName}</li>`;    
-                });
-            } else {
-                vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName}</li>`;
-            }
+
+            if(!name.length)
+                name = [name];
+
+            name.forEach(en => {
+                vernacularList.innerHTML += `<li>${en.language}: ${en.vernacularName.replace(/\b\w/g, (l) => l.toUpperCase())}</li>`;    
+                //'your string'.replace(/\b\w/g, function(l){ return l.toUpperCase() })
+            });
         });
     }
 };
