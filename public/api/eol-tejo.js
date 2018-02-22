@@ -1,4 +1,4 @@
-export const tejoSpeciesAll =
+export const tejoSpecies =
 [
   {
     "id": 5235143,

@@ -3,32 +3,33 @@ import { utils } from '../utils/utils.js';
 
 const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
 
-const renderBinomialName = (value) => {
+const renderTitle = collection => {
+    const title = document.getElementById('title');
+    title.innerHTML = `<a target="_blank" href='${collection.link}'>${collection.name}</a>`;
+};
+
+const renderBinomialName = value => {
     const binomial = document.getElementById('name');
     binomial.innerHTML = value;
     if(binomial.length > 40)
         binomial.style.fontSize = '1.1em';
 };
 
-const renderCommonNames = (collection) => { 
+const renderCommonNames = collection => { 
     const vernacularList = document.getElementById('vernacular');
     if(collection.length === 0) vernacularList.innerHTML = '';
     else {        
         vernacularList.innerHTML = '';
-        collection.forEach(name => {
-
-            if(!name.length)
-                name = [name];
-
-            name.forEach(en => {
-                vernacularList.innerHTML += `<li>${en.language}: ${en.vernacularName.replace(/\b\w/g, (l) => l.toUpperCase())}</li>`;    
-                //'your string'.replace(/\b\w/g, function(l){ return l.toUpperCase() })
+        collection.forEach(names => {
+        names = names.length ? names : [names];
+            names.forEach(name => {
+                vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName.replace(/\b\w/g, (l) => l.toUpperCase())}</li>`;
             });
-        });
+        }); 
     }
 };
 
-const renderImage = (url) => {
+const renderImage = url => {
     const imgElem = document.getElementById('image');
     imgElem.src = url;
 };
@@ -44,10 +45,11 @@ export const iterateOverItems = (iterator, callback, iteratorFunction) => {
     }
 };
 
-export const createDeck = () => {
-    const cards = [];
+export const createDeck = (collection) => {
+    renderTitle(collection);
+    let cards = [];
     let iterator = null;
-    const delay = 1000;
+    const delay = 3000;
     return {
         next: function next() {        
             iterator = iterator || cards[Symbol.iterator]();
@@ -82,7 +84,8 @@ export const createDeck = () => {
             let imageInterval = null;
             let imageIterator = images[Symbol.iterator]();
             let imageIteratorDone = () => {            
-                clearInterval(imageInterval.getId());
+                if(imageInterval)
+                    clearInterval(imageInterval.getId());
                 imageInterval = null;
                 imageIterator = null;
                 this.next();                

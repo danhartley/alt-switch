@@ -1,4 +1,4 @@
- export const inatDanSpecies = [
+ export const inatSpecies = [
     [
       {
         "name": "Ficaria verna",
@@ -463,7 +463,7 @@
   // results/community_taxon/taxon_photos
 
 
- export const inatSpecies = {
+ export const inatCollections = {
     flora,
     february
   };

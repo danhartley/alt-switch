@@ -27,6 +27,8 @@ export const fetchLiveDataFromEOL = (collection) => {
         return fetch(collectionItem.detailsUrl)
         .then(res => res.json())
         .then(results => {
+                const thumbsCollection = results.dataObjects
+                    .map(media => media.eolThumbnailURL);
                 const imagesCollection = results.dataObjects
                     .filter(item => item.mediaURL || item.eolMediaURL)
                     .map(media => media.eolMediaURL);
@@ -43,7 +45,7 @@ export const fetchLiveDataFromEOL = (collection) => {
                         item.language === 'cat' ||
                         item.language === 'zh'
                     );
-                return { id: collectionItem.id,  name: collectionItem.name, images: imagesCollection, names: namesCollection };
+                return { id: collectionItem.id,  name: collectionItem.name, images: imagesCollection, names: namesCollection, thumbs: thumbsCollection };
             });            
     });
 };

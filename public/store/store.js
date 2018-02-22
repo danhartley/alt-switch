@@ -26,8 +26,10 @@ const reducer = (state = [], action) => {
     switch(action.type) {
         case 'Inat':
         case 'EOL':
-        return [...state, ...action.data];
+        if(action.data)
+            return [...state, ...action.data];
         case 'Species':
+        if(action.data) 
             state.card = action.data;
             return state;
         case 'CurrentTimer':

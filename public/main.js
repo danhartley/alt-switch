@@ -1,33 +1,50 @@
-import { fetchInatData } from './inat/inat.js';
+import { fetchLiveDataFromInat } from './inat/inat.js';
 import { createDeck } from './card/card.js';
 import { store } from './store/store.js';
 import { getEOLSpeciesData, fetchLiveDataFromEOL } from './eol/eol.js';
 import { wikiListener } from './wikipedia/wikipedia.js';
-import { tejoSpeciesAll } from './api/eol-tejo.js';
+import { tejoSpecies } from './api/eol-tejo.js';
 import { utils } from './utils/utils.js';
+import { inatSpecies } from './api/inat-lisbon-setubal.js';
 
-const deck = createDeck();
+let deck;
+
 const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
-const render = () => {
+const render = () => {  
     const promises = store.getState();
-    let count = 0;
     promises.forEach(element => {
         element.then(card => {
             deck.add(card);
-        });         
-    });    
+        });
+    });
+    config
+        .filter(flag => flag.enabled)
+        .map(active => {
+            active.subscribe[0][1]();
+        });
 };
 
-store.subscribe(wikiListener);
+const eolLive = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
+const eolLocal = () => utils.shuffleArray(tejoSpecies);
+const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'Inat');
+const inatLocal = () => utils.shuffleArray(inatSpecies).forEach(species => deck.add(species));
+    
+const config = [
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener] ], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
+    { enabled: true,  live: false, subscribe: [ [wikiListener] ], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener] ], call: inatLive, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} },
+    { enabled: false, live: false, subscribe: [ [wikiListener] ], call: inatLocal, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} }
+];
 
-// store.subscribe(render);
-// dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
-
-const randomSpecies = utils.shuffleArray(tejoSpeciesAll);
-randomSpecies.forEach(species => deck.add(species));
-
-// const randomSpecies = utils.shuffleArray(tejoSpeciesAll.filter(species => species.id === 578523 || species.id === 1247200 || species.id === 586697));
-//dispatchToStore(fetchInatData(), 'Inat');
+config
+    .filter(flag => flag.enabled)
+    .map(active => {
+        active.subscribe.map(listener => {
+            listener[1] = store.subscribe(listener[0]); 
+        });
+        deck = createDeck(active.collection);
+        active.live ? active.call() : active.call().forEach(species => deck.add(species));
+    });
 
 const pause = document.getElementById('pause');
 const resume = document.getElementById('resume');

@@ -21,6 +21,12 @@
  background-color: rgba(14, 12, 18, 0.7);
 }
 
+#title {
+  background-color: grey;
+  padding: 20px 0 0 20px;
+  font-size: 1.4em;
+}
+
 #image {
   object-fit: cover;
   height: 600px;
@@ -31,12 +37,6 @@
  grid-row: 2;
  text-align: right;
 }
-
-/* #image-footer {
- grid-column: 2;
- grid-row: 4;
- background: rgba(14, 12, 18, 0.6);
-} */
 
 .species-grid {
   display: grid;
