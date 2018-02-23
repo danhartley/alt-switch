@@ -60,6 +60,7 @@
   background-color: rgba(215, 44, 44, 0.7);
   padding-top: 20px;
   font-size: .8em;
+  text-transform: capitalize;
 }
 
 #control-panel {

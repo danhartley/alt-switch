@@ -23,7 +23,7 @@ const renderCommonNames = collection => {
         collection.forEach(names => {
         names = names.length ? names : [names];
             names.forEach(name => {
-                vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName.replace(/\b\w/g, (l) => l.toUpperCase())}</li>`;
+                vernacularList.innerHTML += `<li>${name.language}: ${name.vernacularName}</li>`;
             });
         }); 
     }
