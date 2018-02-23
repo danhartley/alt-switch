@@ -6,6 +6,7 @@ import { wikiListener } from './wikipedia/wikipedia.js';
 import { tejoSpecies } from './api/eol-tejo.js';
 import { utils } from './utils/utils.js';
 import { inatSpecies } from './api/inat-lisbon-setubal.js';
+import { gbifListener } from './gbif/gbif.js';
 
 let deck;
 
@@ -30,10 +31,10 @@ const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'Inat');
 const inatLocal = () => utils.shuffleArray(inatSpecies).forEach(species => deck.add(species));
     
 const config = [
-    { enabled: false, live: true, subscribe: [ [render], [wikiListener] ], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
-    { enabled: true,  live: false, subscribe: [ [wikiListener] ], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
-    { enabled: false, live: true, subscribe: [ [render], [wikiListener] ], call: inatLive, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} },
-    { enabled: false, live: false, subscribe: [ [wikiListener] ], call: inatLocal, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} }
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
+    { enabled: true,  live: false, subscribe: [ [wikiListener], [gbifListener] ], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: inatLive, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} },
+    { enabled: false, live: false, subscribe: [ [wikiListener], [gbifListener] ], call: inatLocal, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} }
 ];
 
 config
@@ -98,7 +99,14 @@ document.getElementById('control-panel').addEventListener('click', (event) => {
     let button = event.target;
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
-    if(button.id === 'start') button.disabled = true;
+
+    pause.disabled = true;
+    resume.disabled = true;
+
+    if(button.id === 'start') {
+        button.disabled = true;
+        pause.disabled = false;
+    }
     if(button.id === 'pause') {
         pause.disabled = true;
         resume.disabled = false;

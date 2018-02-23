@@ -10,9 +10,8 @@ const renderTitle = collection => {
 
 const renderBinomialName = value => {
     const binomial = document.getElementById('name');
-    binomial.innerHTML = value;
-    if(binomial.length > 40)
-        binomial.style.fontSize = '1.1em';
+    const name = value.split(' ');
+    binomial.innerHTML = `${name[0]} ${name[1]}`;
 };
 
 const renderCommonNames = collection => { 

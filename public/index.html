@@ -10,7 +10,7 @@
     <body>
         <div class="grid">
             <div class="specimen-grid">
-                <div id="title"></div>
+                <div class="title-wrapper"><span id="title"></span></div>
                 <div id="img-holder">
                 <img id="image" src="https://media.eol.org/content/2014/08/15/05/17177_orig.jpg"
                     alt="Specimen image is not available..."
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="species-grid">
-                <div id="name">Scientific name</div>
+                <div id="taxonomy"><span id="name">Scientific name</span><span id="family"></span></div>
                 <div id="synonyms"> 
                     <ul id="vernacular">
                         <li>Common names</li>
@@ -26,9 +26,9 @@
                 </div>
                 <div id="control-panel">
                     <p><button id="start">Start</button></p>
-                    <p><button id="pause">Pause</button></p>
-                    <p><button id="resume">Resume</button></p>
-                </div>
+                    <p><button id="pause" disabled>Pause</button></p>
+                    <p><button id="resume" disabled>Resume</button></p>
+                </div>           
                 <div id="wiki-text">
                     <h4>Wikipedia entry</h4>
                     <ul id="wiki">
