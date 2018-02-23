@@ -93,3 +93,18 @@ $(function() {
         }
     });
 });
+
+document.getElementById('control-panel').addEventListener('click', (event) => { 
+    let button = event.target;
+    let pause = document.getElementById('pause');
+    let resume = document.getElementById('resume');
+    if(button.id === 'start') button.disabled = true;
+    if(button.id === 'pause') {
+        pause.disabled = true;
+        resume.disabled = false;
+    }
+    if(button.id === 'resume') {
+        pause.disabled = false;
+        resume.disabled = true;
+    }
+});
