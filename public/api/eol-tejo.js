@@ -2173,7 +2173,16 @@ export const tejoSpecies =
       "http://media.eol.org/content/2011/10/15/22/67730_orig.jpg",
       "http://media.eol.org/content/2011/10/15/22/53498_orig.jpg"
     ],
-    "names": [],
+    "names": [
+      {
+        "vernacularName": "green crepis",
+        "language": "en"
+      },
+      {
+        "vernacularName": "smooth hawksbeard",
+        "language": "en"
+      }
+    ],
     "thumbs": [
       "http://media.eol.org/content/2011/10/15/22/75343_98_68.jpg",
       "http://media.eol.org/content/2011/10/15/22/75680_98_68.jpg",
@@ -2203,6 +2212,10 @@ export const tejoSpecies =
       "http://media.eol.org/content/2016/08/03/13/47298_orig.jpg"
     ],
     "names": [
+      {
+        "vernacularName": "Rockrose",
+        "language": "en"
+      },
       {
         "vernacularName": "Lorbeerlättrude Zistrose",
         "language": "de",

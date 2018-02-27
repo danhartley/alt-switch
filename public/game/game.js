@@ -25,15 +25,8 @@ const getNext = (items, store, index) => {
     return nextItem(items, store.getState().index);
 }
 
-let display = document.getElementById('name');
-let img1 = document.getElementById('img1');
-let img2 = document.getElementById('img2');
-let img3 = document.getElementById('img3');
-let img4 = document.getElementById('img4');
-let btn1 = document.getElementById('btn1');
-let btn2 = document.getElementById('btn2');
-let btn3 = document.getElementById('btn3');
-let btn4 = document.getElementById('btn4');
+let imageGrid = document.getElementById('imageGrid');
+let nameGrid = document.getElementById('nameGrid');
 let total = document.getElementById('total');
 let correct = document.getElementById('correct');
 let event = new MouseEvent('click', {
@@ -43,17 +36,16 @@ let event = new MouseEvent('click', {
   });
 let next = document.getElementById('next');
 let message = document.getElementById('message');
-let btns = document.getElementById('btns');
 
 dispatchToStore({
     total: 0,
     correct: 0
 }, 'SCORE');
 
-const btnsHandler = (event)=>{
+const scoreHandler = (event)=>{
     const score = store.getState().score;
     score.total += 1;
-    const answer = event.target.innerHTML;
+    const answer = event.target.childNodes[0].data;
     if(answer === item.name) {
         score.correct += 1;
         message.innerHTML = `${answer} is the correct answer! Well done.`;
@@ -66,10 +58,10 @@ const btnsHandler = (event)=>{
     window.setTimeout(()=>{
         next.dispatchEvent(event);
     },1000);
-};    
+};
 
-if(btns) {
-    btns.addEventListener('click', btnsHandler);
+if(nameGrid) {
+    nameGrid.addEventListener('click', scoreHandler);
 }
 
 let item = null;
@@ -80,20 +72,28 @@ export const randomItemSelector = (array, randomNumber) => {
 
 const nextHandler = () => {
    item = getNext(items, store, store.getState().index);
-   const binomial = item.name;
-   const randomImages = shuffleArray(item.images);
-   img1.src = randomImages[0];
-   img2.src = randomImages[1];
-   img3.src = randomImages[2];
-   img4.src = randomImages[3];
-   const three = R.take(3, utils.shuffleArray(items)).map(item => item.name);
-   const options = utils.shuffleArray([...three, binomial]);
-   btn1.innerHTML = options[0];
-   btn2.innerHTML = options[1];
-   btn3.innerHTML = options[2];
-   btn4.innerHTML = options[3];
+   const images = R.take(4, utils.shuffleArray(item.images));
+   imageGrid.innerHTML = '';
+   images.forEach(image=>{
+    imageGrid.innerHTML += `<div class="square"><img src="${image}" /></div>`; 
+   });
+   const five = R.take(5, utils.shuffleArray(items));
+   const answers = utils.shuffleArray([...five, item]);
+   nameGrid.innerHTML = '';
+   answers.forEach(answer=>{
+       const vernacularName = answer.names.filter(name=>name.language==='en').map(name => name.vernacularName)[0] || '';
+       nameGrid.innerHTML +=  
+        `<div class="rectangle">
+            <div class="answer">
+                <button class="scientificName">${answer.name}</button>
+                <div class="vernacularName">${vernacularName}</div>
+            </div>
+        </div>`;
+    });
 }
 
 if(next) {
     next.addEventListener('click', nextHandler);
 }
+
+next.dispatchEvent(event);

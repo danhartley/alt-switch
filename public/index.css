@@ -17,7 +17,7 @@
  display: grid; 
  grid-auto-flow: column;
  grid-template-columns: 1fr;
- grid-template-rows: 90px auto;
+ grid-template-rows: 90px auto 60px;
  background-color: rgba(14, 12, 18, 0.7);
 }
 
@@ -36,6 +36,10 @@
  grid-column: 1;
  grid-row: 2;
  text-align: right;
+}
+
+#specimen-footer {
+  padding: 20px 0 0 70px;
 }
 
 .species-grid {
