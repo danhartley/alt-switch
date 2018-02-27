@@ -38,7 +38,7 @@ const reducer = (state = [], action) => {
         case 'INDEX':
             state.index = action.data;
             return state;
-            case 'SCORE':
+        case 'SCORE':
             state.score = action.data;
             return state;
         default:
