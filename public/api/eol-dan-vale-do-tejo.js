@@ -4,12 +4,12 @@ export const tejo = [
     "description": null,
     "logo_url": null,
     "created": "2016-04-21T10:15:43Z",
-    "modified": "2018-02-23T12:19:13Z",
-    "total_items": 62,
+    "modified": "2017-05-10T13:42:06Z",
+    "total_items": 70,
     "item_types": [
       {
         "item_type": "TaxonConcept",
-        "item_count": 61
+        "item_count": 68
       },
       {
         "item_type": "Text",
@@ -41,66 +41,6 @@ export const tejo = [
       }
     ],
     "collection_items": [
-      {
-        "name": "Himantoglossum robertianum (Loisel.) P.Delforge",
-        "object_type": "TaxonConcept",
-        "object_id": 1129557,
-        "title": null,
-        "created": "2018-02-23T12:19:13Z",
-        "updated": "2018-02-23T12:19:13Z",
-        "annotation": null,
-        "sort_field": null,
-        "references": [],
-        "richness_score": 300
-      },
-      {
-        "name": "Barlia robertiana",
-        "object_type": "TaxonConcept",
-        "object_id": 46326718,
-        "title": null,
-        "created": "2018-02-20T09:36:11Z",
-        "updated": "2018-02-20T09:36:11Z",
-        "annotation": null,
-        "sort_field": null,
-        "references": [],
-        "richness_score": 0
-      },
-      {
-        "name": "Bellis sylvestris Cirillo",
-        "object_type": "TaxonConcept",
-        "object_id": 6239667,
-        "title": null,
-        "created": "2018-02-20T09:33:53Z",
-        "updated": "2018-02-20T09:33:53Z",
-        "annotation": null,
-        "sort_field": null,
-        "references": [],
-        "richness_score": 100
-      },
-      {
-        "name": "Narcissus bulbocodium L.",
-        "object_type": "TaxonConcept",
-        "object_id": 1115916,
-        "title": null,
-        "created": "2018-02-20T09:32:29Z",
-        "updated": "2018-02-20T09:32:29Z",
-        "annotation": null,
-        "sort_field": null,
-        "references": [],
-        "richness_score": 100
-      },
-      {
-        "name": "Crepis capillaris (L.) Wallr.",
-        "object_type": "TaxonConcept",
-        "object_id": 578199,
-        "title": null,
-        "created": "2018-02-19T19:06:32Z",
-        "updated": "2018-02-19T19:06:32Z",
-        "annotation": null,
-        "sort_field": null,
-        "references": [],
-        "richness_score": 400
-      },
       {
         "name": "Veronica persica Poir.",
         "object_type": "TaxonConcept",
@@ -641,6 +581,150 @@ export const tejo = [
         "sort_field": null,
         "references": [],
         "richness_score": 400
+      },
+      {
+        "name": "Campanula patula L.",
+        "object_type": "TaxonConcept",
+        "object_id": 577759,
+        "title": null,
+        "created": "2017-04-28T12:02:14Z",
+        "updated": "2017-04-28T12:02:14Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 300
+      },
+      {
+        "name": "Ophrys apifera Huds.",
+        "object_type": "TaxonConcept",
+        "object_id": 1136554,
+        "title": null,
+        "created": "2017-04-28T11:26:25Z",
+        "updated": "2017-04-28T11:26:25Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 200
+      },
+      {
+        "name": "Anagallis arvensis L.",
+        "object_type": "TaxonConcept",
+        "object_id": 583434,
+        "title": null,
+        "created": "2017-04-28T11:16:04Z",
+        "updated": "2017-04-28T11:16:04Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 300
+      },
+      {
+        "name": "Echium plantagineum L.",
+        "object_type": "TaxonConcept",
+        "object_id": 579906,
+        "title": null,
+        "created": "2017-04-28T10:59:13Z",
+        "updated": "2017-04-28T10:59:13Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 300
+      },
+      {
+        "name": "Arbutus unedo L.",
+        "object_type": "TaxonConcept",
+        "object_id": 583608,
+        "title": null,
+        "created": "2017-04-27T11:56:26Z",
+        "updated": "2017-04-27T11:56:26Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 100
+      },
+      {
+        "name": "Quercus ilex L.",
+        "object_type": "TaxonConcept",
+        "object_id": 1151536,
+        "title": null,
+        "created": "2017-04-27T11:06:38Z",
+        "updated": "2017-04-27T11:06:38Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 200
+      },
+      {
+        "name": "Hordeum murinum L.",
+        "object_type": "TaxonConcept",
+        "object_id": 1114459,
+        "title": null,
+        "created": "2017-04-27T09:04:35Z",
+        "updated": "2017-04-27T09:04:35Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 400
+      },
+      {
+        "name": "Echium vulgare L.",
+        "object_type": "TaxonConcept",
+        "object_id": 579910,
+        "title": null,
+        "created": "2017-04-27T08:33:23Z",
+        "updated": "2017-04-27T08:33:23Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 300
+      },
+      {
+        "name": "Galactites tomentosa Moench",
+        "object_type": "TaxonConcept",
+        "object_id": 2864808,
+        "title": null,
+        "created": "2017-04-27T07:28:59Z",
+        "updated": "2017-04-27T07:28:59Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 100
+      },
+      {
+        "name": "Sinapis alba subsp. mairei (H. Lindb.) Maire",
+        "object_type": "TaxonConcept",
+        "object_id": 5152569,
+        "title": null,
+        "created": "2016-04-21T10:41:35Z",
+        "updated": "2016-04-21T10:41:35Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 0
+      },
+      {
+        "name": "Pulicaria dysenterica (L.) Gaertn.",
+        "object_type": "TaxonConcept",
+        "object_id": 509700,
+        "title": null,
+        "created": "2016-04-21T10:26:56Z",
+        "updated": "2016-04-21T10:26:56Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 200
+      },
+      {
+        "name": "Pinus pinaster Aiton",
+        "object_type": "TaxonConcept",
+        "object_id": 1061780,
+        "title": null,
+        "created": "2016-04-21T10:20:18Z",
+        "updated": "2016-04-21T10:20:18Z",
+        "annotation": null,
+        "sort_field": null,
+        "references": [],
+        "richness_score": 300
       }
     ]
   }

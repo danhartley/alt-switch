@@ -21,7 +21,7 @@ const fetchWiki = (name, missingMessage) => {
     }
     
     const url = formatUrl(name, root, utils.encodeQuery);
-    let config = { 
+    const config = { 
         method: 'GET'
     };
     return fetch(url, config)

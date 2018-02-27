@@ -35,6 +35,12 @@ const reducer = (state = [], action) => {
         case 'CurrentTimer':
             state.timer = action.data;
             return state;
+        case 'INDEX':
+            state.index = action.data;
+            return state;
+            case 'SCORE':
+            state.score = action.data;
+            return state;
         default:
         return state;
     }
