@@ -2,38 +2,21 @@ import { tejoSpecies } from '../api/eol-tejo.js';
 import { utils } from '../utils/utils.js';
 import { store } from '../store/store.js';
 
-const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
-
-export const nextItem = (array, index) => {    
-    return array[index % array.length];
-};
-
-export const getSimpleBinomial = (name) => {
-    const clean = name.split(' ');
-    return `${clean[0]} ${clean[1]}`;
-};
-
-const items = utils.shuffleArray(tejoSpecies);
-
-items.forEach(item => {
-    item.name = getSimpleBinomial(item.name);
-});;
-
 const imageGrid = document.getElementById('imageGrid');
 const nameGrid = document.getElementById('nameGrid');
-const event = new MouseEvent('click', {
+const nextClickEvent = new MouseEvent('click', {
     view: window,
     bubbles: true,
     cancelable: true
   });
-const next = document.getElementById('next');
+const nextButton = document.getElementById('next');
 
-dispatchToStore({
-    total: 0,
-    correct: 0,
-    answer: '',
-    question: ''
-}, 'SCORE');
+const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
+
+const items = utils.shuffleArray(tejoSpecies).map(item => {
+    item.name = item.name.split(' ').slice(0,2).join(' ');
+    return item;
+});;
 
 const renderScore = () => {
     const total = document.getElementById('total');
@@ -49,7 +32,7 @@ const renderScore = () => {
 store.subscribe(renderScore);
 
 const scoreHandler = (event) => {
-    let item = items[store.getState().index];
+    const item = store.getState().item;
     const score = store.getState().score;
     score.total += 1;
     score.answer = event.target.childNodes[0].data;
@@ -62,7 +45,7 @@ const scoreHandler = (event) => {
     }
     dispatchToStore(score, 'SCORE');
     window.setTimeout(()=>{
-        next.dispatchEvent(event);
+        nextButton.dispatchEvent(nextClickEvent);
     },1000);
 };
 
@@ -71,15 +54,16 @@ if(nameGrid) {
 }
 
 const renderNext = () => {
-    let item = nextItem(items, store.getState().index);
+    const item = store.getState().item;
+    const curr = imageGrid.childNodes.length > 0 ? imageGrid.childNodes[0].children[0].alt : '';
+    if(item.name === curr) return;
     const images = R.take(4, utils.shuffleArray(item.images));
     imageGrid.innerHTML = '';
     images.forEach(image=>{
-     imageGrid.innerHTML += `<div class="square"><img src="${image}" /></div>`; 
+     imageGrid.innerHTML += `<div class="square"><img alt="${item.name}" src="${image}" /></div>`; 
     });
-    const five = R.take(5, utils.shuffleArray(items));
+    const five = R.take(5, utils.shuffleArray(items).filter(x => x.id !== item.id));
     const answers = utils.shuffleArray([...five, item]);
-    
     nameGrid.innerHTML = '';
     answers.forEach(answer=>{
         const vernacularName = answer.names.filter(name=>name.language==='en').map(name => name.vernacularName)[0] || '';
@@ -96,13 +80,14 @@ const renderNext = () => {
 store.subscribe(renderNext);
 
 const nextHandler = () => {
-   let index = store.getState().index;
-   index = index === undefined ? -1 : index; 
-   dispatchToStore(++index, 'INDEX');   
+   let index = store.getState().item.index + 1;
+   let item = utils.nextItem(items, index);
+   item.index = index++;
+   dispatchToStore(item, 'ITEM');
 }
 
-if(next) {
-    next.addEventListener('click', nextHandler);
+if(nextButton) {
+    nextButton.addEventListener('click', nextHandler);
 }
 
-next.dispatchEvent(event);
+nextButton.dispatchEvent(nextClickEvent);

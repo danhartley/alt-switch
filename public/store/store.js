@@ -1,6 +1,6 @@
-const createStore = (reducer) => {
+const createStore = (reducer, intialState) => {
 
-    let state;
+    let state = intialState || {};
     let listeners = [];
 
     const getState = () => state;
@@ -35,18 +35,26 @@ const reducer = (state = [], action) => {
         case 'CurrentTimer':
             state.timer = action.data;
             return state;
-        case 'INDEX':
-            state.index = action.data;
-            return state;
         case 'SCORE':
             state.score = action.data;
+            return state;
+        case 'ITEM':
+            state.item = action.data;
             return state;
         default:
         return state;
     }
 };
 
-export const store = createStore(reducer);
+export const store = createStore(reducer, {
+    item: { index: 0 },
+    score: {
+        total: 0,
+        correct: 0,
+        answer: '',
+        question: ''
+    }
+});
 
 // const { createStore } = Redux;
 // const createStore = Redux.createStore;

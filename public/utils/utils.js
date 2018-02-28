@@ -62,10 +62,16 @@ const shuffleArray = arr => (
     .map(a => a[1])
 );
 
+
+const nextItem = (array, index) => {    
+  return array[index % array.length];
+};
+
 export const utils = {
   log,
   encodeQuery,
   timer, 
   intervalTimer,
-  shuffleArray
+  shuffleArray,
+  nextItem
 };
