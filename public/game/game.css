@@ -18,7 +18,7 @@
  grid-auto-flow: column;
  grid-template-columns: 600px;
  grid-auto-rows: 60px 600px;
-  grid-template-areas: "title"
+  grid-template-areas: "header"
                        "squares"
                        "footer"
 }
@@ -28,16 +28,9 @@
   grid-auto-flow: column;
   grid-template-columns: 600px;
   grid-auto-rows: 60px 600px;
-  grid-template-areas: "title"
+  grid-template-areas: "header"
                        "squares"
                        "footer"
-}
-
-#title {
-  grid-area: title;
-  background-color: grey;
-  padding: 15px 0 0 20px;
-  font-size: 1em;
 }
 
 .squares {
@@ -47,6 +40,54 @@
   grid-auto-rows: 300px;
   grid-template-areas: "one two"
                        "three four"
+}
+
+.squares img {
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+}
+
+.square:nth-child(1) {
+  grid-area: one;
+}
+
+.square:nth-child(2) {
+  grid-area: two;
+}
+
+.square:nth-child(3) {
+  grid-area: three;
+}
+
+.square:nth-child(4) {
+  grid-area: four;
+}
+
+#footer {
+  grid-area: footer;
+  padding: 20px 0 0 20px;
+  background-color: rgb(192, 58, 72);
+  color: black;
+}
+
+#txtBinomial {
+  color:  rgb(192, 58, 72);
+}
+
+.answer {
+  grid-area: five;
+  background-color: seagreen;
+  padding: 10px 0 0 10px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+#header {
+  grid-area: header;
+  background-color: grey;
+  padding: 15px 0 0 20px;
+  font-size: 1em;
 }
 
 .rectangles {
@@ -60,55 +101,20 @@
                        "five six"
 }
 
-.squares img {
-  object-fit: cover;
-  height: 300px;
-  width: 300px;
+.rectangle {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 20px 1fr 20px;
+  grid-auto-rows: 20px 1fr 0px;
+  grid-template-areas: "one two three"
+                       "four five six"
+                       "seven eight nine";
 }
 
 .rectangles img {
   object-fit: cover;
   height: 200px;
   width: 300px;
-}
-
-.square:nth-child(1) {
-  grid-area: one;
-  background-color: black;
-}
-
-.square:nth-child(2) {
-  grid-area: two;
-  background-color: green;
-}
-
-.square:nth-child(3) {
-  grid-area: three;
-  color: black;
-  background-color: yellow;
-}
-
-.square:nth-child(4) {
-  grid-area: four;
-  background-color: red;
-}
-
-.rectangle {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 20px 1fr 20px;
-  grid-auto-rows: 20px 1fr 20px;
-  grid-template-areas: "one two three"
-                       "four five six"
-                       "seven eight nine";
-}
-
-.answer {
-  grid-area: five;
-  background-color: seagreen;
-  padding: 10px 0 0 10px;
-  text-transform: capitalize;
-  cursor: pointer;
 }
 
 .vernacularName {
@@ -138,11 +144,4 @@
 
 .rectangle:nth-child(6) {
   grid-area: six;
-}
-
-#footer {
-  grid-area: footer;
-  padding: 20px 0 0 20px;
-  background-color: rgb(192, 58, 72);
-  color: black;
 }

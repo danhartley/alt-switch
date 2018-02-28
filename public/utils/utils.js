@@ -64,7 +64,9 @@ const shuffleArray = arr => (
 
 
 const nextItem = (array, index) => {    
-  return array[index % array.length];
+  const item = array[index % array.length];
+  item.index = index;
+  return item;
 };
 
 export const utils = {

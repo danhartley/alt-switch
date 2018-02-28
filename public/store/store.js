@@ -1,4 +1,4 @@
-const createStore = (reducer, intialState) => {
+export const createStore = (reducer, intialState) => {
 
     let state = intialState || {};
     let listeners = [];
@@ -22,7 +22,8 @@ const createStore = (reducer, intialState) => {
     return { getState, dispatch, subscribe };
 };
 
-const reducer = (state = [], action) => {
+export const reducer = (state = {}, action) => {
+    state.action = action.type;
     switch(action.type) {
         case 'Inat':
         case 'EOL':
@@ -35,10 +36,21 @@ const reducer = (state = [], action) => {
         case 'CurrentTimer':
             state.timer = action.data;
             return state;
-        case 'SCORE':
-            state.score = action.data;
+        case 'LOAD_ITEMS':
+            state.items = action.data;
             return state;
-        case 'ITEM':
+        case 'UPDATE_SCORE':
+            state.score.total += 1;
+            state.score.answer = action.data;
+            if(state.score.answer === state.item.name) {
+                state.score.correct += 1;  
+                state.score.success = true;
+            } else {
+                state.score.question = state.item.name;
+                state.score.success = false;
+            }      
+            return state;
+        case 'NEXT_ITEM':
             state.item = action.data;
             return state;
         default:
@@ -46,7 +58,7 @@ const reducer = (state = [], action) => {
     }
 };
 
-export const store = createStore(reducer, {
+const initialState = {
     item: { index: 0 },
     score: {
         total: 0,
@@ -54,7 +66,9 @@ export const store = createStore(reducer, {
         answer: '',
         question: ''
     }
-});
+};
+
+export const store = createStore(reducer, initialState);
 
 // const { createStore } = Redux;
 // const createStore = Redux.createStore;

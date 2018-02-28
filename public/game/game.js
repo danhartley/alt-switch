@@ -1,93 +1,109 @@
 import { tejoSpecies } from '../api/eol-tejo.js';
 import { utils } from '../utils/utils.js';
-import { store } from '../store/store.js';
+import { createStore, reducer } from '../store/store.js';
+import { actions } from './game-action-creators.js';
 
-const imageGrid = document.getElementById('imageGrid');
-const nameGrid = document.getElementById('nameGrid');
-const nextClickEvent = new MouseEvent('click', {
-    view: window,
-    bubbles: true,
-    cancelable: true
-  });
-const nextButton = document.getElementById('next');
+const DOM = {
+    specimenRptr : document.getElementById('rptrSpecimen'),
+    speciesRptr : document.getElementById('rptrSpecies'),
+    nextClickEvnt : new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      }),
+    nextBtn : document.getElementById('btnNext'),
+    moreSpecimensBtn : document.getElementById('btnMoreSpecimens'),
+    totalTxt : document.getElementById('txtTotal'),
+    correctTxt : document.getElementById('txtCorrect'),
+    messageTxt : document.getElementById('txtMessage')
+};
 
-const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};
+const initialState = {
+    items: utils.shuffleArray(tejoSpecies).map(item => {
+        item.name = item.name.split(' ').slice(0,2).join(' ');
+        return item;
+    }),
+    item: { index: 0 },
+    score: {
+        total: 0,
+        correct: 0,
+        answer: '',
+        question: ''
+    }
+};
 
-const items = utils.shuffleArray(tejoSpecies).map(item => {
-    item.name = item.name.split(' ').slice(0,2).join(' ');
-    return item;
-});;
+export const store = createStore(reducer, initialState);
 
 const renderScore = () => {
-    const total = document.getElementById('total');
-    const correct = document.getElementById('correct');
-    const message = document.getElementById('message');
     const score = store.getState().score;
-    if(score.success) message.innerHTML = `${score.answer} is the correct answer! Well done.`;
-    else if(score.total > 0) message.innerHTML = `${score.answer} is the wrong answer! Oh dear. The correct answer is ${score.question}`;
-    total.innerHTML = score.total;
-    correct.innerHTML = score.correct;
+    if(score.success) DOM.messageTxt.innerHTML = `${score.answer} is the correct answer! Well done.`;
+    else if(score.total > 0) DOM.messageTxt.innerHTML = `${score.answer} is the wrong answer! Oh dear. The correct answer is ${score.question}`;
+    DOM.totalTxt.innerHTML = score.total;
+    DOM.correctTxt.innerHTML = score.correct;
 };
 
 store.subscribe(renderScore);
 
-const scoreHandler = (event) => {
-    const item = store.getState().item;
-    const score = store.getState().score;
-    score.total += 1;
-    score.answer = event.target.childNodes[0].data;
-    if(score.answer === item.name) {
-        score.correct += 1;  
-        score.success = true;
-    } else {
-        score.question = item.name;
-        score.success = false;
+const nextSpecies = () => {
+    const state = store.getState();
+    if(state.action === 'UPDATE_SCORE') {
+        window.setTimeout(()=>{
+            DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
+        },1000);
     }
-    dispatchToStore(score, 'SCORE');
-    window.setTimeout(()=>{
-        nextButton.dispatchEvent(nextClickEvent);
-    },1000);
 };
 
-if(nameGrid) {
-    nameGrid.addEventListener('click', scoreHandler);
-}
+store.subscribe(nextSpecies);
 
-const renderNext = () => {
-    const item = store.getState().item;
-    const curr = imageGrid.childNodes.length > 0 ? imageGrid.childNodes[0].children[0].alt : '';
-    if(item.name === curr) return;
-    const images = R.take(4, utils.shuffleArray(item.images));
-    imageGrid.innerHTML = '';
-    images.forEach(image=>{
-     imageGrid.innerHTML += `<div class="square"><img alt="${item.name}" src="${image}" /></div>`; 
+const renderSpecies = () => {    
+    const state = store.getState();
+    if(state.action === 'NEXT_ITEM') {
+        const five = R.take(5, utils.shuffleArray(state.items).filter(i => i.id !== state.item.id));
+        const speciesList = utils.shuffleArray([...five, state.item]);
+        DOM.speciesRptr.innerHTML = speciesList.map(species => {
+            const englishName = species.names.filter(name=>name.language==='en').map(name => name.vernacularName)[0] || '';         
+            return `<div class="rectangle">
+                        <div class="answer">
+                            <button class="scientificName">${species.name}</button>
+                            <div class="vernacularName">${englishName}</div>
+                        </div>
+                    </div>`;
+        }).join('');
+    }
+};
+
+store.subscribe(renderSpecies);
+
+const renderSpecimens = (override = false) => {
+    const state = store.getState();
+    const currentImages = 
+        DOM.specimenRptr.childNodes.length > 0 
+        ? Array.from(DOM.specimenRptr.childNodes).map(node => node.children[0].src)
+        : [];
+    if(state.action !== 'NEXT_ITEM' && !override) return;
+    const images = R.take(4, utils.shuffleArray(R.reject(i => currentImages.includes(i), state.item.images)));
+    DOM.specimenRptr.innerHTML = images.map(image => {
+      return `<div class="square"><img alt="${state.item.name}" src="${image}" /></div>`; 
+    }).join('');
+};
+
+store.subscribe(renderSpecimens);
+
+if(DOM.nextBtn) {
+    DOM.nextBtn.addEventListener('click', () => {
+        const state = store.getState();
+        actions.boundNextItem(utils.nextItem(state.items, state.item.index + 1));
     });
-    const five = R.take(5, utils.shuffleArray(items).filter(x => x.id !== item.id));
-    const answers = utils.shuffleArray([...five, item]);
-    nameGrid.innerHTML = '';
-    answers.forEach(answer=>{
-        const vernacularName = answer.names.filter(name=>name.language==='en').map(name => name.vernacularName)[0] || '';
-        nameGrid.innerHTML +=  
-         `<div class="rectangle">
-             <div class="answer">
-                 <button class="scientificName">${answer.name}</button>
-                 <div class="vernacularName">${vernacularName}</div>
-             </div>
-         </div>`;
-     });
-};
-
-store.subscribe(renderNext);
-
-const nextHandler = () => {
-   let index = store.getState().item.index + 1;
-   let item = utils.nextItem(items, index);
-   item.index = index++;
-   dispatchToStore(item, 'ITEM');
 }
 
-if(nextButton) {
-    nextButton.addEventListener('click', nextHandler);
+if(DOM.moreSpecimensBtn) {
+    DOM.moreSpecimensBtn.addEventListener('click', () => {
+        renderSpecimens(true);
+    });
 }
 
-nextButton.dispatchEvent(nextClickEvent);
+if(DOM.speciesRptr) {
+    DOM.speciesRptr.addEventListener('click', (event) => actions.boundUpdateScore(event.target.childNodes[0].data)) ;
+}
+
+DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
