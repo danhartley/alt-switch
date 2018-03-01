@@ -1,5 +1,5 @@
 import { utils } from '../utils/utils.js';
-import { store } from '../store/store.js';
+import { store } from '../store/store-repo.js';
 
 const root = `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&limit=1&search=`;
 

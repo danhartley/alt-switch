@@ -1,4 +1,4 @@
-import { store } from '../store/store.js';
+import { store } from '../store/store-repo.js';
 
 let currentName = 0;
 

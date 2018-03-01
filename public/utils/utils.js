@@ -69,11 +69,27 @@ const nextItem = (array, index) => {
   return item;
 };
 
+const combineReducers = (reducers) => {
+  return (state = {}, action) => {
+      return Object.keys(reducers).reduce(
+        (nextState, key) => {
+          nextState[key] = reducers[key](
+            state[key],
+            action
+          );
+          return nextState;
+        },
+      {}
+    );
+  };
+};
+
 export const utils = {
   log,
   encodeQuery,
   timer, 
   intervalTimer,
   shuffleArray,
-  nextItem
+  nextItem,
+  combineReducers
 };

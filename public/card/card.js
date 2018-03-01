@@ -1,4 +1,4 @@
-import { store } from '../store/store.js';
+import { store } from '../store/store-repo.js';
 import { utils } from '../utils/utils.js';
 
 const dispatchToStore = (data, type) => { store.dispatch({type: type, data: data });};

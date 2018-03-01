@@ -1,6 +1,6 @@
 import { fetchLiveDataFromInat } from './inat/inat.js';
 import { createDeck } from './card/card.js';
-import { store } from './store/store.js';
+import { store } from '../store/store-repo.js';
 import { getEOLSpeciesData, fetchLiveDataFromEOL } from './eol/eol.js';
 import { wikiListener } from './wikipedia/wikipedia.js';
 import { tejoSpecies } from './api/eol-tejo.js';

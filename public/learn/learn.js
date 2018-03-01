@@ -1,38 +1,8 @@
-// import { tejoSpecies } from '../api/eol-tejo.js';
 import { utils } from '../utils/utils.js';
-import { store } from '../store/store.js';
+import { store } from '../store/store-repo.js';
 import { actions } from './learn-actions.js';
-
-const DOM = {
-    specimenRptr : document.getElementById('rptrSpecimen'),
-    speciesRptr : document.getElementById('rptrSpecies'),
-    nextClickEvnt : new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true
-      }),
-    nextBtn : document.getElementById('btnNext'),
-    moreSpecimensBtn : document.getElementById('btnMoreSpecimens'),
-    totalTxt : document.getElementById('txtTotal'),
-    correctTxt : document.getElementById('txtCorrect'),
-    messageTxt : document.getElementById('txtMessage')
-};
-
-// const initialState = {
-//     items: utils.shuffleArray(tejoSpecies).map(item => {
-//         item.name = item.name.split(' ').slice(0,2).join(' ');
-//         return item;
-//     }),
-//     item: { index: 0 },
-//     score: {
-//         total: 0,
-//         correct: 0,
-//         answer: '',
-//         question: ''
-//     }
-// };
-
-// export const store = createStore(reducer, initialState);
+import { types } from './learn-types.js';
+import { DOM } from './learn-dom.js';
 
 const renderScore = () => {
     const score = store.getState().score;
@@ -46,7 +16,7 @@ store.subscribe(renderScore);
 
 const nextSpecies = () => {
     const state = store.getState();
-    if(state.action === 'UPDATE_SCORE') {
+    if(state.type === types.UPDATE_SCORE) {
         window.setTimeout(()=>{
             DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
         },1000);
@@ -57,7 +27,7 @@ store.subscribe(nextSpecies);
 
 const renderSpecies = () => {    
     const state = store.getState();
-    if(state.action === 'NEXT_ITEM') {
+    if(state.type === types.NEXT_ITEM) {
         const five = R.take(5, utils.shuffleArray(state.items).filter(i => i.id !== state.item.id));
         const speciesList = utils.shuffleArray([...five, state.item]);
         DOM.speciesRptr.innerHTML = speciesList.map(species => {
@@ -74,36 +44,38 @@ const renderSpecies = () => {
 
 store.subscribe(renderSpecies);
 
-const renderSpecimens = (override = false) => {
-    const state = store.getState();
-    const currentImages = 
-        DOM.specimenRptr.childNodes.length > 0 
-        ? Array.from(DOM.specimenRptr.childNodes).map(node => node.children[0].src)
-        : [];
-    if(state.action !== 'NEXT_ITEM' && !override) return;
-    const images = R.take(4, utils.shuffleArray(R.reject(i => currentImages.includes(i), state.item.images)));
-    DOM.specimenRptr.innerHTML = images.map(image => {
-      return `<div class="square"><img alt="${state.item.name}" src="${image}" /></div>`; 
-    }).join('');
+let renderSpecimenImages = null;
+
+const renderImages = (specimenImages) => {
+    let images = specimenImages;
+    return () => {        
+        let displayImages = R.take(4, utils.shuffleArray(images));        
+        DOM.specimenRptr.innerHTML = displayImages.map(displayImages => {
+          return `<div class="square"><img src="${displayImages}" /></div>`; 
+        }).join('');
+        images = R.remove(0, 4, images);
+    };
+};
+
+const renderSpecimens = () => {
+    const { type, item: { images } } = store.getState();
+    if(type === types.NEXT_ITEM) {
+        renderSpecimenImages = renderImages(images);
+        renderSpecimenImages();
+    }
 };
 
 store.subscribe(renderSpecimens);
 
-if(DOM.nextBtn) {
-    DOM.nextBtn.addEventListener('click', () => {
-        const state = store.getState();
-        actions.boundNextItem(utils.nextItem(state.items, state.item.index + 1));
-    });
-}
+DOM.nextBtn.addEventListener('click', () => {
+    const state = store.getState();
+    actions.boundNextItem(utils.nextItem(state.items, state.item.index + 1));
+});
 
-if(DOM.moreSpecimensBtn) {
-    DOM.moreSpecimensBtn.addEventListener('click', () => {
-        renderSpecimens(true);
-    });
-}
+DOM.moreSpecimensBtn.addEventListener('click', () => {
+    renderSpecimenImages();
+});
 
-if(DOM.speciesRptr) {
-    DOM.speciesRptr.addEventListener('click', (event) => actions.boundUpdateScore(event.target.childNodes[0].data)) ;
-}
+DOM.speciesRptr.addEventListener('click', (event) => actions.boundUpdateScore(event.target.childNodes[0].data));
 
 DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
