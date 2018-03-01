@@ -1,4 +1,4 @@
-import { store } from './game.js';
+import { store } from './learn.js';
 
 const makeActionCreator = action => {
     return function (value) {
@@ -20,5 +20,9 @@ const boundUpdateScore = data => store.dispatch(updateScore(data))
 
 export const actions = {
     boundNextItem,
-    boundUpdateScore
+    boundUpdateScore,
+    actions: {
+      NEXT_ITEM,
+      UPDATE_SCORE
+    }
 };

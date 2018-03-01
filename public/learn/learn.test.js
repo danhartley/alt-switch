@@ -1,4 +1,4 @@
-// import { nextItem } from './game.js';
+// import { nextItem } from './learn.js';
 import { reducer } from '../store/store';   
 
 describe('reducer', () => {

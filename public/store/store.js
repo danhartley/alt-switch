@@ -36,10 +36,10 @@ export const reducer = (state = {}, action) => {
         case 'LOAD_ITEMS':
             return { ...state, items: action.data }
         case 'UPDATE_SCORE':
-            const score = { answer : action.data };
+            const score = { total: 0, correct: 0, question: '', answer : action.data };
             score.total = state.score.total + 1;
             if(score.answer === state.item.name) {
-                score.correct = state.score.correct + 1;  
+                score.correct = state.score.correct + 1;
                 score.success = true;
             } else {
                 score.question = state.item.name;
@@ -54,13 +54,7 @@ export const reducer = (state = {}, action) => {
 };
 
 const initialState = {
-    item: { index: 0 },
-    score: {
-        total: 0,
-        correct: 0,
-        answer: '',
-        question: ''
-    }
+    item: { index: 0 }
 };
 
 export const store = createStore(reducer, initialState);
