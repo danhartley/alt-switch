@@ -1,7 +1,7 @@
 import { tejoSpecies } from '../api/eol-tejo.js';
 import { utils } from '../utils/utils.js';
 import { createStore, reducer } from '../store/store.js';
-import { actions } from './game-action-creators.js';
+import { actions } from './game-actions.js';
 
 const DOM = {
     specimenRptr : document.getElementById('rptrSpecimen'),
