@@ -1,6 +1,6 @@
-import { tejoSpecies } from '../api/eol-tejo.js';
+// import { tejoSpecies } from '../api/eol-tejo.js';
 import { utils } from '../utils/utils.js';
-import { createStore, reducer } from '../store/store.js';
+import { store } from '../store/store.js';
 import { actions } from './learn-actions.js';
 
 const DOM = {
@@ -18,21 +18,21 @@ const DOM = {
     messageTxt : document.getElementById('txtMessage')
 };
 
-const initialState = {
-    items: utils.shuffleArray(tejoSpecies).map(item => {
-        item.name = item.name.split(' ').slice(0,2).join(' ');
-        return item;
-    }),
-    item: { index: 0 },
-    score: {
-        total: 0,
-        correct: 0,
-        answer: '',
-        question: ''
-    }
-};
+// const initialState = {
+//     items: utils.shuffleArray(tejoSpecies).map(item => {
+//         item.name = item.name.split(' ').slice(0,2).join(' ');
+//         return item;
+//     }),
+//     item: { index: 0 },
+//     score: {
+//         total: 0,
+//         correct: 0,
+//         answer: '',
+//         question: ''
+//     }
+// };
 
-export const store = createStore(reducer, initialState);
+// export const store = createStore(reducer, initialState);
 
 const renderScore = () => {
     const score = store.getState().score;

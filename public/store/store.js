@@ -1,3 +1,6 @@
+import { tejoSpecies } from '../api/eol-tejo.js';
+import { utils } from '../utils/utils.js';
+
 export const createStore = (reducer, intialState) => {
 
     let state = intialState || {};
@@ -54,11 +57,17 @@ export const reducer = (state = {}, action) => {
 };
 
 const initialState = {
-    item: { index: 0 }
+    items: utils.shuffleArray(tejoSpecies).map(item => {
+        item.name = item.name.split(' ').slice(0,2).join(' ');
+        return item;
+    }),
+    item: { index: 0 },
+    score: {
+        total: 0,
+        correct: 0,
+        answer: '',
+        question: ''
+    }
 };
 
 export const store = createStore(reducer, initialState);
-
-// const { createStore } = Redux;
-// const createStore = Redux.createStore;
-// import { createStore } from 'redux';
