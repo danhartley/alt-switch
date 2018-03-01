@@ -30,29 +30,24 @@ export const reducer = (state = {}, action) => {
         if(action.data)
             return [...state, ...action.data];
         case 'Species':
-        if(action.data) 
-            state.card = action.data;
-            return state;
+        return { ...state, card : action.data || card };
         case 'CurrentTimer':
-            state.timer = action.data;
-            return state;
+            return { ...state, timer: action.data }
         case 'LOAD_ITEMS':
-            state.items = action.data;
-            return state;
+            return { ...state, items: action.data }
         case 'UPDATE_SCORE':
-            state.score.total += 1;
-            state.score.answer = action.data;
-            if(state.score.answer === state.item.name) {
-                state.score.correct += 1;  
-                state.score.success = true;
+            const score = { answer : action.data };
+            score.total = state.score.total + 1;
+            if(score.answer === state.item.name) {
+                score.correct = state.score.correct + 1;  
+                score.success = true;
             } else {
-                state.score.question = state.item.name;
-                state.score.success = false;
-            }      
-            return state;
+                score.question = state.item.name;
+                score.success = false;
+            } 
+            return { ...state, score };
         case 'NEXT_ITEM':
-            state.item = action.data;
-            return state;
+            return { ...state, item: action.data }
         default:
         return state;
     }
