@@ -9,7 +9,7 @@ const initialState = {
         item.name = item.name.split(' ').slice(0,2).join(' ');
         return item;
     }),
-    score: { success: false, total: 0, correct: 0, answer: '' },
+    score: { success: false, total: 0, correct: 0,   answer: '' },
     item: { index: 0 }
 };
 

@@ -48,10 +48,12 @@ let renderSpecimenImages = null;
 
 const renderImages = (specimenImages) => {
     let images = specimenImages;
-    return () => {        
+    return () => {
         let displayImages = R.take(4, utils.shuffleArray(images));        
         DOM.specimenRptr.innerHTML = displayImages.map(displayImages => {
-          return `<div class="square"><img src="${displayImages}" /></div>`; 
+          return `<div class="square">
+                    <img src="${displayImages}" onError="this.src='https://media.eol.org/content/2015/04/30/18/20117_orig.jpg';" />
+                 </div>`; 
         }).join('');
         images = R.remove(0, 4, images);
     };
