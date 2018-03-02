@@ -25,8 +25,6 @@ const items = (state = species, action) => {
         case 'LOAD_EOL_DATA':
         if(action.data)
             return [...action.data];
-        // case 'CURRENT_TIMER':
-        //     return { ...state, timer: action.data }
         default:
             return state;
     }

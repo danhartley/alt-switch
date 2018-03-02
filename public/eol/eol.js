@@ -15,7 +15,7 @@ let eolCollection = tejo[0].collection_items
 
 export const getEOLSpeciesData = () => {    
     return eolCollection
-    // .filter(species => species.id === 1114783)
+    .filter(species => species.id === 1114783)
     .map(species => {
         species.detailsUrl = createLookupUrl(species.id);
         return species;
