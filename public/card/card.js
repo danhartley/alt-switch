@@ -48,7 +48,7 @@ export const createDeck = (collection) => {
     renderTitle(collection);
     let cards = [];
     let iterator = null;
-    const delay = 3000;
+    const delay = 1000;
     return {
         next: function next() {        
             iterator = iterator || cards[Symbol.iterator]();
