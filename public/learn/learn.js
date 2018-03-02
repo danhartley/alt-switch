@@ -7,7 +7,7 @@ import { DOM } from './learn-dom.js';
 const renderScore = () => {
     const score = store.getState().score;
     if(score.success) DOM.messageTxt.innerHTML = `${score.answer} is the correct answer! Well done.`;
-    else if(score.total > 0) DOM.messageTxt.innerHTML = `${score.answer} is the wrong answer! Oh dear. The correct answer is ${score.question}`;
+    else if(score.total > 0) DOM.messageTxt.innerHTML = `${score.question} not ${score.answer} is correct.`;
     DOM.totalTxt.innerHTML = score.total;
     DOM.correctTxt.innerHTML = score.correct;
 };
@@ -25,8 +25,8 @@ store.subscribe(nextSpecies);
 const renderSpecies = () => {    
     const state = store.getState();
     if(state.type === types.NEXT_ITEM) {
-        const five = R.take(5, utils.shuffleArray(state.items).filter(i => i.id !== state.item.id));
-        const speciesList = utils.shuffleArray([...five, state.item]);
+        const alternativeAnswers = R.take(5, utils.shuffleArray(state.items).filter(i => i.id !== state.item.id));
+        const speciesList = utils.shuffleArray([...alternativeAnswers, state.item]);
         const languages = [ 'en', 'pt' ];
         DOM.speciesRptr.innerHTML = speciesList.map(species => {
             const vernacularNames = R.take(5, 

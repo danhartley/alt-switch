@@ -2361,42 +2361,42 @@ export const tejoSpecies =
   //     null
   //   ]
   // },
-  {
-    "id": 5732250,
-    "name": "Cistus ladanifer subsp. ladanifer",
-    "images": [
-      "http://media.eol.org/content/2014/08/15/05/48287_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/05/51740_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/01/64436_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/01/60919_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/01/93521_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/01/62161_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/01/13751_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/00/10979_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/00/86075_orig.jpg",
-      "http://media.eol.org/content/2014/08/15/01/01818_orig.jpg"
-    ],
-    "names": [
-      {
-        "vernacularName": "Ciste à gomme",
-        "language": "fr",
-        "eol_preferred": true
-      }
-    ],
-    "thumbs": [
-      null,
-      "http://media.eol.org/content/2014/08/15/05/48287_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/05/51740_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/01/64436_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/01/60919_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/01/93521_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/01/62161_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/01/13751_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/00/10979_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/00/86075_98_68.jpg",
-      "http://media.eol.org/content/2014/08/15/01/01818_98_68.jpg"
-    ]
-  },
+  // {
+  //   "id": 5732250,
+  //   "name": "Cistus ladanifer subsp. ladanifer",
+  //   "images": [
+  //     "http://media.eol.org/content/2014/08/15/05/48287_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/05/51740_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/64436_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/60919_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/93521_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/62161_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/13751_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/00/10979_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/00/86075_orig.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/01818_orig.jpg"
+  //   ],
+  //   "names": [
+  //     {
+  //       "vernacularName": "Ciste à gomme",
+  //       "language": "fr",
+  //       "eol_preferred": true
+  //     }
+  //   ],
+  //   "thumbs": [
+  //     null,
+  //     "http://media.eol.org/content/2014/08/15/05/48287_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/05/51740_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/64436_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/60919_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/93521_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/62161_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/13751_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/00/10979_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/00/86075_98_68.jpg",
+  //     "http://media.eol.org/content/2014/08/15/01/01818_98_68.jpg"
+  //   ]
+  // },
   {
     "id": 1114782,
     "name": "Avena fatua L.",

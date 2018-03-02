@@ -7,7 +7,11 @@ export const updateScore = (state, action) => {
             const score = { ...state, question: action.data.question, answer : action.data.answer };
             score.total++;
             score.success = score.answer === score.question;
-            if(score.success) score.correct++;
+            if(score.success) {
+                score.correct++;
+                score.passes.push(score.question);
+            }
+            else score.fails.push(score.question);
             return score;
         default:
             return state;

@@ -10,6 +10,8 @@ const initialState = {
         correct: 0,
         answer: '',
         question: '',
+        fails: [],
+        passes: [],
         success: false
     }
 };
