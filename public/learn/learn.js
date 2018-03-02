@@ -33,12 +33,12 @@ const renderSpecies = () => {
                 species.names
                     .filter(name => R.contains(name.language, languages))
                     .map(name => `<p>${name.vernacularName}</p>`)).join(''); 
-            return `<div class="rectangle">
-                        <div class="answer">
-                            <button class="scientificName">${species.name}</button>
-                            <div class="vernacularName">${vernacularNames}</div>
-                        </div>
-                    </div>`;
+                    return `<div class="rectangle">
+                                <div class="answer">
+                                    <button class="scientificName">${species.name}</button>
+                                    <div class="vernacularName">${vernacularNames}</div>
+                                </div>
+                            </div>`;
         }).join('');
     }
 };
