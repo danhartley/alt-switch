@@ -1,22 +1,22 @@
 export const tejoSpecies =
 [
-  {
-    "id": 5235143,
-    "name": "Scabiosa atropurpurea var. maritima",
-    "images": [
-      "http://media.eol.org/content/2011/10/16/02/11603_orig.jpg"
-    ],
-    "names": [
-      {
-        "vernacularName": "Scabieuse maritime",
-        "language": "fr",
-        "eol_preferred": true
-      }
-    ],
-    "thumbs": [
-      "http://media.eol.org/content/2011/10/16/02/11603_98_68.jpg"
-    ]
-  },
+  // {
+  //   "id": 5235143,
+  //   "name": "Scabiosa atropurpurea var. maritima",
+  //   "images": [
+  //     "http://media.eol.org/content/2011/10/16/02/11603_orig.jpg"
+  //   ],
+  //   "names": [
+  //     {
+  //       "vernacularName": "Scabieuse maritime",
+  //       "language": "fr",
+  //       "eol_preferred": true
+  //     }
+  //   ],
+  //   "thumbs": [
+  //     "http://media.eol.org/content/2011/10/16/02/11603_98_68.jpg"
+  //   ]
+  // },
   {
     "id": 579419,
     "name": "Salvia verbenaca L.",
@@ -2352,15 +2352,15 @@ export const tejoSpecies =
       "http://media.eol.org/content/2014/08/15/01/64436_98_68.jpg"
     ]
   },
-  {
-    "id": 32431305,
-    "name": "Taraxacum officinale",
-    "images": [],
-    "names": [],
-    "thumbs": [
-      null
-    ]
-  },
+  // {
+  //   "id": 32431305,
+  //   "name": "Taraxacum officinale",
+  //   "images": [],
+  //   "names": [],
+  //   "thumbs": [
+  //     null
+  //   ]
+  // },
   {
     "id": 5732250,
     "name": "Cistus ladanifer subsp. ladanifer",

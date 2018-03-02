@@ -44,6 +44,8 @@ export const fetchLiveDataFromEOL = (collection) => {
                         item.language === 'ar' ||
                         item.language === 'cat' ||
                         item.language === 'zh'
+                        // see logic in learn.js for R.contains
+                        // const languages = [ 'en', 'pt', 'es', 'de', 'fr', 'it', 'ar', 'zh' ];
                     );
                 return { id: collectionItem.id,  name: collectionItem.name, images: imagesCollection, names: namesCollection, thumbs: thumbsCollection };
             });            

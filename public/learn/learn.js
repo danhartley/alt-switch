@@ -27,12 +27,16 @@ const renderSpecies = () => {
     if(state.type === types.NEXT_ITEM) {
         const five = R.take(5, utils.shuffleArray(state.items).filter(i => i.id !== state.item.id));
         const speciesList = utils.shuffleArray([...five, state.item]);
+        const languages = [ 'en', 'pt' ];
         DOM.speciesRptr.innerHTML = speciesList.map(species => {
-            const englishName = species.names.filter(name=>name.language==='en').map(name => name.vernacularName)[0] || '';         
+            const vernacularNames = R.take(5, 
+                species.names
+                    .filter(name => R.contains(name.language, languages))
+                    .map(name => `<p>${name.vernacularName}</p>`)).join(''); 
             return `<div class="rectangle">
                         <div class="answer">
                             <button class="scientificName">${species.name}</button>
-                            <div class="vernacularName">${englishName}</div>
+                            <div class="vernacularName">${vernacularNames}</div>
                         </div>
                     </div>`;
         }).join('');
@@ -77,4 +81,5 @@ DOM.speciesRptr.addEventListener('click', (event) => {
 });
     
 const { items, item } = store.getState();
+DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
 actions.boundNextItem(utils.nextItem(items, item.index + 1));

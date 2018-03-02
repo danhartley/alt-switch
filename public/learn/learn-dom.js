@@ -1,4 +1,5 @@
 export const DOM = {
+    collectionTxt : document.getElementById('txtCollection'),
     specimenRptr : document.getElementById('rptrSpecimen'),
     speciesRptr : document.getElementById('rptrSpecies'),
     moreSpecimensBtn : document.getElementById('btnMoreSpecimens'),
