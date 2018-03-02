@@ -31,8 +31,8 @@ const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'LOAD_INAT_DATA'
 const inatLocal = () => utils.shuffleArray(inatSpecies).forEach(species => deck.add(species));
     
 const config = [
-    { enabled: true, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
-    { enabled: false,  live: false, subscribe: [ [wikiListener], [gbifListener] ], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
+    { enabled: true,  live: false, subscribe: [ [wikiListener], [gbifListener] ], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: inatLive, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} },
     { enabled: false, live: false, subscribe: [ [wikiListener], [gbifListener] ], call: inatLocal, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} }
 ];

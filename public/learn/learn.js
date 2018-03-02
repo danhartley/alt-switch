@@ -15,12 +15,9 @@ const renderScore = () => {
 store.subscribe(renderScore);
 
 const nextSpecies = () => {
-    const state = store.getState();
-    if(state.type === types.UPDATE_SCORE) {
-        window.setTimeout(()=>{
-            DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
-        },1000);
-    }
+    const { type, items, item } = store.getState();
+    if(type === types.UPDATE_SCORE) 
+        actions.boundNextItem(utils.nextItem(items, item.index + 1));
 };
 
 store.subscribe(nextSpecies);
@@ -69,20 +66,15 @@ const renderSpecimens = () => {
 
 store.subscribe(renderSpecimens);
 
-DOM.nextBtn.addEventListener('click', () => {
-    const state = store.getState();
-    actions.boundNextItem(utils.nextItem(state.items, state.item.index + 1));
-});
-
 DOM.moreSpecimensBtn.addEventListener('click', () => {
     renderSpecimenImages();
 });
 
 DOM.speciesRptr.addEventListener('click', (event) => {
-    const { item } = store.getState();
+    const { item } = store.getState();    
     const qandA = { question: item.name, answer: event.target.childNodes[0].data }
     actions.boundUpdateScore(qandA);
 });
     
-
-DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
+const { items, item } = store.getState();
+actions.boundNextItem(utils.nextItem(items, item.index + 1));
