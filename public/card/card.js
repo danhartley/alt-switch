@@ -53,7 +53,7 @@ export const createDeck = (collection) => {
         next: function next() {        
             iterator = iterator || cards[Symbol.iterator]();
             let card = iterator.next();
-            dispatchToStore(card.value, 'Species');
+            dispatchToStore(card.value, 'NEXT_SPECIES');
             if(card.done) {
                 iterator = cards[Symbol.iterator]();
                 card = iterator.next();
@@ -91,7 +91,7 @@ export const createDeck = (collection) => {
             };            
             const iterateOverImages = iterateOverItems(imageIterator, imageIteratorDone, renderImage);
             imageInterval = utils.intervalTimer(iterateOverImages, delay);    
-            dispatchToStore(imageInterval, 'CurrentTimer');            
+            dispatchToStore(imageInterval, 'CURRENT_TIMER');            
         }
     }
 };

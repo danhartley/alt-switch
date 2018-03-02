@@ -2589,13 +2589,13 @@ export const tejoSpecies =
         "language": "de"
       },
       {
+        "vernacularName": "Common oats",
+        "language": "en"
+      },
+      {
         "vernacularName": "wild oat",
         "language": "en",
         "eol_preferred": true
-      },
-      {
-        "vernacularName": "Common oats",
-        "language": "en"
       },
       {
         "vernacularName": "common oat",

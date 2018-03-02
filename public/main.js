@@ -25,9 +25,9 @@ const render = () => {
         });
 };
 
-const eolLive = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'EOL');
+const eolLive = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData()), 'LOAD_EOL_DATA');
 const eolLocal = () => utils.shuffleArray(tejoSpecies);
-const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'Inat');
+const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'LOAD_INAT_DATA');
 const inatLocal = () => utils.shuffleArray(inatSpecies).forEach(species => deck.add(species));
     
 const config = [

@@ -1,61 +1,52 @@
-import { reducers } from './learn-reducers.js';
+import { updateScore, nextItem } from './learn-reducers.js';
 import { types } from './learn-types.js';
 
 it('learn state should reflect correct answer', () => {
 
   const stateBefore = {
-    item: { name: 'Anagallis arvensis'},
-    score: {
-      total: 10,
-      correct: 9,
-      answer: '',
-      success: false
-    }
+    total: 10,
+    correct: 9,
+    answer: '',
+    success: false
   }
 
   const stateAfter = {
-    item: { name: 'Anagallis arvensis'},
-    score: {
-      total: 11,
-      correct: 10,
-      question: 'Anagallis arvensis',
-      answer: 'Anagallis arvensis',
-      success: true
-    }
+    total: 11,
+    correct: 10,
+    question: 'Anagallis arvensis',
+    answer: 'Anagallis arvensis',
+    success: true
   }
 
   const action = {
     type: types.UPDATE_SCORE,
-    data: 'Anagallis arvensis'
+    data: {
+      question: 'Anagallis arvensis',
+      answer: 'Anagallis arvensis'
+    }
   }
 
   Object.freeze(stateBefore);
   Object.freeze(action);
 
-  expect(reducers.updateScore(stateBefore, action)).toEqual(stateAfter);
+  expect(updateScore(stateBefore, action)).toEqual(stateAfter);
 });
 
 it('learn state should reflect incorrect answer', () => {
 
   const stateBefore = {
-    item: { name: 'Anagallis arvensis'},
-    score: {
-      total: 10,
-      correct: 9,
-      answer: '',
-      success: false
-    }
+    total: 10,
+    correct: 9,
+    answer: '',
+    success: false
   }
 
   const stateAfter = {
-    item: { name: 'Anagallis arvensis'},
-    score: {
-      total: 11,
-      correct: 9,
-      question: 'Anagallis arvensis',
-      answer: 'Malva sylvestris',
-      success: false
-    }
+    total: 11,
+    correct: 9,
+    question: 'Anagallis arvensis',
+    answer: 'Malva sylvestris',
+    success: false
   }
 
   Object.freeze(stateBefore);
@@ -63,17 +54,20 @@ it('learn state should reflect incorrect answer', () => {
 
   const action = {
     type: types.UPDATE_SCORE,
-    data: 'Malva sylvestris'
+    data: {
+      question: 'Anagallis arvensis',
+      answer: 'Malva sylvestris'
+    }
   }
 
-  expect(reducers.updateScore(stateBefore, action)).toEqual(stateAfter);
+  expect(updateScore(stateBefore, action)).toEqual(stateAfter);
 });
 
 it('learn state should return the next item', () => {
 
-  const stateBefore = { items: [] };
+  const stateBefore = { };
 
-  const stateAfter =  { items: [], item: { id: 1 }};
+  const stateAfter =  { id: 1 };
 
   const action = {
     type: types.NEXT_ITEM,
@@ -83,5 +77,5 @@ it('learn state should return the next item', () => {
   Object.freeze(stateBefore);
   Object.freeze(action);
 
-  expect(reducers.nextItem(stateBefore, action)).toEqual(stateAfter);
+  expect(nextItem(stateBefore, action)).toEqual(stateAfter);
 });

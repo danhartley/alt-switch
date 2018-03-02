@@ -1,33 +1,24 @@
 import { utils } from '../utils/utils.js';
-import { actions } from './learn-actions.js';
 import { types } from './learn-types.js';
 
-const intialScore = {
-    total: 0,
-    correct: 0,
-    answer: '',
-    question: ''
-}
-
-const updateScore = (state = intialScore, action) => {
+export const updateScore = (state, action) => {
     switch(action.type) {
         case types.UPDATE_SCORE:
-            const score = { ...state.score, question: state.item.name, answer : action.data };
-            score.total = score.total + 1;
+            const score = { ...state, question: action.data.question, answer : action.data.answer };
+            score.total++;
             score.success = score.answer === score.question;
-            if(score.success) score.correct = score.correct + 1;
-            return { ...state, score };
+            if(score.success) score.correct++;
+            return score;
+        default:
+            return state;
     }   
 };
 
-const nextItem = (state = { index: 0 }, action) => {
+export const nextItem = (state = { index: 0 }, action) => {
     switch(action.type) {
         case types.NEXT_ITEM:
-            return { ...state, item: action.data }
+            return action.data;
+        default:
+            return state;
     }
 };
-
-export const reducers = {
-    updateScore,
-    nextItem
-}

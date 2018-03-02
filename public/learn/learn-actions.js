@@ -10,11 +10,11 @@ const makeActionCreator = action => {
     }
   }
 
-const nextItem = makeActionCreator(types.NEXT_ITEM);
-const updateScore = makeActionCreator(types.UPDATE_SCORE);
+const nextItemAction = makeActionCreator(types.NEXT_ITEM);
+const updateScoreAction = makeActionCreator(types.UPDATE_SCORE);
 
-const boundNextItem = data => store.dispatch(nextItem(data))
-const boundUpdateScore = data => store.dispatch(updateScore(data))
+const boundNextItem = data => store.dispatch(nextItemAction(data))
+const boundUpdateScore = data => store.dispatch(updateScoreAction(data))
 
 export const actions = {
     boundNextItem,

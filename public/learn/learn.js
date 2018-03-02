@@ -78,6 +78,11 @@ DOM.moreSpecimensBtn.addEventListener('click', () => {
     renderSpecimenImages();
 });
 
-DOM.speciesRptr.addEventListener('click', (event) => actions.boundUpdateScore(event.target.childNodes[0].data));
+DOM.speciesRptr.addEventListener('click', (event) => {
+    const { item } = store.getState();
+    const qandA = { question: item.name, answer: event.target.childNodes[0].data }
+    actions.boundUpdateScore(qandA);
+});
+    
 
 DOM.nextBtn.dispatchEvent(DOM.nextClickEvnt);
