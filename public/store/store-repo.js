@@ -2,7 +2,7 @@ import { tejoSpecies } from '../api/eol-tejo.js';
 import { utils } from '../utils/utils.js';
 import { createStore } from './store.js';
 import { types } from '../learn/learn-types.js';
-import { updateScore, nextItem } from '../learn/learn-reducers.js'
+import { score, item } from '../learn/learn-reducers.js'
 
 const initialState = {
     score: {
@@ -32,7 +32,7 @@ const items = (state = species, action) => {
     }
 };
 
-const nextCard = (state, action) => {
+const card = (state = null, action) => {
     switch(action.type) {
         case 'NEXT_SPECIES':
             return { ...action.data };
@@ -41,7 +41,7 @@ const nextCard = (state, action) => {
     }
 };
 
-const currentTimer = (state, action) => {
+const timer = (state = null, action) => {
     switch(action.type) {
         case 'CURRENT_TIMER':
             return { ...action.data }
@@ -50,15 +50,24 @@ const currentTimer = (state, action) => {
     }
 };
 
-const reducer = (state = {}, action) => {    
-    return {
-        score: updateScore({ ...state.score }, action),
-        items: items(state.items, action),
-        item: nextItem(state.item, action),
-        card: nextCard(state.card, action),
-        timer: currentTimer(state.timer, action),
-        type: action.type
-    };
+const type = (state = null, action) => { 
+    switch(action.type) {
+        default: 
+            return action.type || state; 
+    }
 };
 
+const { combineReducers } = Redux;
+
+const reducer = combineReducers({
+    score,
+    items,
+    item,
+    card,
+    timer,
+    type
+});
+
 export const store = createStore(reducer, initialState);
+// const { createStore } = Redux; 
+// export const store = createStore(reducer, initialState);

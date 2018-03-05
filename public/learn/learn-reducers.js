@@ -1,7 +1,7 @@
 import { utils } from '../utils/utils.js';
 import { types } from './learn-types.js';
 
-export const updateScore = (state, action) => {
+export const score = (state = null, action) => {
     switch(action.type) {
         case types.UPDATE_SCORE:
             const score = { ...state, question: action.data.question, answer : action.data.answer };
@@ -9,7 +9,7 @@ export const updateScore = (state, action) => {
             score.success = score.answer === score.question;
             if(score.success) {
                 score.correct++;
-                score.passes.push(score.question);
+                score.passes.push(score.question);  
             }
             else score.fails.push(score.question);
             return score;
@@ -18,10 +18,10 @@ export const updateScore = (state, action) => {
     }   
 };
 
-export const nextItem = (state = { index: 0 }, action) => {
+export const item = (state = { index: 0 }, action) => {
     switch(action.type) {
         case types.NEXT_ITEM:
-            return action.data;
+            return { ...state, ...action.data };
         default:
             return state;
     }
