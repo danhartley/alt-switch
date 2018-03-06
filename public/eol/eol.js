@@ -1,5 +1,6 @@
 import { utils } from '../utils/utils.js';
 import { tejo } from '../api/eol-dan-vale-do-tejo.js';
+import { portugueseTrees } from '../api/eol-dan-portuguese-trees.js'; 
 
 const createLookupUrl = id => {
     return `http://eol.org/api/pages/1.0.json?
@@ -9,13 +10,14 @@ const createLookupUrl = id => {
     &details=true&common_names=true&synonyms=false&references=false&taxonomy=false&vetted=0&cache_ttl=&language=en`;
 };
 
-let speciesUrls = [];
-let eolCollection = tejo[0].collection_items
+// let speciesUrls = [];
+
+export const getEOLSpeciesData = (collection) => {    
+    let eolCollection = collection[0].collection_items
     .map(item => ({ id: item.object_id, name: item.name }));
 
-export const getEOLSpeciesData = () => {    
     return eolCollection
-    .filter(species => species.id === 1114783)
+    // .filter(species => species.id === 1114783)
     .map(species => {
         species.detailsUrl = createLookupUrl(species.id);
         return species;

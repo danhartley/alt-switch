@@ -1,4 +1,4 @@
-const portugueseTrees = [
+export const portugueseTrees = [
     {
         "name": "Common Portuguese Trees",
         "description": "Native, naturalised and commonly found introduced species",
@@ -100,17 +100,6 @@ const portugueseTrees = [
             "sort_field": null,
             "references": [],
             "richness_score": 200
-          },
-          {
-            "name": "Daniel Hartley",
-            "object_type": "User",
-            "object_id": 78941,
-            "title": "Daniel Hartley",
-            "created": "2017-04-11T12:35:59Z",
-            "updated": "2017-04-11T12:35:59Z",
-            "annotation": null,
-            "sort_field": null,
-            "references": []
           }
         ]
       }

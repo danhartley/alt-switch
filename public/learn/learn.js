@@ -5,9 +5,15 @@ import { types } from './learn-types.js';
 import { DOM } from './learn-dom.js';
 
 const renderScore = () => {
-    const score = store.getState().score;
-    if(score.success) DOM.messageTxt.innerHTML = `${score.answer} is the correct answer! Well done.`;
-    else if(score.total > 0) DOM.messageTxt.innerHTML = `${score.question} not ${score.answer} is correct.`;
+    const { score, item } = store.getState();
+    if(score.success) { 
+        DOM.messageTxt.innerHTML = `${score.answer} was the correct answer! Well done.`;
+        DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
+    }
+    else if(score.total > 0) {
+        DOM.messageTxt.innerHTML = `Oh no! The correct answer was ${score.answer}.`;
+        DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
+    }
     DOM.totalTxt.innerHTML = score.total;
     DOM.correctTxt.innerHTML = score.correct;
 };
@@ -34,7 +40,7 @@ const renderSpecies = () => {
                     .filter(name => R.contains(name.language, languages))
                     .map(name => `<p>${name.vernacularName}</p>`)).join(''); 
                     return `<div class="rectangle">
-                                <div class="answer">
+                                <div class="answer" id="${species.id}">
                                     <button class="scientificName">${species.name}</button>
                                     <div class="vernacularName">${vernacularNames}</div>
                                 </div>

@@ -13,7 +13,7 @@
   color: #fff;
  }
 
-.answer-grid {
+#right-grid {
  display: grid; 
  grid-auto-flow: column;
  grid-template-columns: 600px;
@@ -23,7 +23,7 @@
                        "footer"
 }
 
-.question-grid {
+#left-grid {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 600px;

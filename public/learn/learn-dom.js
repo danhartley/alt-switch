@@ -1,6 +1,10 @@
 export const DOM = {
+    leftGrid : document.getElementById('left-grid'),
+    leftHeader : document.getElementById('left-header'),
     collectionTxt : document.getElementById('txtCollection'),
     specimenRptr : document.getElementById('rptrSpecimen'),
+    rightGrid : document.getElementById('right-grid'),
+    rightHeader : document.getElementById('right-header'),
     speciesRptr : document.getElementById('rptrSpecies'),
     moreSpecimensBtn : document.getElementById('btnMoreSpecimens'),
     totalTxt : document.getElementById('txtTotal'),
