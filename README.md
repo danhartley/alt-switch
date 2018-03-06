@@ -1,3 +1,11 @@
+6 march 2017:
+
+The site may or may not run on Safari, FF, etc. depending on whether the latest Babel transpiled version has been run and uploaded. The development target is Chrome.
+
+Current focus is on testing the user's knowledge of species at /learn/learn.html. Species lists, etc. will vary (as will pretty much everything else day to day)...
+
+Older:
+
 Simple flip card game for botanical identification
 
 * main.js: handles maintaining state (and something of a controller)
