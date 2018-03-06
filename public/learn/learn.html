@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="../index.css"></link>
         <link rel="stylesheet" type="text/css" href="./learn.css"></link>
         <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>        
     </head>
     <body>
         <div class="grid">
@@ -31,6 +31,17 @@
             </div>
             <div></div>
         </div>        
-        <script src="./learn.js" type="module"></script>
+        <!-- <script src="./learn.js" type="module"></script> -->
+
+        <script>
+        const supportsTemplates = () => {
+            const yes = 'content' in document.createElement('template');
+            console.log('supports templates: ', yes);
+        }
+        supportsTemplates();
+        </script>
+
+        <script src='./dist/learn.js'></script>
+
     </body>
 </html>
