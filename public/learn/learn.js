@@ -29,7 +29,6 @@ const nextSpecies = () => {
     if(type === types.UPDATE_SCORE) {
         if(items.length === score.total) {
             utils.shuffleArray(screens)[0]();
-            // renderFails();
         } else {
             actions.boundNextItem(utils.nextItem(items, item.index + 1));
         }

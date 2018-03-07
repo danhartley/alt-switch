@@ -3919,7 +3919,6 @@ var nextSpecies = function nextSpecies() {
     if (type === _learnTypes.types.UPDATE_SCORE) {
         if (items.length === score.total) {
             _utils.utils.shuffleArray(screens)[0]();
-            // renderFails();
         } else {
             _learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index + 1));
         }
