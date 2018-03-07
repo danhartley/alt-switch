@@ -20,29 +20,24 @@
                 </div>
             </div>
             <div id="right-grid">
-                <div class="header" id="right-header">
-                    <span id="txtMessage"></span>
-                </div>
-                <div class="rectangles" id="rptrSpecies">
-                </div>
-                <div id="footer">
-                    <div>Score: <span id="txtCorrect"></span>/<span id="txtTotal"></span></div>
-                </div>
             </div>
             <div></div>
-        </div>        
+        </div>
+
         <script src="./learn.js" type="module"></script>
 
-        <script>
-            const supportsTemplates = () => {
-                const yes = 'content' in document.createElement('template');
-                console.log('supports templates: ', yes);
-                return yes;
-            }
-            supportsTemplates();
-        </script>
+        <!-- <script src='./dist/learn.js'></script> -->
 
-        <script src='./dist/learn.js'></script>
+        <template id="answers">
+            <div class="header" id="right-header">
+                <span id="txtMessage"></span>
+            </div>
+            <div class="rectangles" id="rptrSpecies">
+            </div>
+            <div id="footer">
+                <div>Score: <span id="txtCorrect"></span>/<span id="txtTotal"></span></div>
+            </div>
+        </template>
 
         <template id="passes">
             <div class="header" id="right-header">
@@ -55,13 +50,13 @@
         </template>
 
         <template id="fails">
-                <div class="header" id="right-header">
-                    <span>Fails</span>
-                </div>
-                <div class="rectangles" id="rptrFails">
-                </div>
-                <div id="footer">                    
-                </div>
+            <div class="header" id="right-header">
+                <span>Fails</span>
+            </div>
+            <div class="rectangles" id="rptrFails">
+            </div>
+            <div id="footer">                    
+            </div>
         </template>
 
     </body>

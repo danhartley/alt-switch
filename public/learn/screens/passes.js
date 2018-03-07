@@ -1,5 +1,5 @@
-import { DOM } from './learn-dom.js';
-import { store } from '../store/store-repo.js';
+import { DOM } from '../learn-dom.js';
+import { store } from '../../store/store-repo.js';
 
 export const renderPasses = () => {
     if ('content' in document.createElement('template')) {

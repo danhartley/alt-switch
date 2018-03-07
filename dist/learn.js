@@ -71,7 +71,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
+})({2:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -172,7 +172,7 @@ var utils = exports.utils = {
   nextItem: nextItem,
   combineReducers: combineReducers
 };
-},{}],12:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3242,7 +3242,7 @@ var tejoSpecies = exports.tejoSpecies = [
   }],
   "thumbs": [null, "http://media.eol.org/content/2012/06/13/03/85842_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/10611_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/42580_98_68.jpg", "http://media.eol.org/content/2015/04/30/07/50307_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/13189_98_68.jpg", "http://media.eol.org/content/2012/08/07/03/99483_98_68.jpg", "http://media.eol.org/content/2013/11/16/20/39151_98_68.jpg", "http://media.eol.org/content/2014/07/08/07/99782_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/27893_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/84150_98_68.jpg"]
 }];
-},{}],13:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3537,7 +3537,7 @@ var trees = exports.trees = [{
   }],
   "thumbs": [null, "http://media.eol.org/content/2014/10/17/01/88260_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/65845_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/38573_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/10539_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/77145_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/85277_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/47054_98_68.jpg", "http://media.eol.org/content/2014/10/17/01/69881_98_68.jpg"]
 }];
-},{}],14:[function(require,module,exports) {
+},{}],12:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3572,7 +3572,7 @@ var createStore = exports.createStore = function createStore(reducer, intialStat
 
     return { getState: getState, dispatch: dispatch, subscribe: subscribe };
 };
-},{}],6:[function(require,module,exports) {
+},{}],5:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3585,7 +3585,7 @@ var types = exports.types = {
     NEXT_ITEM: NEXT_ITEM,
     UPDATE_SCORE: UPDATE_SCORE
 };
-},{}],15:[function(require,module,exports) {
+},{}],13:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3629,7 +3629,7 @@ var item = exports.item = function item() {
             return state;
     }
 };
-},{"../utils/utils.js":3,"./learn-types.js":6}],4:[function(require,module,exports) {
+},{"../utils/utils.js":2,"./learn-types.js":5}],3:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3733,7 +3733,7 @@ var reducer = combineReducers({
 var store = exports.store = (0, _store.createStore)(reducer, initialState);
 // const { createStore } = Redux; 
 // export const store = createStore(reducer, initialState);
-},{"../api/eol-tejo.js":12,"../api/eol-trees.js":13,"../utils/utils.js":3,"./store.js":14,"../learn/learn-types.js":6,"../learn/learn-reducers.js":15}],5:[function(require,module,exports) {
+},{"../api/eol-tejo.js":10,"../api/eol-trees.js":11,"../utils/utils.js":2,"./store.js":12,"../learn/learn-types.js":5,"../learn/learn-reducers.js":13}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3768,7 +3768,7 @@ var actions = exports.actions = {
   boundNextItem: boundNextItem,
   boundUpdateScore: boundUpdateScore
 };
-},{"../store/store-repo.js":4,"./learn-types.js":6}],7:[function(require,module,exports) {
+},{"../store/store-repo.js":3,"./learn-types.js":5}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3787,7 +3787,20 @@ var DOM = exports.DOM = {
     correctTxt: document.getElementById('txtCorrect'),
     messageTxt: document.getElementById('txtMessage')
 };
-},{}],8:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderAnswers = undefined;
+
+var _learnDom = require('../learn-dom.js');
+
+var _storeRepo = require('../../store/store-repo.js');
+
+var renderAnswers = exports.renderAnswers = function renderAnswers() {};
+},{"../learn-dom.js":6,"../../store/store-repo.js":3}],8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3795,9 +3808,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.renderPasses = undefined;
 
-var _learnDom = require('./learn-dom.js');
+var _learnDom = require('../learn-dom.js');
 
-var _storeRepo = require('../store/store-repo.js');
+var _storeRepo = require('../../store/store-repo.js');
 
 var renderPasses = exports.renderPasses = function renderPasses() {
     if ('content' in document.createElement('template')) {
@@ -3822,7 +3835,7 @@ var renderPasses = exports.renderPasses = function renderPasses() {
         _learnDom.DOM.rightGrid.appendChild(clone);
     }
 };
-},{"./learn-dom.js":7,"../store/store-repo.js":4}],9:[function(require,module,exports) {
+},{"../learn-dom.js":6,"../../store/store-repo.js":3}],9:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3830,9 +3843,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.renderFails = undefined;
 
-var _learnDom = require('./learn-dom.js');
+var _learnDom = require('../learn-dom.js');
 
-var _storeRepo = require('../store/store-repo.js');
+var _storeRepo = require('../../store/store-repo.js');
 
 var renderFails = exports.renderFails = function renderFails() {
     if ('content' in document.createElement('template')) {
@@ -3870,7 +3883,7 @@ var renderFails = exports.renderFails = function renderFails() {
         _learnDom.DOM.rightGrid.appendChild(clone);
     }
 };
-},{"./learn-dom.js":7,"../store/store-repo.js":4}],1:[function(require,module,exports) {
+},{"../learn-dom.js":6,"../../store/store-repo.js":3}],1:[function(require,module,exports) {
 'use strict';
 
 var _utils = require('../utils/utils.js');
@@ -3883,13 +3896,17 @@ var _learnTypes = require('./learn-types.js');
 
 var _learnDom = require('./learn-dom.js');
 
-var _passes = require('./passes.js');
+var _answers = require('./screens/answers.js');
 
-var _fails = require('./fails.js');
+var _passes = require('./screens/passes.js');
+
+var _fails = require('./screens/fails.js');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var screens = [_passes.renderPasses, _fails.renderFails];
+
+(0, _answers.renderAnswers)();
 
 var renderScore = function renderScore() {
     var _store$getState = _storeRepo.store.getState(),
@@ -3994,7 +4011,7 @@ var _store$getState5 = _storeRepo.store.getState(),
 
 _learnDom.DOM.collectionTxt.innerHTML = 'There are ' + items.length + ' items in this test';
 _learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index + 1));
-},{"../utils/utils.js":3,"../store/store-repo.js":4,"./learn-actions.js":5,"./learn-types.js":6,"./learn-dom.js":7,"./passes.js":8,"./fails.js":9}],16:[function(require,module,exports) {
+},{"../utils/utils.js":2,"../store/store-repo.js":3,"./learn-actions.js":4,"./learn-types.js":5,"./learn-dom.js":6,"./screens/answers.js":7,"./screens/passes.js":8,"./screens/fails.js":9}],14:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -4016,7 +4033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58480' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58807' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -4117,5 +4134,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[16,1])
+},{}]},{},[14,1])
 //# sourceMappingURL=/dist/learn.map

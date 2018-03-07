@@ -1,3 +1,7 @@
+7 March 2017:
+
+To create dist use parcel public/learn/learn.js;
+
 6 march 2017:
 
 The site may or may not run on Safari, FF, etc. depending on whether the latest Babel transpiled version has been run and uploaded. The development target is Chrome.
