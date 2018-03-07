@@ -38,14 +38,30 @@
                 const yes = 'content' in document.createElement('template');
                 console.log('supports templates: ', yes);
                 return yes;
-            }        
+            }
+            supportsTemplates();
         </script>
 
-        <!-- <script src='./dist/learn.js'></script> -->
+        <script src='./dist/learn.js'></script>
 
+        <template id="passes">
+            <div class="header" id="right-header">
+                <span>Passes</span>
+            </div>
+            <div class="rectangles" id="rptrPasses">
+            </div>
+            <div id="footer">                    
+            </div>
+        </template>
 
-        <template id="productrow">
-        
+        <template id="fails">
+                <div class="header" id="right-header">
+                    <span>Fails</span>
+                </div>
+                <div class="rectangles" id="rptrFails">
+                </div>
+                <div id="footer">                    
+                </div>
         </template>
 
     </body>

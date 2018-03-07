@@ -71,7 +71,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({2:[function(require,module,exports) {
+})({3:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -172,7 +172,7 @@ var utils = exports.utils = {
   nextItem: nextItem,
   combineReducers: combineReducers
 };
-},{}],7:[function(require,module,exports) {
+},{}],12:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3242,7 +3242,7 @@ var tejoSpecies = exports.tejoSpecies = [
   }],
   "thumbs": [null, "http://media.eol.org/content/2012/06/13/03/85842_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/10611_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/42580_98_68.jpg", "http://media.eol.org/content/2015/04/30/07/50307_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/13189_98_68.jpg", "http://media.eol.org/content/2012/08/07/03/99483_98_68.jpg", "http://media.eol.org/content/2013/11/16/20/39151_98_68.jpg", "http://media.eol.org/content/2014/07/08/07/99782_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/27893_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/84150_98_68.jpg"]
 }];
-},{}],8:[function(require,module,exports) {
+},{}],13:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3537,7 +3537,7 @@ var trees = exports.trees = [{
   }],
   "thumbs": [null, "http://media.eol.org/content/2014/10/17/01/88260_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/65845_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/38573_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/10539_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/77145_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/85277_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/47054_98_68.jpg", "http://media.eol.org/content/2014/10/17/01/69881_98_68.jpg"]
 }];
-},{}],9:[function(require,module,exports) {
+},{}],14:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3572,7 +3572,7 @@ var createStore = exports.createStore = function createStore(reducer, intialStat
 
     return { getState: getState, dispatch: dispatch, subscribe: subscribe };
 };
-},{}],5:[function(require,module,exports) {
+},{}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3585,7 +3585,7 @@ var types = exports.types = {
     NEXT_ITEM: NEXT_ITEM,
     UPDATE_SCORE: UPDATE_SCORE
 };
-},{}],10:[function(require,module,exports) {
+},{}],15:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3629,7 +3629,7 @@ var item = exports.item = function item() {
             return state;
     }
 };
-},{"../utils/utils.js":2,"./learn-types.js":5}],3:[function(require,module,exports) {
+},{"../utils/utils.js":3,"./learn-types.js":6}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3733,7 +3733,7 @@ var reducer = combineReducers({
 var store = exports.store = (0, _store.createStore)(reducer, initialState);
 // const { createStore } = Redux; 
 // export const store = createStore(reducer, initialState);
-},{"../api/eol-tejo.js":7,"../api/eol-trees.js":8,"../utils/utils.js":2,"./store.js":9,"../learn/learn-types.js":5,"../learn/learn-reducers.js":10}],4:[function(require,module,exports) {
+},{"../api/eol-tejo.js":12,"../api/eol-trees.js":13,"../utils/utils.js":3,"./store.js":14,"../learn/learn-types.js":6,"../learn/learn-reducers.js":15}],5:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3768,7 +3768,7 @@ var actions = exports.actions = {
   boundNextItem: boundNextItem,
   boundUpdateScore: boundUpdateScore
 };
-},{"../store/store-repo.js":3,"./learn-types.js":5}],6:[function(require,module,exports) {
+},{"../store/store-repo.js":4,"./learn-types.js":6}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3787,7 +3787,90 @@ var DOM = exports.DOM = {
     correctTxt: document.getElementById('txtCorrect'),
     messageTxt: document.getElementById('txtMessage')
 };
-},{}],1:[function(require,module,exports) {
+},{}],8:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.renderPasses = undefined;
+
+var _learnDom = require('./learn-dom.js');
+
+var _storeRepo = require('../store/store-repo.js');
+
+var renderPasses = exports.renderPasses = function renderPasses() {
+    if ('content' in document.createElement('template')) {
+
+        var passes = document.querySelector('#passes');
+        var rptrPasses = passes.content.querySelector('#rptrPasses');
+        var ul = document.createElement('ul');
+
+        var _store$getState = _storeRepo.store.getState(),
+            score = _store$getState.score;
+
+        score.passes.forEach(function (pass) {
+            var li = document.createElement('li');
+            li.textContent = pass;
+            ul.appendChild(li);
+        });
+
+        rptrPasses.appendChild(ul);
+
+        var clone = document.importNode(passes.content, true);
+        _learnDom.DOM.rightGrid.innerHTML = '';
+        _learnDom.DOM.rightGrid.appendChild(clone);
+    }
+};
+},{"./learn-dom.js":7,"../store/store-repo.js":4}],9:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.renderFails = undefined;
+
+var _learnDom = require('./learn-dom.js');
+
+var _storeRepo = require('../store/store-repo.js');
+
+var renderFails = exports.renderFails = function renderFails() {
+    if ('content' in document.createElement('template')) {
+
+        var fails = document.querySelector('#fails');
+        var rptrFails = fails.content.querySelector('#rptrFails');
+
+        var _store$getState = _storeRepo.store.getState(),
+            score = _store$getState.score,
+            items = _store$getState.items;
+
+        var species = items.filter(function (item) {
+            return R.contains(item.name, score.fails);
+        });
+
+        species.forEach(function (sp) {
+            var rectangle = document.createElement('div');
+            rectangle.setAttribute('class', 'rectangle');
+            var answer = document.createElement('div');
+            answer.setAttribute('id', sp.id);
+            answer.setAttribute('class', 'answer');
+            var name = document.createElement('p');
+            name.textContent = sp.name;
+            answer.appendChild(name);
+            var thumb = document.createElement('img');
+            thumb.setAttribute('class', 'thumb');
+            thumb.src = sp.thumbs[1];
+            answer.appendChild(thumb);
+            rectangle.appendChild(answer);
+            rptrFails.appendChild(rectangle);
+        });
+
+        var clone = document.importNode(fails.content, true);
+        _learnDom.DOM.rightGrid.innerHTML = '';
+        _learnDom.DOM.rightGrid.appendChild(clone);
+    }
+};
+},{"./learn-dom.js":7,"../store/store-repo.js":4}],1:[function(require,module,exports) {
 'use strict';
 
 var _utils = require('../utils/utils.js');
@@ -3800,7 +3883,13 @@ var _learnTypes = require('./learn-types.js');
 
 var _learnDom = require('./learn-dom.js');
 
+var _passes = require('./passes.js');
+
+var _fails = require('./fails.js');
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var screens = [_passes.renderPasses, _fails.renderFails];
 
 var renderScore = function renderScore() {
     var _store$getState = _storeRepo.store.getState(),
@@ -3811,7 +3900,7 @@ var renderScore = function renderScore() {
         _learnDom.DOM.messageTxt.innerHTML = score.answer + ' was the correct answer! Well done.';
         _learnDom.DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
     } else if (score.total > 0) {
-        _learnDom.DOM.messageTxt.innerHTML = 'Oh no! The correct answer was ' + score.answer + '.';
+        _learnDom.DOM.messageTxt.innerHTML = 'Oh no! The correct answer was ' + item.name + '.';
         _learnDom.DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
     }
     _learnDom.DOM.totalTxt.innerHTML = score.total;
@@ -3824,9 +3913,17 @@ var nextSpecies = function nextSpecies() {
     var _store$getState2 = _storeRepo.store.getState(),
         type = _store$getState2.type,
         items = _store$getState2.items,
-        item = _store$getState2.item;
+        item = _store$getState2.item,
+        score = _store$getState2.score;
 
-    if (type === _learnTypes.types.UPDATE_SCORE) _learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index + 1));
+    if (type === _learnTypes.types.UPDATE_SCORE) {
+        if (items.length === score.total) {
+            _utils.utils.shuffleArray(screens)[0]();
+            // renderFails();
+        } else {
+            _learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index + 1));
+        }
+    }
 };
 
 _storeRepo.store.subscribe(nextSpecies);
@@ -3883,6 +3980,8 @@ _learnDom.DOM.moreSpecimensBtn.addEventListener('click', function () {
 });
 
 _learnDom.DOM.speciesRptr.addEventListener('click', function (event) {
+    if (event.target.childNodes.length > 1) return;
+
     var _store$getState4 = _storeRepo.store.getState(),
         item = _store$getState4.item;
 
@@ -3896,7 +3995,7 @@ var _store$getState5 = _storeRepo.store.getState(),
 
 _learnDom.DOM.collectionTxt.innerHTML = 'There are ' + items.length + ' items in this test';
 _learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index + 1));
-},{"../utils/utils.js":2,"../store/store-repo.js":3,"./learn-actions.js":4,"./learn-types.js":5,"./learn-dom.js":6}],11:[function(require,module,exports) {
+},{"../utils/utils.js":3,"../store/store-repo.js":4,"./learn-actions.js":5,"./learn-types.js":6,"./learn-dom.js":7,"./passes.js":8,"./fails.js":9}],16:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -3918,7 +4017,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51529' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58480' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -4019,5 +4118,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[11,1])
+},{}]},{},[16,1])
 //# sourceMappingURL=/dist/learn.map

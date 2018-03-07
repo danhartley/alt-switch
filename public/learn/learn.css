@@ -117,6 +117,12 @@
   width: 300px;
 }
 
+.rectangle img.thumb {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
+
 .vernacularName {
   grid-area: five;
   padding: 5px 0 0 5px;
