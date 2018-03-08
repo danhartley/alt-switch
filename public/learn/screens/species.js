@@ -4,18 +4,23 @@ import { actions } from '../learn-actions.js';
 import { types } from '../learn-types.js';
 import { utils } from '../../utils/utils.js';
 
-export const renderAnswers = () => {
+export const renderSpecies = () => {
+
     if('content' in document.createElement('template')) {
         
-        const answers = document.querySelector('#answers');
+        const species = document.querySelector('#species');
 
-        const rptrSpecies = answers.content.querySelector('#rptrSpecies');
+        const rptrSpecies = species.content.querySelector('#rptrSpecies');
 
-        const renderSpecies = () => {    
-            const state = store.getState();
-            if(state.type === types.NEXT_ITEM) {
-                const alternativeAnswers = R.take(5, utils.shuffleArray(state.items).filter(i => i.id !== state.item.id));
-                const speciesList = utils.shuffleArray([...alternativeAnswers, state.item]);
+        const renderSpecies = () => {
+            
+            const { items, item, type} = store.getState();
+
+            DOM.messageTxt.innerHTML = `Species`;
+
+            if(type === types.NEXT_ITEM) {
+                const alternativeSpecies = R.take(5, utils.shuffleArray(items).filter(i => i.id !== item.id));
+                const speciesList = utils.shuffleArray([...alternativeSpecies, item]);
                 const languages = [ 'en', 'pt' ];            
                     rptrSpecies.innerHTML = speciesList.map(species => {
                     const vernacularNames = R.take(5, 
@@ -31,9 +36,11 @@ export const renderAnswers = () => {
                 }).join('');
             }
 
-            const clone = document.importNode(answers.content, true);
+            const clone = document.importNode(species.content, true);
 
-            clone.querySelector('#rptrSpecies').addEventListener('click', (event) => {
+            // this could depend .... the listener is answer-specific, the rest not
+
+            clone.querySelector('#rptrSpecies').addEventListener('click', event => {
                 if(event.target.childNodes.length > 1) return;
                 const { item } = store.getState();    
                 const qandA = { question: item.name, answer: event.target.childNodes[0].data }

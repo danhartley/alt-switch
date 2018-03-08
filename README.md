@@ -1,8 +1,12 @@
-7 March 2017:
+8 Marcch 2018:
+
+All the interesting files are in /learn.
+
+7 March 2018:
 
 To create dist use parcel public/learn/learn.js;
 
-6 march 2017:
+6 march 2018:
 
 The site may or may not run on Safari, FF, etc. depending on whether the latest Babel transpiled version has been run and uploaded. The development target is Chrome.
 

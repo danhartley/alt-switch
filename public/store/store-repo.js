@@ -6,9 +6,17 @@ import { types } from '../learn/learn-types.js';
 import { score, item } from '../learn/learn-reducers.js'
 
 const initialState = {
+    screen: {
+        selected: 'entry',
+        screens: ['card', 'entry'],
+        selectedMode: 'test',
+        modes: ['learn', 'test'],
+        filter: 'binomial'
+    },
     score: {
         total: 0,
         correct: 0,
+        wrong: 0,
         answer: '',
         question: '',
         fails: [],
@@ -58,6 +66,13 @@ const type = (state = null, action) => {
     }
 };
 
+const screen = (state = null, action) => { 
+    switch(action.type) {
+        default: 
+            return action.type || state; 
+    }
+};
+
 const { combineReducers } = Redux;
 
 const reducer = combineReducers({
@@ -66,7 +81,8 @@ const reducer = combineReducers({
     item,
     card,
     timer,
-    type
+    type,
+    screen
 });
 
 export const store = createStore(reducer, initialState);

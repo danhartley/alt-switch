@@ -156,3 +156,35 @@
 .rectangle:nth-child(6) {
   grid-area: six;
 }
+
+.letterbox {
+  grid-area: letterbox;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 100px 60px;
+  grid-template-areas: "one"
+                       "two"
+}
+
+.letterbox div:nth-child(2) {
+  background-color: darkgrey;
+  padding: 10px 0;
+}
+
+#right-body {
+  background-color: aliceblue;
+}
+
+#answer-hint {
+  margin: 0 0 0 10px;
+  font-size: 1.4em;
+  color: rgb(60, 60, 60);
+}
+
+#answer-input {
+  width: 300px;
+  font-size: 1.4em;
+  margin: 0 0 0 5px;
+  padding: 5px;
+  color: rgb(60, 60, 60);
+}

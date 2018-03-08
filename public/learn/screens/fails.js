@@ -2,6 +2,7 @@ import { DOM } from '../learn-dom.js';
 import { store } from '../../store/store-repo.js';
 
 export const renderFails = () => {
+
     if ('content' in document.createElement('template')) {
 
         const fails = document.querySelector('#fails');
@@ -10,6 +11,7 @@ export const renderFails = () => {
         const { score, items } = store.getState();
 
         DOM.messageTxt.innerHTML = `You got ${score.wrong} questions wrong:`;
+        DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
 
         const species = items
             .filter(item => R.contains(item.name, score.fails));

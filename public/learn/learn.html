@@ -11,16 +11,18 @@
         <div class="grid">
             <div></div>            
             <div id="left-grid">
-                <div class="header" id="left-header">
+                <div id="left-header" class="header">
                     <span id="txtCollection"></span>
                 </div>
-                <div class="squares" id="rptrSpecimen"></div>
+                <div id="left-body">
+                    <div class="squares" id="rptrSpecimen"></div>
+                </div>
                 <div id="left-footer">
                     <button id="btnMoreSpecimens">Show more examples</button>
                 </div>
             </div>
             <div id="right-grid">
-                <div class="header" id="right-header">
+                <div id="right-header" class="header">
                     <span id="txtMessage"></span>
                 </div>
                 <div id="right-body"></div>
@@ -33,13 +35,13 @@
 
         <!-- <script src='./dist/learn.js'></script> -->
 
-        <template id="answers">
+        <template id="species">
             <div class="rectangles" id="rptrSpecies"></div>
         </template>
 
         <template id="score">
             <div>Score: <span id="txtCorrect"></span>/<span id="txtTotal"></span></div>
-        </template>>
+        </template>
 
         <template id="passes">
             <div class="rectangles" id="rptrPasses">
@@ -48,6 +50,17 @@
 
         <template id="fails">
             <div class="rectangles" id="rptrFails">
+            </div>
+        </template>
+
+        <template id="text-entry">
+            <div class="letterbox">          
+                <div></div>
+                <div>
+                    <span id="answer-hint">troglodytes</span>
+                    <input id="answer-input" type="text" placeholder="troglodytes..." autofocus />
+                    <button id="answer-button">Check</button>
+                </div>
             </div>
         </template>
 
