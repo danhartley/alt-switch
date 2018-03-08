@@ -15,11 +15,16 @@
                     <span id="txtCollection"></span>
                 </div>
                 <div class="squares" id="rptrSpecimen"></div>
-                <div id="footer">
+                <div id="left-footer">
                     <button id="btnMoreSpecimens">Show more examples</button>
                 </div>
             </div>
             <div id="right-grid">
+                <div class="header" id="right-header">
+                    <span id="txtMessage"></span>
+                </div>
+                <div id="right-body"></div>
+                <div id="right-footer"></div>
             </div>
             <div></div>
         </div>
@@ -29,33 +34,20 @@
         <!-- <script src='./dist/learn.js'></script> -->
 
         <template id="answers">
-            <div class="header" id="right-header">
-                <span id="txtMessage"></span>
-            </div>
-            <div class="rectangles" id="rptrSpecies">
-            </div>
-            <div id="footer">
-                <div>Score: <span id="txtCorrect"></span>/<span id="txtTotal"></span></div>
-            </div>
+            <div class="rectangles" id="rptrSpecies"></div>
         </template>
 
+        <template id="score">
+            <div>Score: <span id="txtCorrect"></span>/<span id="txtTotal"></span></div>
+        </template>>
+
         <template id="passes">
-            <div class="header" id="right-header">
-                <span>Passes</span>
-            </div>
             <div class="rectangles" id="rptrPasses">
-            </div>
-            <div id="footer">                    
             </div>
         </template>
 
         <template id="fails">
-            <div class="header" id="right-header">
-                <span>Fails</span>
-            </div>
             <div class="rectangles" id="rptrFails">
-            </div>
-            <div id="footer">                    
             </div>
         </template>
 

@@ -9,6 +9,8 @@ export const renderFails = () => {
         
         const { score, items } = store.getState();
 
+        DOM.messageTxt.innerHTML = `You got ${score.wrong} questions wrong:`;
+
         const species = items
             .filter(item => R.contains(item.name, score.fails));
 
@@ -30,7 +32,7 @@ export const renderFails = () => {
         });        
 
         const clone = document.importNode(fails.content, true);
-        DOM.rightGrid.innerHTML = '';
-        DOM.rightGrid.appendChild(clone);
+        DOM.rightBody.innerHTML = '';
+        DOM.rightBody.appendChild(clone);
     }
 };

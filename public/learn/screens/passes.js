@@ -10,6 +10,8 @@ export const renderPasses = () => {
 
         const { score } = store.getState();
 
+        DOM.messageTxt.innerHTML = `You got ${score.correct} questions right:`;
+
         score.passes.forEach(pass => {
             const li = document.createElement('li');
             li.textContent = pass;
@@ -19,7 +21,7 @@ export const renderPasses = () => {
         rptrPasses.appendChild(ul);
 
         const clone = document.importNode(passes.content, true);
-        DOM.rightGrid.innerHTML = '';
-        DOM.rightGrid.appendChild(clone);
+        DOM.rightBody.innerHTML = '';
+        DOM.rightBody.appendChild(clone);
     }
 };

@@ -9,5 +9,8 @@ export const DOM = {
     moreSpecimensBtn : document.getElementById('btnMoreSpecimens'),
     totalTxt : document.getElementById('txtTotal'),
     correctTxt : document.getElementById('txtCorrect'),
-    messageTxt : document.getElementById('txtMessage')
+    messageTxt : document.getElementById('txtMessage'),
+    rightFooter : document.getElementById('right-footer'),
+    leftFooter : document.getElementById('left-footer'),
+    rightBody : document.getElementById('right-body')
 };

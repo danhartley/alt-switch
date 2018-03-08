@@ -11,7 +11,10 @@ export const score = (state = null, action) => {
                 score.correct++;
                 score.passes.push(score.question);  
             }
-            else score.fails.push(score.question);
+            else {
+                score.wrong++;
+                score.fails.push(score.question);
+            }
             return score;
         default:
             return state;

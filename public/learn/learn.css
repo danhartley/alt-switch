@@ -64,7 +64,7 @@
   grid-area: four;
 }
 
-#footer {
+#left-footer, #right-footer {
   grid-area: footer;
   padding: 20px 0 0 20px;
   background-color: rgb(192, 58, 72);
