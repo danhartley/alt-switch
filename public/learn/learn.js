@@ -12,11 +12,9 @@ import { renderSpecimen } from './screens/specimen.js';
 
 const screens = [ renderPasses, renderFails ];
 
-// load these in response to subscribe...
-// 
 renderSpecimen();
-renderScore();
 renderTextEntry();
+renderScore();
 
 const nextSpecies = () => {
     const { type, items, item, score } = store.getState();
@@ -28,6 +26,21 @@ const nextSpecies = () => {
 
 store.subscribe(nextSpecies);
 
-const { items, item } = store.getState();
+const { items, item, layout } = store.getState();
 DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
 actions.boundNextItem(utils.nextItem(items, item.index + 1));
+
+// switch(layout.left.render) {
+//     case 'specimen':
+//         renderSpecimen();
+//         break;
+// };
+
+// switch(layout.right.render) {
+//     case 'species':
+//         switch(layout.right.answer) {
+//             case 'entry':
+//             renderTextEntry();
+//             break;
+//         };
+// };

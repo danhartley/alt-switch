@@ -8,8 +8,8 @@ import { score, item } from '../learn/learn-reducers.js'
 const initialState = {
     layout: {
         screens: ['specimens', 'species', 'text-entry', 'passes', 'fails'],
-        left: { screen: 'species', mode: 'question', question: 'image'},
-        right: { screen: 'specimens', mode: 'answer', answer: 'entry'}
+        left: { render: 'specimen', mode: 'question', question: 'image'},
+        right: { render: 'species', mode: 'answer', answer: 'entry'}
     },
     score: {
         total: 0,
