@@ -10,7 +10,10 @@ export const renderFails = () => {
         
         const { score, items } = store.getState();
 
-        DOM.messageTxt.innerHTML = `You got ${score.wrong} questions wrong:`;
+        DOM.messageTxt.innerHTML = 
+            score.wrong === 1
+                ? `You got ${score.wrong} question wrong:`
+                : `You got ${score.wrong} questions wrong:`;
         DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
 
         const species = items

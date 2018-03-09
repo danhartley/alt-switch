@@ -11,7 +11,10 @@ export const renderPasses = () => {
 
         const { score } = store.getState();
 
-        DOM.messageTxt.innerHTML = `You got ${score.correct} questions right:`;
+        DOM.messageTxt.innerHTML = 
+            score.correct === 1 
+                ? `You got ${score.correct} question right:`
+                : `You got ${score.correct} questions right:`;
         DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
 
         score.passes.forEach(pass => {
