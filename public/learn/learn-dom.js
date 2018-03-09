@@ -12,5 +12,6 @@ export const DOM = {
     messageTxt : document.getElementById('txtMessage'),
     rightFooter : document.getElementById('right-footer'),
     leftFooter : document.getElementById('left-footer'),
-    rightBody : document.getElementById('right-body')
+    leftBody : document.getElementById('left-body'),
+    rightBody : document.getElementById('right-body'),
 };

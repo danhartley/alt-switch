@@ -8,12 +8,13 @@ import { renderPasses } from './screens/passes.js';
 import { renderFails } from './screens/fails.js';
 import { renderScore } from './screens/score.js';
 import { renderTextEntry } from './screens/text-entry.js';
+import { renderSpecimen } from './screens/specimen.js';
 
 const screens = [ renderPasses, renderFails ];
 
 // load these in response to subscribe...
 // 
-// renderSpecies();
+renderSpecimen();
 renderScore();
 renderTextEntry();
 
@@ -26,35 +27,6 @@ const nextSpecies = () => {
 };
 
 store.subscribe(nextSpecies);
-
-let renderSpecimenImages = null;
-
-const renderImages = (specimenImages) => {
-    let images = specimenImages;
-    return () => {
-        let displayImages = R.take(4, utils.shuffleArray(images));        
-        DOM.specimenRptr.innerHTML = displayImages.map(displayImages => {
-          return `<div class="square">
-                    <img src="${displayImages}" onError="this.src='https://media.eol.org/content/2015/04/30/18/20117_orig.jpg';" />
-                 </div>`; 
-        }).join('');
-        images = R.remove(0, 4, images);
-    };
-};
-
-const renderSpecimens = () => {
-    const { type, item: { images } } = store.getState();
-    if(type === types.NEXT_ITEM) {
-        renderSpecimenImages = renderImages(images);
-        renderSpecimenImages();
-    }
-};
-
-store.subscribe(renderSpecimens);
-
-DOM.moreSpecimensBtn.addEventListener('click', () => {
-    renderSpecimenImages();
-});
 
 const { items, item } = store.getState();
 DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
