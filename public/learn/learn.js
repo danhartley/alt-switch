@@ -3,23 +3,23 @@ import { store } from '../store/store-repo.js';
 import { actions } from './learn-actions.js';
 import { types } from './learn-types.js';
 import { DOM } from './learn-dom.js';
-// import { renderSpecies } from './screens/species.js';
 import { renderPasses } from './screens/passes.js'; 
 import { renderFails } from './screens/fails.js';
 import { renderScore } from './screens/score.js';
-// import { renderTextEntry } from './screens/text-entry.js';
-// import { renderSpecimen } from './screens/specimen.js';
-import { strategy } from './learn-strategy.js';
-
 
 const screens = [ renderPasses, renderFails ];
 
-// renderSpecimen();
-// renderTextEntry();
+let currStrategy;
 
-const currentStrategy = strategy.filter(s => s.active);
-currentStrategy.map(s => s.left.render());
-currentStrategy.map(s => s.right.render());
+const executeStrategy = () => {
+    const { type, strategy } = store.getState();    
+    if(strategy && !Object.is(currStrategy, strategy)) {
+        currStrategy = strategy;
+        currStrategy.elements.forEach(element => { element.render(); });
+    }    
+};
+
+store.subscribe(executeStrategy);
 
 renderScore();
 
@@ -33,21 +33,6 @@ const nextSpecies = () => {
 
 store.subscribe(nextSpecies);
 
-const { items, item, layout } = store.getState();
+const { items, item } = store.getState();
 DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
 actions.boundNextItem(utils.nextItem(items, item.index + 1));
-
-// switch(layout.left.render) {
-//     case 'specimen':
-//         renderSpecimen();
-//         break;
-// };
-
-// switch(layout.right.render) {
-//     case 'species':
-//         switch(layout.right.answer) {
-//             case 'entry':
-//             renderTextEntry();
-//             break;
-//         };
-// };

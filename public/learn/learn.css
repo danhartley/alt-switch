@@ -159,6 +159,10 @@
   grid-area: six;
 }
 
+#right-body {
+  background-color: aliceblue;
+}
+
 .letterbox {
   grid-area: letterbox;
   display: grid;
@@ -168,25 +172,29 @@
                        "two"
 }
 
-.letterbox div:nth-child(2) {
+.letterbox div {
+  grid-area: two;
   background-color: darkgrey;
   padding: 10px 0;
 }
 
-#right-body {
-  background-color: aliceblue;
-}
-
-#answer-hint {
+.letterbox span {
   margin: 0 0 0 10px;
   font-size: 1.4em;
   color: rgb(60, 60, 60);
 }
 
-#answer-input {
-  width: 300px;
+.letterbox input {  
   font-size: 1.4em;
   margin: 0 0 0 5px;
   padding: 5px;
   color: rgb(60, 60, 60);
+}
+
+.letterbox input.short {
+  width: 300px;
+}
+
+.letterbox input.long {
+  width: 450px;
 }

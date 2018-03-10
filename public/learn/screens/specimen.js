@@ -14,6 +14,8 @@ export const renderSpecimen = () => {
         let renderSpecimenImages = null;
 
         const renderImages = (specimenImages) => {
+            const { strategy } = store.getState();
+            const element = strategy.elements.filter(el => el.template === specimen.id)[0];
             let images = specimenImages;
             return () => {        
                 let displayImages = R.take(4, utils.shuffleArray(images));        
@@ -24,8 +26,8 @@ export const renderSpecimen = () => {
                 }).join('');
                 images = R.remove(0, 4, images);
                 const clone = document.importNode(specimen.content, true);
-                DOM.leftBody.innerHTML = '';
-                DOM.leftBody.appendChild(clone);
+                element.parent.innerHTML = '';
+                element.parent.appendChild(clone);
             };
             // add event handler if these are answers instead of questions (or if questions, something else...)
         };

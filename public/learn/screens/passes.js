@@ -31,6 +31,6 @@ export const renderPasses = () => {
 
         setTimeout(()=>{
             renderFails();
-        },5000);
+        },1000);
     }
 };

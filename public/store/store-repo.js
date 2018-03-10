@@ -4,13 +4,10 @@ import { utils } from '../utils/utils.js';
 import { createStore } from './store.js';
 import { types } from '../learn/learn-types.js';
 import { score, item } from '../learn/learn-reducers.js'
+import { strategy as learnStategy } from '../learn/learn-strategy.js';
 
 const initialState = {
-    layout: {
-        screens: ['specimens', 'species', 'text-entry', 'passes', 'fails'],
-        left: { render: 'specimen', mode: 'question', question: 'image'},
-        right: { render: 'species', mode: 'answer', answer: 'entry'}
-    },
+    strategy: learnStategy,
     score: {
         total: 0,
         correct: 0,
@@ -23,9 +20,13 @@ const initialState = {
     }
 };
 
-const species = utils.shuffleArray(trees).map(item => {
-    item.name = item.name.split(' ').slice(0,2).join(' ');
-    return item;
+const species = utils.shuffleArray(trees)
+    .map(item => {
+        const names = item.name.split(' ');
+        item.genus = names[0];
+        item.species = names[1];    
+        item.name = item.name.split(' ').slice(0,2).join(' ');
+        return item;
 });
 
 const items = (state = species, action) => {    
@@ -64,10 +65,10 @@ const type = (state = null, action) => {
     }
 };
 
-const layout = (state = null, action) => { 
+const strategy = (state = null, action) => { 
     switch(action.type) {
         default: 
-            return action.type || state; 
+            return action.strategy || state;
     }
 };
 
@@ -80,9 +81,7 @@ const reducer = combineReducers({
     card,
     timer,
     type,
-    layout
+    strategy
 });
 
 export const store = createStore(reducer, initialState);
-// const { createStore } = Redux; 
-// export const store = createStore(reducer, initialState);

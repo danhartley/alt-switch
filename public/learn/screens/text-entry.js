@@ -7,17 +7,14 @@ import { types } from '../learn-types.js';
 export const renderTextEntry = () => {
 
     if('content' in document.createElement('template')) {
-    
-        const entry = document.querySelector('#text-entry');
-        const answerHint = entry.content.querySelector('#answer-hint');
-        const answerInput = entry.content.querySelector('#answer-input');
-        
-        DOM.messageTxt.innerHTML = `Species`;  
+
+        DOM.messageTxt.innerHTML = `Species`;
 
         const sendQandA = () => {
-            const { item } = store.getState();    
-            const answer = 
-                `${document.querySelector('#answer-hint').innerHTML} ${document.querySelector('#answer-input').value}`;
+            const { item } = store.getState();
+            const answer = document.querySelector('#txtEntry') 
+                ? `${document.querySelector('#txtEntry').innerHTML} ${document.querySelector('#txtInput').value}`
+                : `${document.querySelector('#txtInput').value}`;
             const qandA = { question: item.name, answer: answer }
             actions.boundUpdateScore(qandA);
         };
@@ -29,26 +26,27 @@ export const renderTextEntry = () => {
         });
 
         const render = () => {
-
-            const { item, type } = store.getState();
+      
+            const { item, type, strategy } = store.getState();
 
             if(type === types.NEXT_ITEM) {
 
-                item.name = item.name.split(' ').slice(0,2).join(' ');
-                const names = item.name.split(' ');
+                const element = strategy.elements.filter(el => el.name === 'textEntry')[0];
 
-                answerHint.innerHTML = names[0];
+                const template = document.querySelector(`#${element.template}`);
 
-                const clone = document.importNode(entry.content, true);
+                if(template.content.querySelector('span')) template.content.querySelector('span').innerHTML = item.genus;   
+
+                const clone = document.importNode(template.content, true);
                 
-                clone.querySelector('#answer-button').addEventListener('click', event => {
+                clone.querySelector('button').addEventListener('click', event => {
                     sendQandA();
                 });
 
-                DOM.rightBody.innerHTML = '';
-                DOM.rightBody.appendChild(clone);
+                element.parent.innerHTML = '';
+                element.parent.appendChild(clone);
 
-                document.querySelector('#answer-input').focus();
+                document.querySelector('#txtInput').focus();
             }
 
         };

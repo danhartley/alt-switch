@@ -8,22 +8,24 @@ import { renderTextEntry } from './screens/text-entry.js';
 import { renderSpecimen } from './screens/specimen.js';
 
 
-export const strategy = [
+export const strategies = [
     {
       id: 1,
       active: true,
-      left: {
-        action : types.NEXT_ITEM,
+      elements: [ {
+        name: 'specimen',
         render: renderSpecimen,
-        parent: DOM.leftBody
+        parent: DOM.leftBody,
+        template: 'specimen'        
       },
-      right: {
-          active: true,
-          action: types.NEXT_ITEM,
-          template: 'text-entry',
+      {
+          name: 'textEntry',
           render: renderTextEntry,
           parent: DOM.rightBody,
-          hint: 'genus'
-      }
+          template: 'speciesAndGenusEntry'
+          
+      }]
     }
   ];
+
+  export const strategy = strategies.filter(strategy => strategy.active)[0];

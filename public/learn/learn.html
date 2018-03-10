@@ -53,15 +53,23 @@
             </div>
         </template>
 
-        <template id="text-entry">
-            <div class="letterbox">          
-                <div></div>
+        <template id="speciesEntry">
+            <div class="letterbox">
                 <div>
-                    <span id="answer-hint">troglodytes</span>
-                    <input id="answer-input" type="text" placeholder="species name" autofocus />
-                    <button id="answer-button">Check</button>
+                    <span id="txtEntry"></span>
+                    <input id="txtInput" class="short" type="text" placeholder="species name" />
+                    <button>Check</button>
                 </div>
             </div>
+        </template>
+
+        <template id="speciesAndGenusEntry">
+                <div class="letterbox">
+                    <div>
+                        <input id="txtInput" class="long" type="text" placeholder="species and genus name" />
+                        <button>Check</button>
+                    </div>
+                </div>
         </template>
 
     </body>
