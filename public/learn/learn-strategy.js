@@ -8,17 +8,20 @@ import { renderTextEntry } from './screens/text-entry.js';
 import { renderSpecimen } from './screens/specimen.js';
 
 
-const strategy = [
+export const strategy = [
     {
       id: 1,
+      active: true,
       left: {
         action : types.NEXT_ITEM,
-        render: render,
+        render: renderSpecimen,
         parent: DOM.leftBody
       },
       right: {
+          active: true,
           action: types.NEXT_ITEM,
           template: 'text-entry',
+          render: renderTextEntry,
           parent: DOM.rightBody,
           hint: 'genus'
       }
