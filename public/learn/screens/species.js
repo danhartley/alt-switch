@@ -8,9 +8,9 @@ export const renderSpecies = () => {
 
     if('content' in document.createElement('template')) {
         
-        const species = document.querySelector('#species');
+        const template = document.querySelector('.js-species-template');
 
-        const rptrSpecies = species.content.querySelector('#rptrSpecies');
+        const rptrSpecies = template.content.querySelector('.js-rptr-species');
 
         const renderSpecies = () => {
             
@@ -29,14 +29,14 @@ export const renderSpecies = () => {
                             .map(name => `<p>${name.vernacularName}</p>`)).join(''); 
                             return `<div class="rectangle">
                                         <div class="answer" id="${species.id}">
-                                            <button class="scientificName">${species.name}</button>
-                                            <div class="vernacularName">${vernacularNames}</div>
+                                            <button">${species.name}</button>
+                                            <div class="vernacular-name">${vernacularNames}</div>
                                         </div>
                                     </div>`;
                 }).join('');
             }
 
-            const clone = document.importNode(species.content, true);
+            const clone = document.importNode(template.content, true);
 
             // this could depend .... the listener is answer-specific, the rest not
 

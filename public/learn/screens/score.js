@@ -4,10 +4,10 @@ import { store } from '../../store/store-repo.js';
 
 export const renderScore = () => {
 
-    const footer = document.querySelector('#score');
+    const template = document.querySelector('.js-score-template');
 
-    const txtCorrect = footer.content.querySelector('#txtCorrect');
-    const txtTotal = footer.content.querySelector('#txtTotal');
+    const txtCorrect = template.content.querySelector('.js-txt-correct');
+    const txtTotal = template.content.querySelector('.js-txt-total');
     
     const renderScore = () => {
         const { score, item, type } = store.getState();
@@ -24,7 +24,7 @@ export const renderScore = () => {
             txtTotal.innerHTML = score.total;
             txtCorrect.innerHTML = score.correct;
 
-            const clone = document.importNode(footer.content, true);
+            const clone = document.importNode(template.content, true);
 
             DOM.rightFooter.innerHTML = '';
             DOM.rightFooter.appendChild(clone);

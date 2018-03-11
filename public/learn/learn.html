@@ -9,21 +9,21 @@
     </head>
     <body>
         <div class="grid">
-            <div id="left-grid">
-                <div id="left-header" class="header">
-                    <span id="txtCollection"></span>
+            <div class="left-grid js-left-grid">
+                <div class="header js-left-header">
+                    <span class="js-txt-collection"></span>
                 </div>
-                <div id="left-body"></div>
-                <div id="left-footer">
-                    <button id="btnMoreSpecimens">Show more examples</button>
+                <div class="left-body js-left-body"></div>
+                <div class="footer js-left-footer">
+                    <button class="js-btn-more-specimens">Show more examples</button>
                 </div>
             </div>
-            <div id="right-grid">
-                <div id="right-header" class="header">
-                    <span id="txtMessage"></span>
+            <div class="right-grid js-right-grid">
+                <div class="header js-right-header">
+                    <span class="js-txt-message"></span>
                 </div>
-                <div id="right-body"></div>
-                <div id="right-footer"></div>
+                <div class="right-body js-right-body"></div>
+                <div class="footer js-right-footer"></div>
             </div>
         </div>
 
@@ -31,42 +31,42 @@
 
         <!-- <script src='./dist/learn.js'></script> -->
 
-        <template id="specimen">
-            <div class="squares" id="rptrSpecimen"></div>
+        <template class="js-specimen-template">
+            <div class="squares js-rptr-specimen"></div>
         </template>
 
-        <template id="species">
-            <div class="rectangles" id="rptrSpecies"></div>
+        <template class="js-species-template">
+            <div class="rectangles js-rptr-species"></div>
         </template>
 
-        <template id="score">
-            <div>Score: <span id="txtCorrect"></span>/<span id="txtTotal"></span></div>
+        <template class="js-score-template">
+            <div>Score: <span class="js-txt-correct"></span>/<span class="js-txt-total"></span></div>
         </template>
 
-        <template id="passes">
-            <div class="rectangles" id="rptrPasses">
+        <template class="js-passes-template">
+            <div class="rectangles js-rptr-passes">
             </div>
         </template>
 
-        <template id="fails">
-            <div class="rectangles" id="rptrFails">
+        <template class="js-fails-template">
+            <div class="rectangles js-rptr-fails">
             </div>
         </template>
 
-        <template id="speciesEntry">
+        <template class="js-species-entry-template">
             <div class="letterbox">
                 <div>
-                    <span id="txtEntry"></span>
-                    <input id="txtInput" class="short" type="text" placeholder="species name" />
+                    <span class="js-txt-entry"></span>
+                    <input class="short js-txt-input" type="text" placeholder="species" />
                     <button>Check</button>
                 </div>
             </div>
         </template>
 
-        <template id="speciesAndGenusEntry">
+        <template class="js-species-genus-entry-template">
                 <div class="letterbox">
                     <div>
-                        <input id="txtInput" class="long" type="text" placeholder="species and genus name" />
+                        <input class="long js-txt-input" type="text" placeholder="Species and genus" />
                         <button>Check</button>
                     </div>
                 </div>

@@ -5,8 +5,8 @@ export const renderFails = () => {
 
     if ('content' in document.createElement('template')) {
 
-        const fails = document.querySelector('#fails');
-        const rptrFails = fails.content.querySelector('#rptrFails');
+        const template = document.querySelector('.js-fails-template');
+        const rptrFails = template.content.querySelector('.js-rptr-fails');
         
         const { score, items } = store.getState();
 
@@ -36,7 +36,7 @@ export const renderFails = () => {
             rptrFails.appendChild(rectangle);
         });        
 
-        const clone = document.importNode(fails.content, true);
+        const clone = document.importNode(template.content, true);
         DOM.rightBody.innerHTML = '';
         DOM.rightBody.appendChild(clone);
     }

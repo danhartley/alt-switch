@@ -12,9 +12,9 @@ export const renderTextEntry = () => {
 
         const sendQandA = () => {
             const { item } = store.getState();
-            const answer = document.querySelector('#txtEntry') 
-                ? `${document.querySelector('#txtEntry').innerHTML} ${document.querySelector('#txtInput').value}`
-                : `${document.querySelector('#txtInput').value}`;
+            const answer = document.querySelector('.js-txt-entry') 
+                ? `${document.querySelector('.js-txt-entry').innerHTML} ${document.querySelector('.js-txt-input').value}`
+                : `${document.querySelector('.js-txt-input').value}`;
             const qandA = { question: item.name, answer: answer }
             actions.boundUpdateScore(qandA);
         };
@@ -31,9 +31,9 @@ export const renderTextEntry = () => {
 
             if(type === types.NEXT_ITEM) {
 
-                const element = strategy.elements.filter(el => el.name === 'textEntry')[0];
+                const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
 
-                const template = document.querySelector(`#${element.template}`);
+                const template = document.querySelector(`.${element.template}`);
 
                 if(template.content.querySelector('span')) template.content.querySelector('span').innerHTML = item.genus;   
 
@@ -46,7 +46,7 @@ export const renderTextEntry = () => {
                 element.parent.innerHTML = '';
                 element.parent.appendChild(clone);
 
-                document.querySelector('#txtInput').focus();
+                document.querySelector('.js-txt-input').focus();
             }
 
         };

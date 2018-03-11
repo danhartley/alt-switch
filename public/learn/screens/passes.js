@@ -5,8 +5,8 @@ import { renderFails } from './fails.js';
 export const renderPasses = () => {
     if ('content' in document.createElement('template')) {
         
-        const passes = document.querySelector('#passes');
-        const rptrPasses = passes.content.querySelector('#rptrPasses');
+        const template = document.querySelector('.js-passes-template');
+        const rptrPasses = template.content.querySelector('.js-rptr-passes');
         const ul = document.createElement('ul');
 
         const { score } = store.getState();
@@ -25,7 +25,7 @@ export const renderPasses = () => {
         
         rptrPasses.appendChild(ul);
 
-        const clone = document.importNode(passes.content, true);
+        const clone = document.importNode(template.content, true);
         DOM.rightBody.innerHTML = '';
         DOM.rightBody.appendChild(clone);
 

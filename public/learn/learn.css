@@ -13,7 +13,7 @@
   color: #fff;
  }
 
-#left-grid {
+.left-grid {
   display: grid;
   grid-column: 2;
   grid-auto-flow: column;
@@ -24,7 +24,7 @@
                        "footer"
 }
 
-#right-grid {
+.right-grid {
   display: grid;
   grid-column: 4;
   grid-auto-flow: column;
@@ -66,15 +66,12 @@
   grid-area: four;
 }
 
-#left-footer, #right-footer {
+.footer {
   grid-area: footer;
+  height: 60px;
   padding: 20px 0 0 20px;
   background-color: rgb(192, 58, 72);
   color: black;
-}
-
-#txtBinomial {
-  color:  rgb(192, 58, 72);
 }
 
 .answer {
@@ -87,6 +84,7 @@
 
 .header {
   grid-area: header;
+  height: 60px;
   background-color: grey;
   padding: 20px 0 0 20px;
   font-size: 1em;
@@ -125,13 +123,13 @@
   width: 100px;
 }
 
-.vernacularName {
+.vernacular-name {
   grid-area: five;
   padding: 5px 0 0 5px;
   font-size: 0.8em;
 }
 
-.vernacularName p {
+.vernacular-name p {
   height: 6px;
 }
 
@@ -159,34 +157,35 @@
   grid-area: six;
 }
 
-#right-body {
-  background-color: aliceblue;
+.right-body {
+  background-color: rgb(146, 154, 141);
 }
 
 .letterbox {
   grid-area: letterbox;
   display: grid;
   grid-auto-flow: row;
-  grid-template-rows: 100px 60px;
+  grid-template-rows: 220px 60px;
   grid-template-areas: "one"
                        "two"
 }
 
 .letterbox div {
   grid-area: two;
-  background-color: darkgrey;
-  padding: 10px 0;
+  height: 80px;
+  background-color: rgb(95, 99, 102);
+  padding: 20px 0;
 }
 
 .letterbox span {
   margin: 0 0 0 10px;
   font-size: 1.4em;
-  color: rgb(60, 60, 60);
+  color: #fff;
 }
 
 .letterbox input {  
-  font-size: 1.4em;
-  margin: 0 0 0 5px;
+  font-size: 1.4em;  
+  margin: 0 0 0 10px;
   padding: 5px;
   color: rgb(60, 60, 60);
 }
@@ -196,5 +195,5 @@
 }
 
 .letterbox input.long {
-  width: 450px;
+  width: 475px;
 }

@@ -16,14 +16,14 @@ export const strategies = [
         name: 'specimen',
         render: renderSpecimen,
         parent: DOM.leftBody,
-        template: 'specimen'        
+        template: 'js-specimen-template'        
       },
       {
-          name: 'textEntry',
+          name: 'text-entry',
           render: renderTextEntry,
           parent: DOM.rightBody,
-          template: 'speciesAndGenusEntry'
-          
+          // template: 'js-species-genus-entry-template'
+          template: 'js-species-entry-template'
       }]
     }
   ];
