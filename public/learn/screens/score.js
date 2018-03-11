@@ -13,11 +13,11 @@ export const renderScore = () => {
         const { score, item, type } = store.getState();
         if(type === 'UPDATE_SCORE') {
             if(score.success) { 
-                DOM.messageTxt.innerHTML = `${score.answer} was the correct answer! Well done.`;
+                DOM.headerTxt.innerHTML = `${score.answer} was the correct answer! Well done.`;
                 DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
             }
             else if(score.total > 0) {
-                DOM.messageTxt.innerHTML = `Oh no! The correct answer was ${item.name}.`;
+                DOM.headerTxt.innerHTML = `Oh no! The correct answer was ${item.name}.`;
                 DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
             }
 

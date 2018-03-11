@@ -8,11 +8,11 @@ export const renderTextEntry = () => {
 
     if('content' in document.createElement('template')) {
 
-        DOM.messageTxt.innerHTML = `Species`;
-
         const { strategy } = store.getState();
 
         const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
+
+        DOM.headerTxt.innerHTML = element.header;
 
         const template = document.querySelector(`.${element.template}`);
 
@@ -29,10 +29,10 @@ export const renderTextEntry = () => {
             }
         });
 
-        document.addEventListener('keyup', event => {
-            const { item } = store.getState();
-            console.log(event.target.value === item[element.question]);
-        });
+        // document.addEventListener('keyup', event => {
+        //     const { item } = store.getState();
+        //     console.log(event.target.value === item[element.question]);
+        // });
 
         const render = () => {
       

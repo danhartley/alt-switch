@@ -24,7 +24,8 @@ export const strategies = [
             render: renderTextEntry,
             parent: DOM.rightBody,
             template: 'js-species-entry-template',
-            question: 'species'
+            question: 'species',
+            header: 'Complete the binomial name'
         }
       ]
     },
@@ -43,7 +44,8 @@ export const strategies = [
             render: renderTextEntry,
             parent: DOM.rightBody,
             template: 'js-species-genus-entry-template',
-            question: 'name'
+            question: 'name',
+            header: 'Give the binomial name'
         }
       ]
     }
