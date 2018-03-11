@@ -10,32 +10,37 @@ export const renderTextEntry = () => {
 
         DOM.messageTxt.innerHTML = `Species`;
 
+        const { strategy } = store.getState();
+
+        const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
+
+        const template = document.querySelector(`.${element.template}`);
+
         const sendQandA = () => {
             const { item } = store.getState();
-            const answer = document.querySelector('.js-txt-entry') 
-                ? `${document.querySelector('.js-txt-entry').innerHTML} ${document.querySelector('.js-txt-input').value}`
-                : `${document.querySelector('.js-txt-input').value}`;
-            const qandA = { question: item.name, answer: answer }
+            const answer = document.querySelector('.js-txt-input').value;
+            const qandA = { question: item[element.question], answer: answer }
             actions.boundUpdateScore(qandA);
         };
 
         document.addEventListener('keypress', event => {
-            if(event.keyCode === 13) {
+            if(event.key === 13) {
                 sendQandA();
             }
         });
 
+        document.addEventListener('keyup', event => {
+            const { item } = store.getState();
+            console.log(event.target.value === item[element.question]);
+        });
+
         const render = () => {
       
-            const { item, type, strategy } = store.getState();
+            const { item, type } = store.getState();
 
             if(type === types.NEXT_ITEM) {
 
-                const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
-
-                const template = document.querySelector(`.${element.template}`);
-
-                if(template.content.querySelector('span')) template.content.querySelector('span').innerHTML = item.genus;   
+                template.content.querySelector('span').innerHTML = item.genus;   
 
                 const clone = document.importNode(template.content, true);
                 

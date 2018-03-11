@@ -11,20 +11,41 @@ import { renderSpecimen } from './screens/specimen.js';
 export const strategies = [
     {
       id: 1,
+      active: false,
+      elements: [ 
+        {
+          name: 'specimen',
+          render: renderSpecimen,
+          parent: DOM.leftBody,
+          template: 'js-specimen-template'        
+        }, 
+        {
+            name: 'text-entry',
+            render: renderTextEntry,
+            parent: DOM.rightBody,
+            template: 'js-species-entry-template',
+            question: 'species'
+        }
+      ]
+    },
+    {
+      id: 2,
       active: true,
-      elements: [ {
-        name: 'specimen',
-        render: renderSpecimen,
-        parent: DOM.leftBody,
-        template: 'js-specimen-template'        
-      },
-      {
-          name: 'text-entry',
-          render: renderTextEntry,
-          parent: DOM.rightBody,
-          // template: 'js-species-genus-entry-template'
-          template: 'js-species-entry-template'
-      }]
+      elements: [ 
+        {
+          name: 'specimen',
+          render: renderSpecimen,
+          parent: DOM.leftBody,
+          template: 'js-specimen-template'        
+        }, 
+        {
+            name: 'text-entry',
+            render: renderTextEntry,
+            parent: DOM.rightBody,
+            template: 'js-species-genus-entry-template',
+            question: 'name'
+        }
+      ]
     }
   ];
 
