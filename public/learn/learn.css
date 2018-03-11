@@ -158,7 +158,7 @@
 }
 
 .right-body {
-  background-color: rgb(146, 154, 141);
+  background-color: rgba(44, 141, 86, .8);
 }
 
 .letterbox {
@@ -173,7 +173,7 @@
 .letterbox div {
   grid-area: two;
   height: 80px;
-  background-color: rgb(95, 99, 102);
+  background-color: rgba(44, 141, 86, .8);
   padding: 20px 0;
 }
 

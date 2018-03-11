@@ -24,7 +24,7 @@ export const renderTextEntry = () => {
         };
 
         document.addEventListener('keypress', event => {
-            if(event.key === 13) {
+            if(event.key === 'Enter') {
                 sendQandA();
             }
         });
