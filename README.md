@@ -1,4 +1,8 @@
-8 Marcch 2018:
+12 March 2018:
+
+Time to work on the colour scheme. https://webaim.org/resources/contrastchecker/
+
+8 March 2018:
 
 All the interesting files are in /learn.
 
