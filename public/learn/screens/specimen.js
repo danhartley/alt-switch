@@ -7,15 +7,19 @@ export const renderSpecimen = () => {
 
     if('content' in document.createElement('template')) {
         
-        const template = document.querySelector('.js-specimen-template');
+        const { strategy, items } = store.getState();
+
+        const element = strategy.elements.filter(el => el.name === 'specimen')[0];
+
+        const template = document.querySelector(`.${element.template}`);
 
         const rptrSpecimen = template.content.querySelector('.js-rptr-specimen');
+        
+        DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
         
         let renderSpecimenImages = null;
 
         const renderImages = (specimenImages) => {
-            const { strategy } = store.getState();
-            const element = strategy.elements.filter(el => el.template === template.className)[0];
             let images = specimenImages;
             return () => {        
                 let displayImages = R.take(4, utils.shuffleArray(images));        
