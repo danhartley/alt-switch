@@ -1,4 +1,4 @@
-import { updateScore, nextItem } from './learn-reducers.js';
+import { score, item } from './learn-reducers.js';
 import { types } from './learn-types.js';
 
 it('learn state should reflect correct answer', () => {
@@ -7,7 +7,11 @@ it('learn state should reflect correct answer', () => {
     total: 10,
     correct: 9,
     answer: '',
-    success: false
+    success: false,
+    wrong: 0,
+    question: 'Anagallis arvensis',
+    fails: [],
+    passes: []
   }
 
   const stateAfter = {
@@ -15,11 +19,14 @@ it('learn state should reflect correct answer', () => {
     correct: 10,
     question: 'Anagallis arvensis',
     answer: 'Anagallis arvensis',
-    success: true
+    success: true,
+    wrong: 0,
+    fails: [],
+    passes: ['Anagallis arvensis']
   }
 
   const action = {
-    type: types.UPDATE_SCORE,
+    type: types.MARK_ANSWER,
     data: {
       question: 'Anagallis arvensis',
       answer: 'Anagallis arvensis'
@@ -29,7 +36,7 @@ it('learn state should reflect correct answer', () => {
   Object.freeze(stateBefore);
   Object.freeze(action);
 
-  expect(updateScore(stateBefore, action)).toEqual(stateAfter);
+  expect(score(stateBefore, action)).toEqual(stateAfter);
 });
 
 it('learn state should reflect incorrect answer', () => {
@@ -38,7 +45,11 @@ it('learn state should reflect incorrect answer', () => {
     total: 10,
     correct: 9,
     answer: '',
-    success: false
+    success: false,
+    wrong: 0,
+    question: '',
+    fails: [],
+    passes: []
   }
 
   const stateAfter = {
@@ -46,21 +57,24 @@ it('learn state should reflect incorrect answer', () => {
     correct: 9,
     question: 'Anagallis arvensis',
     answer: 'Malva sylvestris',
-    success: false
+    success: false,
+    wrong: 1,
+    fails: ['Anagallis arvensis'],
+    passes: []
   }
 
   Object.freeze(stateBefore);
   Object.freeze(action);
 
   const action = {
-    type: types.UPDATE_SCORE,
+    type: types.MARK_ANSWER,
     data: {
       question: 'Anagallis arvensis',
       answer: 'Malva sylvestris'
     }
   }
 
-  expect(updateScore(stateBefore, action)).toEqual(stateAfter);
+  expect(score(stateBefore, action)).toEqual(stateAfter);
 });
 
 it('learn state should return the next item', () => {
@@ -77,5 +91,5 @@ it('learn state should return the next item', () => {
   Object.freeze(stateBefore);
   Object.freeze(action);
 
-  expect(nextItem(stateBefore, action)).toEqual(stateAfter);
+  expect(item(stateBefore, action)).toEqual(stateAfter);
 });

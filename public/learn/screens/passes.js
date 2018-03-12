@@ -11,7 +11,7 @@ export const renderPasses = () => {
 
         const { score } = store.getState();
 
-        DOM.messageTxt.innerHTML = 
+        DOM.headerTxt.innerHTML = 
             score.correct === 1 
                 ? `You got ${score.correct} question right:`
                 : `You got ${score.correct} questions right:`;

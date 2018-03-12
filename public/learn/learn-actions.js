@@ -11,12 +11,12 @@ const makeActionCreator = action => {
   }
 
 const nextItemAction = makeActionCreator(types.NEXT_ITEM);
-const updateScoreAction = makeActionCreator(types.UPDATE_SCORE);
+const markAnswerAction = makeActionCreator(types.MARK_ANSWER);
 
 const boundNextItem = data => store.dispatch(nextItemAction(data))
-const boundUpdateScore = data => store.dispatch(updateScoreAction(data))
+const boundMarkAnswer = data => store.dispatch(markAnswerAction(data))
 
 export const actions = {
     boundNextItem,
-    boundUpdateScore
+    boundMarkAnswer
 };

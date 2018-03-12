@@ -44,7 +44,7 @@ export const renderSpecies = () => {
                 if(event.target.childNodes.length > 1) return;
                 const { item } = store.getState();    
                 const qandA = { question: item.name, answer: event.target.childNodes[0].data }
-                actions.boundUpdateScore(qandA);
+                actions.boundMarkAnswer(qandA);
             });
 
             DOM.rightBody.innerHTML = '';

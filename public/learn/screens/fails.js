@@ -10,7 +10,7 @@ export const renderFails = () => {
         
         const { score, items } = store.getState();
 
-        DOM.messageTxt.innerHTML = 
+        DOM.headerTxt.innerHTML = 
             score.wrong === 1
                 ? `You got ${score.wrong} question wrong:`
                 : `You got ${score.wrong} questions wrong:`;

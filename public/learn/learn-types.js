@@ -1,7 +1,7 @@
 const NEXT_ITEM = 'NEXT_ITEM';
-const UPDATE_SCORE = 'UPDATE_SCORE';
+const MARK_ANSWER = 'MARK_ANSWER';
 
 export const types = {
     NEXT_ITEM,
-    UPDATE_SCORE
+    MARK_ANSWER
   };

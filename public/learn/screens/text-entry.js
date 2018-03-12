@@ -20,7 +20,7 @@ export const renderTextEntry = () => {
             const { item } = store.getState();
             const answer = document.querySelector('.js-txt-input').value;
             const qandA = { question: item[element.question], answer: answer }
-            actions.boundUpdateScore(qandA);
+            actions.boundMarkAnswer(qandA);
         };
 
         document.addEventListener('keypress', event => {
@@ -58,7 +58,7 @@ export const renderTextEntry = () => {
 
         store.subscribe(render);
 
-        const { items, item } = store.getState();
-        actions.boundNextItem(utils.nextItem(items, item.index + 1));
+        // const { items, item } = store.getState();
+        // actions.boundNextItem(utils.nextItem(items, item.index + 1));
     };
 };

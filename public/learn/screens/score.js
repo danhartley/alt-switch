@@ -1,6 +1,7 @@
 
 import { DOM } from '../learn-dom.js';
 import { store } from '../../store/store-repo.js';
+import { types } from '../learn-types.js';
 
 export const renderScore = () => {
 
@@ -11,7 +12,7 @@ export const renderScore = () => {
     
     const renderScore = () => {
         const { score, item, type } = store.getState();
-        if(type === 'UPDATE_SCORE') {
+        if(type === types.MARK_ANSWER) {
             if(score.success) { 
                 DOM.headerTxt.innerHTML = `${score.answer} was the correct answer! Well done.`;
                 DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';

@@ -1,6 +1,7 @@
 12 March 2018:
 
 Time to work on the colour scheme. https://webaim.org/resources/contrastchecker/
+Test: npm run watch
 
 8 March 2018:
 

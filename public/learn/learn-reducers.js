@@ -3,7 +3,7 @@ import { types } from './learn-types.js';
 
 export const score = (state = null, action) => {
     switch(action.type) {
-        case types.UPDATE_SCORE:
+        case types.MARK_ANSWER:
             const score = { ...state, question: action.data.question, answer : action.data.answer };
             score.total++;
             score.success = score.answer === score.question;
