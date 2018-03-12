@@ -58,7 +58,7 @@ export const renderTextEntry = () => {
 
         store.subscribe(render);
 
-        // const { items, item } = store.getState();
-        // actions.boundNextItem(utils.nextItem(items, item.index + 1));
+        const { items, item } = store.getState();
+        actions.boundNextItem(utils.nextItem(items, item.index + 1));
     };
 };

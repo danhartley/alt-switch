@@ -35,4 +35,4 @@ store.subscribe(nextSpecies);
 
 const { items, item } = store.getState();
 DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
-// actions.boundNextItem(utils.nextItem(items, item.index + 1));
+actions.boundNextItem(utils.nextItem(items, item.index + 1));
