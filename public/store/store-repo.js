@@ -67,8 +67,10 @@ const type = (state = null, action) => {
 
 const strategy = (state = null, action) => { 
     switch(action.type) {
+        case types.CHANGE_STRATEGY:
+            return action.data || state;
         default: 
-            return action.strategy || state;
+            return state;
     }
 };
 

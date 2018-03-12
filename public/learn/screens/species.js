@@ -8,17 +8,24 @@ export const renderSpecies = () => {
 
     if('content' in document.createElement('template')) {
         
-        const template = document.querySelector('.js-species-template');
+        const { strategy, items } = store.getState();
+
+        const element = strategy.elements.filter(el => el.name === 'species')[0];
+
+        const template = document.querySelector(`.${element.template}`);
 
         const rptrSpecies = template.content.querySelector('.js-rptr-species');
+        
+        DOM.headerTxt.innerHTML = `Species`;
 
-        const renderSpecies = () => {
+        let _item = null;
+
+        const render = () => {
             
             const { items, item, type} = store.getState();
 
-            DOM.messageTxt.innerHTML = `Species`;
-
-            if(type === types.NEXT_ITEM) {
+            if(!Object.is(_item,item)) { 
+                _item = item;
                 const alternativeSpecies = R.take(5, utils.shuffleArray(items).filter(i => i.id !== item.id));
                 const speciesList = utils.shuffleArray([...alternativeSpecies, item]);
                 const languages = [ 'en', 'pt' ];            
@@ -29,7 +36,7 @@ export const renderSpecies = () => {
                             .map(name => `<p>${name.vernacularName}</p>`)).join(''); 
                             return `<div class="rectangle">
                                         <div class="answer" id="${species.id}">
-                                            <button">${species.name}</button>
+                                            <button>${species.name}</button>
                                             <div class="vernacular-name">${vernacularNames}</div>
                                         </div>
                                     </div>`;
@@ -38,19 +45,18 @@ export const renderSpecies = () => {
 
             const clone = document.importNode(template.content, true);
 
-            // this could depend .... the listener is answer-specific, the rest not
-
-            clone.querySelector('#rptrSpecies').addEventListener('click', event => {
-                if(event.target.childNodes.length > 1) return;
-                const { item } = store.getState();    
-                const qandA = { question: item.name, answer: event.target.childNodes[0].data }
-                actions.boundMarkAnswer(qandA);
+            clone.querySelectorAll('.js-rptr-species .rectangle .answer button').forEach(element => {
+                element.addEventListener('click', event => {                    
+                    const { item } = store.getState();    
+                    const qandA = { question: item.name, answer: event.target.childNodes[0].data }
+                    actions.boundMarkAnswer(qandA);
+                });
             });
 
             DOM.rightBody.innerHTML = '';
             DOM.rightBody.appendChild(clone);
         };
-        
-        store.subscribe(renderSpecies);
+
+        return render;
     }
 };

@@ -3,6 +3,8 @@ import { DOM } from '../learn-dom.js';
 import { store } from '../../store/store-repo.js';
 import { types } from '../learn-types.js';
 
+let _score = null;
+
 export const renderScore = () => {
 
     const template = document.querySelector('.js-score-template');
@@ -10,9 +12,10 @@ export const renderScore = () => {
     const txtCorrect = template.content.querySelector('.js-txt-correct');
     const txtTotal = template.content.querySelector('.js-txt-total');
     
-    const renderScore = () => {
+    const render = () => {
         const { score, item, type } = store.getState();
-        if(type === types.MARK_ANSWER) {
+        if(!Object.is(_score,score)) { 
+            _score = score;
             if(score.success) { 
                 DOM.headerTxt.innerHTML = `${score.answer} was the correct answer! Well done.`;
                 DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
@@ -31,6 +34,5 @@ export const renderScore = () => {
             DOM.rightFooter.appendChild(clone);
         }
     };
-    
-    store.subscribe(renderScore);
+    return render;
 };

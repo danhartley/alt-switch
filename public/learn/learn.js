@@ -3,4 +3,9 @@ import { store } from '../store/store-repo.js';
 import { actions } from './learn-actions.js';
 
 const { strategy } = store.getState();
-strategy.elements.forEach(element => { element.render(); });
+export const subscriptions = [];
+strategy.elements.forEach(element => { 
+    subscriptions.push(store.subscribe(element.render()));
+});
+const { items, item } = store.getState();
+actions.boundNextItem(utils.nextItem(items, item.index));

@@ -34,12 +34,14 @@ export const renderTextEntry = () => {
         //     console.log(event.target.value === item[element.question]);
         // });
 
+        let _item = null;
+
         const render = () => {
       
             const { item, type } = store.getState();
 
-            if(type === types.NEXT_ITEM) {
-
+            if(!Object.is(_item,item)) { 
+                _item = item;
                 template.content.querySelector('span').innerHTML = item.genus;   
 
                 const clone = document.importNode(template.content, true);
@@ -55,7 +57,6 @@ export const renderTextEntry = () => {
             }
 
         };
-
-        store.subscribe(render);
+        return render;
     };
 };

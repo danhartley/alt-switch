@@ -12,11 +12,14 @@ const makeActionCreator = action => {
 
 const nextItemAction = makeActionCreator(types.NEXT_ITEM);
 const markAnswerAction = makeActionCreator(types.MARK_ANSWER);
+const changeStrategyAction = makeActionCreator(types.CHANGE_STRATEGY);
 
-const boundNextItem = data => store.dispatch(nextItemAction(data))
-const boundMarkAnswer = data => store.dispatch(markAnswerAction(data))
+const boundNextItem = data => store.dispatch(nextItemAction(data));
+const boundMarkAnswer = data => store.dispatch(markAnswerAction(data));
+const boundChangeStrategy = data => store.dispatch(changeStrategyAction(data));
 
 export const actions = {
     boundNextItem,
-    boundMarkAnswer
+    boundMarkAnswer,
+    boundChangeStrategy
 };

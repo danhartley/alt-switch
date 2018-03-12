@@ -1,7 +1,9 @@
 const NEXT_ITEM = 'NEXT_ITEM';
 const MARK_ANSWER = 'MARK_ANSWER';
+const CHANGE_STRATEGY = 'CHANGE_STRATEGY'; 
 
 export const types = {
     NEXT_ITEM,
-    MARK_ANSWER
-  };
+    MARK_ANSWER,
+    CHANGE_STRATEGY
+};

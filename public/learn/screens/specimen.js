@@ -36,18 +36,21 @@ export const renderSpecimen = () => {
             // add event handler if these are answers instead of questions (or if questions, something else...)
         };
 
+        let _item = null;
+
         const render = () => {
-            const { type, item: { images } } = store.getState();
-            if(type === types.NEXT_ITEM) {
+            const { type, item, item: { images } } = store.getState();
+            if(!Object.is(_item,item)) { 
+                _item = item;
                 renderSpecimenImages = renderImages(images);
                 renderSpecimenImages();
             }
         };
 
-        store.subscribe(render);
-
         DOM.moreSpecimensBtn.addEventListener('click', () => {
             renderSpecimenImages();
         });
+
+        return render;
     }
 }

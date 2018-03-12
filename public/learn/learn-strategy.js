@@ -30,12 +30,16 @@ export const strategies = [
         {
           name: 'score',
           render: renderScore
+        },
+        {
+          name: 'next',
+          render: renderNext
         }
       ]
     },
     {
       id: 2,
-      active: true,
+      active: false,
       elements: [ 
         {
           name: 'specimen',
@@ -50,6 +54,34 @@ export const strategies = [
             template: 'js-species-genus-entry-template',
             question: 'name',
             header: 'Give the binomial name'
+        },
+        {
+          name: 'score',
+          render: renderScore
+        },
+        {
+          name: 'next',
+          render: renderNext
+        }
+      ]
+    },
+    {
+      id: 3,
+      active: true,
+      elements: [
+        {
+          name: 'specimen',
+          render: renderSpecimen,
+          parent: DOM.leftBody,
+          template: 'js-specimen-template'
+        }, 
+        {
+            name: 'species',
+            render: renderSpecies,
+            parent: DOM.rightBody,
+            template: 'js-species-template',
+            question: 'name',
+            header: 'Click the matching species'
         },
         {
           name: 'score',
