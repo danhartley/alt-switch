@@ -1,10 +1,12 @@
 import { tejoSpecies } from '../api/eol-tejo.js';
 import { trees } from '../api/eol-trees.js';
 import { utils } from '../utils/utils.js';
-import { createStore } from './store.js';
+// import { createStore } from './store.js'';
 import { types } from '../learn/learn-types.js';
 import { score, item } from '../learn/learn-reducers.js'
 import { strategy as learnStategy } from '../learn/learn-strategy.js';
+import { timeoutScheduler } from '../learn/middleware/timeoutScheduler.js';
+import { logger } from '../learn/middleware/logger.js';
 
 const initialState = {
     strategy: learnStategy,
@@ -74,7 +76,7 @@ const strategy = (state = null, action) => {
     }
 };
 
-const { combineReducers } = Redux;
+const { combineReducers, createStore, applyMiddleware } = Redux;
 
 const reducer = combineReducers({
     score,
@@ -86,4 +88,11 @@ const reducer = combineReducers({
     strategy
 });
 
-export const store = createStore(reducer, initialState);
+export const store = createStore(
+    reducer, 
+    initialState, 
+    applyMiddleware(
+        timeoutScheduler,
+        logger
+    )
+);

@@ -14,7 +14,7 @@ export const renderScore = () => {
     
     const render = () => {
         const { score, item, type } = store.getState();
-        if(!Object.is(_score,score)) { 
+        if(!Object.is(_score,score)) {
             _score = score;
             if(score.success) { 
                 DOM.headerTxt.innerHTML = `${score.answer} was the correct answer! Well done.`;

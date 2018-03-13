@@ -16,21 +16,24 @@ export const renderNext = () => {
         const { type, items, item, score } = store.getState();
         if(type === types.MARK_ANSWER) {
             if(items.length === score.total) {
+
+                // here subscribe is still acting on text-entry
+
                 screens[0]();
             }
             else {
                 subscriptions.forEach(unsubscribe => unsubscribe());
                 subscriptions.length = 0;
+                strategies.map(strategy => strategy.active = false);
                 const strategy = R.take(1, utils.shuffleArray(strategies))[0];
                 strategy.active = true;                
-                setTimeout(()=> {
-                    DOM.rightBody.innerHTML = '';
-                    actions.boundChangeStrategy(strategy);
-                    strategy.elements.forEach(element => { 
-                        subscriptions.push(store.subscribe(element.render()));
-                    });
-                    actions.boundNextItem(utils.nextItem(items, item.index + 1));
-                },2000);    
+
+                DOM.rightBody.innerHTML = '';
+                actions.boundChangeStrategy(strategy);
+                strategy.elements.forEach(element => { 
+                    subscriptions.push(store.subscribe(element.render()));
+                });
+                actions.boundNextItem(utils.nextItem(items, item.index + 1));
             }
         }
     };

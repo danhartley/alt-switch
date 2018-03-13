@@ -5,7 +5,11 @@
         <!-- <link rel="stylesheet" type="text/css" href="../index.css"></link> -->
         <link rel="stylesheet" type="text/css" href="./learn.css"></link>
         <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>     
+        <script src="https://cdn.ravenjs.com/3.23.1/raven.min.js" crossorigin="anonymous"></script>
+        <script>
+            // Raven.config('https://9d9d8654a6a345a3af09df89cb615bde:ed31c702334a4b63a034104780b8c22a@sentry.io/302756').install();
+        </script>
     </head>
     <body>
         <div class="grid">
@@ -27,7 +31,7 @@
             </div>
         </div>
 
-        <!-- <script src="./learn.js" type="module"></script> -->
+        <script src="./learn.js" type="module"></script>
 
         <template class="js-specimen-template">
             <div class="squares js-rptr-specimen"></div>
@@ -71,7 +75,7 @@
                 </div>
         </template>
 
-        <script src='./dist/learn.js'></script>
+        <!-- <script src='./dist/learn.js'></script> -->
 
     </body>
 </html>
