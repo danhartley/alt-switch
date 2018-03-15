@@ -172,7 +172,22 @@ var utils = exports.utils = {
   nextItem: nextItem,
   combineReducers: combineReducers
 };
-},{}],10:[function(require,module,exports) {
+},{}],4:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var NEXT_ITEM = 'NEXT_ITEM';
+var MARK_ANSWER = 'MARK_ANSWER';
+var NEW_SCREEN = 'NEW_SCREEN';
+
+var types = exports.types = {
+    NEXT_ITEM: NEXT_ITEM,
+    MARK_ANSWER: MARK_ANSWER,
+    NEW_SCREEN: NEW_SCREEN
+};
+},{}],11:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3242,7 +3257,7 @@ var tejoSpecies = exports.tejoSpecies = [
   }],
   "thumbs": [null, "http://media.eol.org/content/2012/06/13/03/85842_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/10611_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/42580_98_68.jpg", "http://media.eol.org/content/2015/04/30/07/50307_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/13189_98_68.jpg", "http://media.eol.org/content/2012/08/07/03/99483_98_68.jpg", "http://media.eol.org/content/2013/11/16/20/39151_98_68.jpg", "http://media.eol.org/content/2014/07/08/07/99782_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/27893_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/84150_98_68.jpg"]
 }];
-},{}],11:[function(require,module,exports) {
+},{}],12:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3537,104 +3552,7 @@ var trees = exports.trees = [{
   }],
   "thumbs": [null, "http://media.eol.org/content/2014/10/17/01/88260_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/65845_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/38573_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/10539_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/77145_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/85277_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/47054_98_68.jpg", "http://media.eol.org/content/2014/10/17/01/69881_98_68.jpg"]
 }];
-},{}],12:[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var createStore = exports.createStore = function createStore(reducer, intialState) {
-
-    var state = intialState || {};
-    var listeners = [];
-
-    var getState = function getState() {
-        return state;
-    };
-
-    var dispatch = function dispatch(action) {
-        state = reducer(state, action);
-        listeners.forEach(function (listener) {
-            return listener();
-        });
-    };
-
-    var subscribe = function subscribe(listener) {
-        listeners.push(listener);
-        return function () {
-            listeners = listeners.filter(function (l) {
-                return l !== listener;
-            });
-        };
-    };
-
-    dispatch({});
-
-    return { getState: getState, dispatch: dispatch, subscribe: subscribe };
-};
-},{}],9:[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var NEXT_ITEM = 'NEXT_ITEM';
-var MARK_ANSWER = 'MARK_ANSWER';
-var CHANGE_STRATEGY = 'CHANGE_STRATEGY';
-
-var types = exports.types = {
-    NEXT_ITEM: NEXT_ITEM,
-    MARK_ANSWER: MARK_ANSWER,
-    CHANGE_STRATEGY: CHANGE_STRATEGY
-};
-},{}],13:[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.item = exports.score = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _utils = require('../utils/utils.js');
-
-var _learnTypes = require('./learn-types.js');
-
-var score = exports.score = function score() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var action = arguments[1];
-
-    switch (action.type) {
-        case _learnTypes.types.MARK_ANSWER:
-            var _score = _extends({}, state, { question: action.data.question, answer: action.data.answer });
-            _score.total++;
-            _score.success = _score.answer === _score.question;
-            if (_score.success) {
-                _score.correct++;
-                _score.passes.push(_score.question);
-            } else {
-                _score.wrong++;
-                _score.fails.push(_score.question);
-            }
-            return _score;
-        default:
-            return state;
-    }
-};
-
-var item = exports.item = function item() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { index: 0 };
-    var action = arguments[1];
-
-    switch (action.type) {
-        case _learnTypes.types.NEXT_ITEM:
-            return _extends({}, state, action.data);
-        default:
-            return state;
-    }
-};
-},{"../utils/utils.js":3,"./learn-types.js":9}],21:[function(require,module,exports) {
+},{}],8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3660,47 +3578,7 @@ var DOM = exports.DOM = {
     totalTxt: document.getElementsByClassName('js-txt-total')[0],
     correctTxt: document.getElementsByClassName('js-txt-correct')[0]
 };
-},{}],5:[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.actions = undefined;
-
-var _storeRepo = require('../store/store-repo.js');
-
-var _learnTypes = require('./learn-types.js');
-
-var makeActionCreator = function makeActionCreator(action) {
-  return function (value) {
-    return {
-      type: action,
-      data: value
-    };
-  };
-};
-
-var nextItemAction = makeActionCreator(_learnTypes.types.NEXT_ITEM);
-var markAnswerAction = makeActionCreator(_learnTypes.types.MARK_ANSWER);
-var changeStrategyAction = makeActionCreator(_learnTypes.types.CHANGE_STRATEGY);
-
-var boundNextItem = function boundNextItem(data) {
-  return _storeRepo.store.dispatch(nextItemAction(data));
-};
-var boundMarkAnswer = function boundMarkAnswer(data) {
-  return _storeRepo.store.dispatch(markAnswerAction(data));
-};
-var boundChangeStrategy = function boundChangeStrategy(data) {
-  return _storeRepo.store.dispatch(changeStrategyAction(data));
-};
-
-var actions = exports.actions = {
-  boundNextItem: boundNextItem,
-  boundMarkAnswer: boundMarkAnswer,
-  boundChangeStrategy: boundChangeStrategy
-};
-},{"../store/store-repo.js":4,"./learn-types.js":9}],22:[function(require,module,exports) {
+},{}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3721,67 +3599,55 @@ var _utils = require('../../utils/utils.js');
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var renderSpecies = exports.renderSpecies = function renderSpecies() {
+    var _store$getState = _storeRepo.store.getState(),
+        strategy = _store$getState.strategy,
+        items = _store$getState.items,
+        item = _store$getState.item,
+        type = _store$getState.type;
 
-    if ('content' in document.createElement('template')) {
-        var _store$getState = _storeRepo.store.getState(),
-            strategy = _store$getState.strategy,
-            items = _store$getState.items;
+    if (type === _learnTypes.types.NEW_SCREEN) {
 
         var element = strategy.elements.filter(function (el) {
             return el.name === 'species';
         })[0];
 
+        if (!element) return;
+
         var template = document.querySelector('.' + element.template);
 
         var rptrSpecies = template.content.querySelector('.js-rptr-species');
 
-        _learnDom.DOM.headerTxt.innerHTML = 'Species';
+        var alternativeSpecies = R.take(5, _utils.utils.shuffleArray(items).filter(function (i) {
+            return i.id !== item.id;
+        }));
+        var speciesList = _utils.utils.shuffleArray([].concat(_toConsumableArray(alternativeSpecies), [item]));
+        var languages = ['en', 'pt'];
+        rptrSpecies.innerHTML = speciesList.map(function (species) {
+            var vernacularNames = R.take(5, species.names.filter(function (name) {
+                return R.contains(name.language, languages);
+            }).map(function (name) {
+                return '<p>' + name.vernacularName + '</p>';
+            })).join('');
+            return '<div class="rectangle">\n                                <div class="answer" id="' + species.id + '">\n                                    <button>' + species.name + '</button>\n                                    <div class="vernacular-name">' + vernacularNames + '</div>\n                                </div>\n                            </div>';
+        }).join('');
 
-        var _item = null;
+        var clone = document.importNode(template.content, true);
 
-        var render = function render() {
-            var _store$getState2 = _storeRepo.store.getState(),
-                items = _store$getState2.items,
-                item = _store$getState2.item,
-                type = _store$getState2.type;
+        clone.querySelectorAll('.js-rptr-species .rectangle .answer button').forEach(function (element) {
+            element.addEventListener('click', function (event) {
+                var _store$getState2 = _storeRepo.store.getState(),
+                    item = _store$getState2.item;
 
-            if (!Object.is(_item, item)) {
-                _item = item;
-                var alternativeSpecies = R.take(5, _utils.utils.shuffleArray(items).filter(function (i) {
-                    return i.id !== item.id;
-                }));
-                var speciesList = _utils.utils.shuffleArray([].concat(_toConsumableArray(alternativeSpecies), [item]));
-                var languages = ['en', 'pt'];
-                rptrSpecies.innerHTML = speciesList.map(function (species) {
-                    var vernacularNames = R.take(5, species.names.filter(function (name) {
-                        return R.contains(name.language, languages);
-                    }).map(function (name) {
-                        return '<p>' + name.vernacularName + '</p>';
-                    })).join('');
-                    return '<div class="rectangle">\n                                        <div class="answer" id="' + species.id + '">\n                                            <button>' + species.name + '</button>\n                                            <div class="vernacular-name">' + vernacularNames + '</div>\n                                        </div>\n                                    </div>';
-                }).join('');
-            }
-
-            var clone = document.importNode(template.content, true);
-
-            clone.querySelectorAll('.js-rptr-species .rectangle .answer button').forEach(function (element) {
-                element.addEventListener('click', function (event) {
-                    var _store$getState3 = _storeRepo.store.getState(),
-                        item = _store$getState3.item;
-
-                    var qandA = { question: item.name, answer: event.target.childNodes[0].data };
-                    _learnActions.actions.boundMarkAnswer(qandA);
-                });
+                var qandA = { question: item.name, answer: event.target.childNodes[0].data };
+                _learnActions.actions.boundMarkAnswer(qandA);
             });
+        });
 
-            _learnDom.DOM.rightBody.innerHTML = '';
-            _learnDom.DOM.rightBody.appendChild(clone);
-        };
-
-        return render;
+        _learnDom.DOM.rightBody.innerHTML = '';
+        _learnDom.DOM.rightBody.appendChild(clone);
     }
 };
-},{"../learn-dom.js":21,"../../store/store-repo.js":4,"../learn-actions.js":5,"../learn-types.js":9,"../../utils/utils.js":3}],24:[function(require,module,exports) {
+},{"../learn-dom.js":8,"../../store/store-repo.js":6,"../learn-actions.js":5,"../learn-types.js":4,"../../utils/utils.js":3}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3833,7 +3699,7 @@ var renderFails = exports.renderFails = function renderFails() {
         _learnDom.DOM.rightBody.appendChild(clone);
     }
 };
-},{"../learn-dom.js":21,"../../store/store-repo.js":4}],23:[function(require,module,exports) {
+},{"../learn-dom.js":8,"../../store/store-repo.js":6}],9:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3877,7 +3743,7 @@ var renderPasses = exports.renderPasses = function renderPasses() {
         }, 5000);
     }
 };
-},{"../learn-dom.js":21,"../../store/store-repo.js":4,"./fails.js":24}],25:[function(require,module,exports) {
+},{"../learn-dom.js":8,"../../store/store-repo.js":6,"./fails.js":10}],17:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3891,43 +3757,37 @@ var _storeRepo = require('../../store/store-repo.js');
 
 var _learnTypes = require('../learn-types.js');
 
-var _score = null;
-
 var renderScore = exports.renderScore = function renderScore() {
+    var _store$getState = _storeRepo.store.getState(),
+        score = _store$getState.score,
+        item = _store$getState.item,
+        type = _store$getState.type;
 
-    var template = document.querySelector('.js-score-template');
+    if (type === _learnTypes.types.MARK_ANSWER) {
 
-    var txtCorrect = template.content.querySelector('.js-txt-correct');
-    var txtTotal = template.content.querySelector('.js-txt-total');
+        var template = document.querySelector('.js-score-template');
 
-    var render = function render() {
-        var _store$getState = _storeRepo.store.getState(),
-            score = _store$getState.score,
-            item = _store$getState.item,
-            type = _store$getState.type;
+        var txtCorrect = template.content.querySelector('.js-txt-correct');
+        var txtTotal = template.content.querySelector('.js-txt-total');
 
-        if (!Object.is(_score, score)) {
-            _score = score;
-            if (score.success) {
-                _learnDom.DOM.headerTxt.innerHTML = score.answer + ' was the correct answer! Well done.';
-                _learnDom.DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
-            } else if (score.total > 0) {
-                _learnDom.DOM.headerTxt.innerHTML = 'Oh no! The correct answer was ' + item.name + '.';
-                _learnDom.DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
-            }
-
-            txtTotal.innerHTML = score.total;
-            txtCorrect.innerHTML = score.correct;
-
-            var clone = document.importNode(template.content, true);
-
-            _learnDom.DOM.rightFooter.innerHTML = '';
-            _learnDom.DOM.rightFooter.appendChild(clone);
+        if (score.success) {
+            _learnDom.DOM.headerTxt.innerHTML = score.answer + ' was the correct answer! Well done.';
+            _learnDom.DOM.rightHeader.style.backgroundColor = 'rgb(44, 141, 86)';
+        } else if (score.total > 0) {
+            _learnDom.DOM.headerTxt.innerHTML = 'Oh no! The correct answer was ' + item.name + '.';
+            _learnDom.DOM.rightHeader.style.backgroundColor = 'rgb(141, 0, 5)';
         }
-    };
-    return render;
+
+        txtTotal.innerHTML = score.total;
+        txtCorrect.innerHTML = score.correct;
+
+        var clone = document.importNode(template.content, true);
+
+        _learnDom.DOM.rightFooter.innerHTML = '';
+        _learnDom.DOM.rightFooter.appendChild(clone);
+    }
 };
-},{"../learn-dom.js":21,"../../store/store-repo.js":4,"../learn-types.js":9}],26:[function(require,module,exports) {
+},{"../learn-dom.js":8,"../../store/store-repo.js":6,"../learn-types.js":4}],18:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3946,66 +3806,60 @@ var _learnActions = require('../learn-actions.js');
 var _learnTypes = require('../learn-types.js');
 
 var renderTextEntry = exports.renderTextEntry = function renderTextEntry() {
+    var _store$getState = _storeRepo.store.getState(),
+        strategy = _store$getState.strategy,
+        item = _store$getState.item,
+        type = _store$getState.type;
 
-    if ('content' in document.createElement('template')) {
-        var _store$getState = _storeRepo.store.getState(),
-            strategy = _store$getState.strategy;
+    if (type === _learnTypes.types.NEW_SCREEN) {
 
-        var element = strategy.elements.filter(function (el) {
+        var sendQandA = null;
+
+        var handleEnterPress = function handleEnterPress(event) {
+            if (event.key === 'Enter') {
+                sendQandA();
+            }
+        };
+
+        var _store$getState2 = _storeRepo.store.getState(),
+            _strategy = _store$getState2.strategy;
+
+        var element = _strategy.elements.filter(function (el) {
             return el.name === 'text-entry';
         })[0];
 
-        _learnDom.DOM.headerTxt.innerHTML = element.header;
+        if (!element) return;
 
         var template = document.querySelector('.' + element.template);
 
-        var sendQandA = function sendQandA() {
-            var _store$getState2 = _storeRepo.store.getState(),
-                item = _store$getState2.item;
+        sendQandA = function sendQandA() {
+            if (!document.querySelector('.js-txt-input')) return;
+
+            var _store$getState3 = _storeRepo.store.getState(),
+                item = _store$getState3.item;
 
             var answer = document.querySelector('.js-txt-input').value;
             var qandA = { question: item[element.question], answer: answer };
             _learnActions.actions.boundMarkAnswer(qandA);
         };
 
-        document.addEventListener('keypress', function (event) {
-            if (event.key === 'Enter') {
-                sendQandA();
-            }
+        // window.addEventListener('keypress', handleEnterPress);
+
+        template.content.querySelector('span').innerHTML = item.genus;
+
+        var clone = document.importNode(template.content, true);
+
+        clone.querySelector('button').addEventListener('click', function (event) {
+            sendQandA();
         });
 
-        // document.addEventListener('keyup', event => {
-        //     const { item } = store.getState();
-        //     console.log(event.target.value === item[element.question]);
-        // });
+        element.parent.innerHTML = '';
+        element.parent.appendChild(clone);
 
-        var _item = null;
-
-        var render = function render() {
-            var _store$getState3 = _storeRepo.store.getState(),
-                item = _store$getState3.item,
-                type = _store$getState3.type;
-
-            if (!Object.is(_item, item)) {
-                _item = item;
-                template.content.querySelector('span').innerHTML = item.genus;
-
-                var clone = document.importNode(template.content, true);
-
-                clone.querySelector('button').addEventListener('click', function (event) {
-                    sendQandA();
-                });
-
-                element.parent.innerHTML = '';
-                element.parent.appendChild(clone);
-
-                document.querySelector('.js-txt-input').focus();
-            }
-        };
-        return render;
-    };
+        document.querySelector('.js-txt-input').focus();
+    }
 };
-},{"../learn-dom.js":21,"../../store/store-repo.js":4,"../../utils/utils.js":3,"../learn-actions.js":5,"../learn-types.js":9}],27:[function(require,module,exports) {
+},{"../learn-dom.js":8,"../../store/store-repo.js":6,"../../utils/utils.js":3,"../learn-actions.js":5,"../learn-types.js":4}],19:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4022,11 +3876,14 @@ var _storeRepo = require('../../store/store-repo.js');
 var _learnTypes = require('../learn-types.js');
 
 var renderSpecimen = exports.renderSpecimen = function renderSpecimen() {
+    var _store$getState = _storeRepo.store.getState(),
+        strategy = _store$getState.strategy,
+        type = _store$getState.type,
+        item = _store$getState.item,
+        images = _store$getState.item.images,
+        items = _store$getState.items;
 
-    if ('content' in document.createElement('template')) {
-        var _store$getState = _storeRepo.store.getState(),
-            strategy = _store$getState.strategy,
-            items = _store$getState.items;
+    if (type === _learnTypes.types.NEW_SCREEN) {
 
         var element = strategy.elements.filter(function (el) {
             return el.name === 'specimen';
@@ -4052,98 +3909,23 @@ var renderSpecimen = exports.renderSpecimen = function renderSpecimen() {
                 element.parent.innerHTML = '';
                 element.parent.appendChild(clone);
             };
-            // add event handler if these are answers instead of questions (or if questions, something else...)
         };
 
-        var _item = null;
-
-        var render = function render() {
-            var _store$getState2 = _storeRepo.store.getState(),
-                type = _store$getState2.type,
-                item = _store$getState2.item,
-                images = _store$getState2.item.images;
-
-            if (!Object.is(_item, item)) {
-                _item = item;
-                renderSpecimenImages = renderImages(images);
-                renderSpecimenImages();
-            }
-        };
+        renderSpecimenImages = renderImages(images);
+        renderSpecimenImages();
 
         _learnDom.DOM.moreSpecimensBtn.addEventListener('click', function () {
             renderSpecimenImages();
         });
-
-        return render;
     }
 };
-},{"../../utils/utils.js":3,"../learn-dom.js":21,"../../store/store-repo.js":4,"../learn-types.js":9}],28:[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.renderNext = undefined;
-
-var _utils = require('../../utils/utils.js');
-
-var _learnTypes = require('../learn-types.js');
-
-var _learnActions = require('../learn-actions.js');
-
-var _storeRepo = require('../../store/store-repo.js');
-
-var _passes = require('../screens/passes.js');
-
-var _fails = require('../screens/fails.js');
-
-var _learnStrategy = require('../learn-strategy.js');
-
-var _learnDom = require('../learn-dom.js');
-
-var _learn = require('../learn.js');
-
-var screens = [_passes.renderPasses, _fails.renderFails];
-
-var renderNext = exports.renderNext = function renderNext() {
-
-    var render = function render() {
-        var _store$getState = _storeRepo.store.getState(),
-            type = _store$getState.type,
-            items = _store$getState.items,
-            item = _store$getState.item,
-            score = _store$getState.score;
-
-        if (type === _learnTypes.types.MARK_ANSWER) {
-            if (items.length === score.total) {
-                screens[0]();
-            } else {
-                _learn.subscriptions.forEach(function (unsubscribe) {
-                    return unsubscribe();
-                });
-                _learn.subscriptions.length = 0;
-                var strategy = R.take(1, _utils.utils.shuffleArray(_learnStrategy.strategies))[0];
-                strategy.active = true;
-                setTimeout(function () {
-                    _learnDom.DOM.rightBody.innerHTML = '';
-                    _learnActions.actions.boundChangeStrategy(strategy);
-                    strategy.elements.forEach(function (element) {
-                        _learn.subscriptions.push(_storeRepo.store.subscribe(element.render()));
-                    });
-                    _learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index + 1));
-                }, 2000);
-            }
-        }
-    };
-    return render;
-};
-},{"../../utils/utils.js":3,"../learn-types.js":9,"../learn-actions.js":5,"../../store/store-repo.js":4,"../screens/passes.js":23,"../screens/fails.js":24,"../learn-strategy.js":14,"../learn-dom.js":21,"../learn.js":1}],14:[function(require,module,exports) {
+},{"../../utils/utils.js":3,"../learn-dom.js":8,"../../store/store-repo.js":6,"../learn-types.js":4}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.strategy = exports.strategies = undefined;
+exports.strategies = undefined;
 
 var _learnTypes = require('./learn-types.js');
 
@@ -4161,7 +3943,7 @@ var _textEntry = require('./screens/text-entry.js');
 
 var _specimen = require('./screens/specimen.js');
 
-var _nextScreen = require('./screens/next-screen.js');
+// import { renderNext } from './screens/next-screen.js';
 
 var strategies = exports.strategies = [{
   id: 1,
@@ -4181,9 +3963,6 @@ var strategies = exports.strategies = [{
   }, {
     name: 'score',
     render: _score.renderScore
-  }, {
-    name: 'next',
-    render: _nextScreen.renderNext
   }]
 }, {
   id: 2,
@@ -4203,9 +3982,6 @@ var strategies = exports.strategies = [{
   }, {
     name: 'score',
     render: _score.renderScore
-  }, {
-    name: 'next',
-    render: _nextScreen.renderNext
   }]
 }, {
   id: 3,
@@ -4225,16 +4001,143 @@ var strategies = exports.strategies = [{
   }, {
     name: 'score',
     render: _score.renderScore
-  }, {
-    name: 'next',
-    render: _nextScreen.renderNext
   }]
 }];
 
-var strategy = exports.strategy = strategies.filter(function (strategy) {
-  return strategy.active;
+// const changeState = () => {
+//   strategies.map(strategy => strategy.active = false);
+//   return R.take(1, utils.shuffleArray(strategies))[0];
+// };
+},{"./learn-types.js":4,"./learn-dom.js":8,"./screens/species.js":16,"./screens/passes.js":9,"./screens/fails.js":10,"./screens/score.js":17,"./screens/text-entry.js":18,"./screens/specimen.js":19}],13:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.strategy = exports.item = exports.score = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _utils = require('../utils/utils.js');
+
+var _learnTypes = require('./learn-types.js');
+
+var _learnStrategy = require('./learn-strategy.js');
+
+var _storeRepo = require('../store/store-repo.js');
+
+var initialScoreState = {
+    total: 0,
+    correct: 0,
+    wrong: 0,
+    answer: '',
+    question: '',
+    fails: [],
+    passes: [],
+    success: false
+};
+
+var score = exports.score = function score() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialScoreState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _learnTypes.types.MARK_ANSWER:
+            var _score = _extends({}, state, { question: action.data.question, answer: action.data.answer });
+            _score.total++;
+            _score.success = _score.answer === _score.question;
+            if (_score.success) {
+                _score.correct++;
+                _score.passes.push(_score.question);
+            } else {
+                _score.wrong++;
+                _score.fails.push(_score.question);
+            }
+            return _extends({}, state, _score);
+        default:
+            return state;
+    }
+};
+
+var item = exports.item = function item() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { index: 0 };
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _learnTypes.types.NEXT_ITEM:
+            return _extends({}, state, action.data);
+        case _learnTypes.types.NEW_SCREEN:
+            return _extends({}, state, action.data.item);
+        default:
+            return state;
+    }
+};
+
+var initialStrategyState = _learnStrategy.strategies.filter(function (strategy) {
+    return strategy.active;
 })[0];
-},{"./learn-types.js":9,"./learn-dom.js":21,"./screens/species.js":22,"./screens/passes.js":23,"./screens/fails.js":24,"./screens/score.js":25,"./screens/text-entry.js":26,"./screens/specimen.js":27,"./screens/next-screen.js":28}],4:[function(require,module,exports) {
+
+var strategy = exports.strategy = function strategy() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialStrategyState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _learnTypes.types.NEW_SCREEN:
+            return _extends({}, state, action.data.strategy);
+        default:
+            return state;
+    }
+};
+},{"../utils/utils.js":3,"./learn-types.js":4,"./learn-strategy.js":7,"../store/store-repo.js":6}],14:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Schedules actions with { meta: { delay: N } } to be delayed by N milliseconds.
+ * Makes `dispatch` return a function to cancel the timeout in this case.
+ */
+var timeoutScheduler = exports.timeoutScheduler = function timeoutScheduler(store) {
+  return function (next) {
+    return function (action) {
+      if (!action.meta || !action.meta.delay) {
+        return next(action);
+      }
+
+      if (store.getState().item.index === 0) return next(action);
+
+      var timeoutId = setTimeout(function () {
+        next(action);
+      }, action.meta.delay);
+
+      return function cancel() {
+        clearTimeout(timeoutId);
+      };
+    };
+  };
+};
+},{}],15:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// Logs all actions and states after they are dispatched.
+
+var logger = exports.logger = function logger(store) {
+  return function (next) {
+    return function (action) {
+      console.group(action.type);
+      console.info('dispatching', action);
+      var result = next(action);
+      console.log('next state', store.getState());
+      console.groupEnd(action.type);
+      return result;
+    };
+  };
+};
+},{}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4250,29 +4153,15 @@ var _eolTrees = require('../api/eol-trees.js');
 
 var _utils = require('../utils/utils.js');
 
-var _store = require('./store.js');
-
 var _learnTypes = require('../learn/learn-types.js');
 
 var _learnReducers = require('../learn/learn-reducers.js');
 
-var _learnStrategy = require('../learn/learn-strategy.js');
+var _timeoutScheduler = require('../learn/middleware/timeoutScheduler.js');
+
+var _logger = require('../learn/middleware/logger.js');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var initialState = {
-    strategy: _learnStrategy.strategy,
-    score: {
-        total: 0,
-        correct: 0,
-        wrong: 0,
-        answer: '',
-        question: '',
-        fails: [],
-        passes: [],
-        success: false
-    }
-};
 
 var species = _utils.utils.shuffleArray(_eolTrees.trees).map(function (item) {
     var names = item.name.split(' ');
@@ -4329,20 +4218,10 @@ var type = function type() {
     }
 };
 
-var strategy = function strategy() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var action = arguments[1];
-
-    switch (action.type) {
-        case _learnTypes.types.CHANGE_STRATEGY:
-            return action.data || state;
-        default:
-            return state;
-    }
-};
-
 var _Redux = Redux,
-    combineReducers = _Redux.combineReducers;
+    combineReducers = _Redux.combineReducers,
+    createStore = _Redux.createStore,
+    applyMiddleware = _Redux.applyMiddleware;
 
 
 var reducer = combineReducers({
@@ -4352,38 +4231,150 @@ var reducer = combineReducers({
     card: card,
     timer: timer,
     type: type,
-    strategy: strategy
+    strategy: _learnReducers.strategy
 });
 
-var store = exports.store = (0, _store.createStore)(reducer, initialState);
-},{"../api/eol-tejo.js":10,"../api/eol-trees.js":11,"../utils/utils.js":3,"./store.js":12,"../learn/learn-types.js":9,"../learn/learn-reducers.js":13,"../learn/learn-strategy.js":14}],1:[function(require,module,exports) {
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+var store = exports.store = createStore(reducer,
+// composeEnhancers(applyMiddleware(
+applyMiddleware(_timeoutScheduler.timeoutScheduler, _logger.logger));
+},{"../api/eol-tejo.js":11,"../api/eol-trees.js":12,"../utils/utils.js":3,"../learn/learn-types.js":4,"../learn/learn-reducers.js":13,"../learn/middleware/timeoutScheduler.js":14,"../learn/middleware/logger.js":15}],5:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.actions = undefined;
+
+var _storeRepo = require('../store/store-repo.js');
+
+var _learnTypes = require('./learn-types.js');
+
+var makeActionCreator = function makeActionCreator(action) {
+  return function (value, meta) {
+    return {
+      type: action,
+      data: value,
+      meta: meta
+    };
+  };
+};
+
+var nextItemAction = makeActionCreator(_learnTypes.types.NEXT_ITEM);
+var markAnswerAction = makeActionCreator(_learnTypes.types.MARK_ANSWER);
+var newScreen = makeActionCreator(_learnTypes.types.NEW_SCREEN);
+
+var boundNextItem = function boundNextItem(data) {
+  return _storeRepo.store.dispatch(nextItemAction(data, { delay: 500 }));
+};
+var boundMarkAnswer = function boundMarkAnswer(data) {
+  return _storeRepo.store.dispatch(markAnswerAction(data));
+};
+var boundNewScreen = function boundNewScreen(data) {
+  return _storeRepo.store.dispatch(newScreen(data));
+};
+
+var actions = exports.actions = {
+  boundNextItem: boundNextItem,
+  boundMarkAnswer: boundMarkAnswer,
+  boundNewScreen: boundNewScreen
+};
+},{"../store/store-repo.js":6,"./learn-types.js":4}],2:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.subscriptions = undefined;
+exports.renderNext = undefined;
 
-var _utils = require('../utils/utils.js');
+var _utils = require('../../utils/utils.js');
 
-var _storeRepo = require('../store/store-repo.js');
+var _learnTypes = require('../learn-types.js');
 
-var _learnActions = require('./learn-actions.js');
+var _learnActions = require('../learn-actions.js');
 
-var _store$getState = _storeRepo.store.getState(),
-    strategy = _store$getState.strategy;
+var _storeRepo = require('../../store/store-repo.js');
 
-var subscriptions = exports.subscriptions = [];
-strategy.elements.forEach(function (element) {
-    subscriptions.push(_storeRepo.store.subscribe(element.render()));
-});
+var _passes = require('../screens/passes.js');
+
+var _fails = require('../screens/fails.js');
+
+var _learnStrategy = require('../learn-strategy.js');
+
+var _learnDom = require('../learn-dom.js');
+
+var screens = [_passes.renderPasses, _fails.renderFails];
+
+var subscriptions = [];
+
+var renderNext = exports.renderNext = function renderNext() {
+    var _store$getState = _storeRepo.store.getState(),
+        type = _store$getState.type,
+        items = _store$getState.items,
+        item = _store$getState.item,
+        score = _store$getState.score;
+
+    if (type === _learnTypes.types.MARK_ANSWER) {
+
+        subscriptions.forEach(function (unsubscribe) {
+            unsubscribe();
+        });
+        subscriptions.length = 0;
+
+        _learnDom.DOM.rightBody.innerHTML = '';
+
+        _learnStrategy.strategies.map(function (strategy) {
+            return strategy.active = false;
+        });
+        var _strategy = R.take(1, _utils.utils.shuffleArray(_learnStrategy.strategies))[0];
+        _strategy.active = true;
+
+        _strategy.elements.forEach(function (element) {
+            element.render();
+        });
+
+        if (items.length === score.total) screens[0]();else {
+            _strategy.elements.forEach(function (element) {
+                element.render();
+                subscriptions.push(_storeRepo.store.subscribe(element.render));
+            });
+            subscriptions.push(_storeRepo.store.subscribe(renderNext));
+
+            var _newScreen = {
+                item: _utils.utils.nextItem(items, item.index + 1),
+                strategy: _strategy
+            };
+
+            _learnActions.actions.boundNewScreen(_newScreen);
+        }
+    }
+};
 
 var _store$getState2 = _storeRepo.store.getState(),
+    strategy = _store$getState2.strategy,
     items = _store$getState2.items,
     item = _store$getState2.item;
 
-_learnActions.actions.boundNextItem(_utils.utils.nextItem(items, item.index));
-},{"../utils/utils.js":3,"../store/store-repo.js":4,"./learn-actions.js":5}],37:[function(require,module,exports) {
+subscriptions.push(_storeRepo.store.subscribe(renderNext));
+strategy.elements.forEach(function (element) {
+    element.render();
+    subscriptions.push(_storeRepo.store.subscribe(element.render));
+});
+
+var newScreen = {
+    item: _utils.utils.nextItem(items, item.index + 1),
+    strategy: strategy
+};
+
+_learnActions.actions.boundNewScreen(newScreen);
+
+// actions.boundNextItem(utils.nextItem(items, item.index));
+},{"../../utils/utils.js":3,"../learn-types.js":4,"../learn-actions.js":5,"../../store/store-repo.js":6,"../screens/passes.js":9,"../screens/fails.js":10,"../learn-strategy.js":7,"../learn-dom.js":8}],1:[function(require,module,exports) {
+'use strict';
+
+var _nextScreen = require('./screens/next-screen.js');
+},{"./screens/next-screen.js":2}],20:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -4405,7 +4396,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50934' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58051' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -4506,5 +4497,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[37,1])
+},{}]},{},[20,1])
 //# sourceMappingURL=/dist/learn.map

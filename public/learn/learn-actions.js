@@ -13,14 +13,14 @@ const makeActionCreator = action => {
 
 const nextItemAction = makeActionCreator(types.NEXT_ITEM);
 const markAnswerAction = makeActionCreator(types.MARK_ANSWER);
-const changeStrategyAction = makeActionCreator(types.CHANGE_STRATEGY);
+const newScreen = makeActionCreator(types.NEW_SCREEN);
 
 const boundNextItem = data => store.dispatch(nextItemAction(data,{delay:500}));
 const boundMarkAnswer = data => store.dispatch(markAnswerAction(data));
-const boundChangeStrategy = data => store.dispatch(changeStrategyAction(data));
+const boundNewScreen = data => store.dispatch(newScreen(data));
 
 export const actions = {
     boundNextItem,
     boundMarkAnswer,
-    boundChangeStrategy
+    boundNewScreen
 };

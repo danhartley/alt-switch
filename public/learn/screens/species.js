@@ -8,7 +8,7 @@ export const renderSpecies = () => {
 
     const { strategy, items, item, type } = store.getState();
 
-    if(type === types.NEXT_ITEM) {
+    if(type === types.NEW_SCREEN) {
 
         const element = strategy.elements.filter(el => el.name === 'species')[0];
 

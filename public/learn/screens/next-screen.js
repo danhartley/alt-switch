@@ -13,7 +13,7 @@ const subscriptions = [];
 
 export const renderNext = () => {
 
-    const { strategy, type, items, item, score } = store.getState();
+    const { type, items, item, score } = store.getState();
 
     if(type === types.MARK_ANSWER) {
 
@@ -34,15 +34,18 @@ export const renderNext = () => {
 
         if(items.length === score.total) screens[0]();
         else {
-            actions.boundChangeStrategy(strategy);
-
             strategy.elements.forEach(element => { 
                 element.render();
                 subscriptions.push(store.subscribe(element.render));
             });
             subscriptions.push(store.subscribe(renderNext));
 
-            actions.boundNextItem(utils.nextItem(items, item.index + 1));
+            const newScreen = { 
+                item: utils.nextItem(items, item.index + 1),
+                strategy: strategy
+            };
+
+            actions.boundNewScreen(newScreen);
         }
     }
 };
@@ -55,4 +58,11 @@ strategy.elements.forEach(element => {
     subscriptions.push(store.subscribe(element.render));
 });
 
-actions.boundNextItem(utils.nextItem(items, item.index));
+const newScreen = { 
+    item: utils.nextItem(items, item.index + 1),
+    strategy: strategy
+};
+
+actions.boundNewScreen(newScreen);
+
+// actions.boundNextItem(utils.nextItem(items, item.index));

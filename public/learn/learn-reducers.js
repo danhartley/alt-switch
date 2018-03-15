@@ -38,6 +38,8 @@ export const item = (state = { index: 0 }, action) => {
     switch(action.type) {
         case types.NEXT_ITEM:
             return { ...state, ...action.data };
+        case types.NEW_SCREEN:
+            return { ...state, ...action.data.item }
         default:
             return state;
     }
@@ -47,8 +49,8 @@ const initialStrategyState = strategies.filter(strategy => strategy.active)[0];
 
 export const strategy = (state = initialStrategyState, action) => { 
     switch(action.type) {
-        case types.CHANGE_STRATEGY:
-            return action.data || state;
+        case types.NEW_SCREEN:
+            return { ...state, ...action.data.strategy }
         default: 
             return state;
     }

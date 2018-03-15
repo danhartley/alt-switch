@@ -7,7 +7,7 @@ export const renderSpecimen = () => {
 
     const { strategy, type, item, item: { images }, items } = store.getState();
 
-    if(type === types.NEXT_ITEM) {
+    if(type === types.NEW_SCREEN) {
 
         const element = strategy.elements.filter(el => el.name === 'specimen')[0];
 

@@ -8,7 +8,7 @@ export const renderTextEntry = () => {
 
     const { strategy, item, type } = store.getState();
 
-    if(type === types.NEXT_ITEM) {
+    if(type === types.NEW_SCREEN) {
 
         let sendQandA = null;
 
