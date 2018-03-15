@@ -6,7 +6,7 @@ import { renderFails } from './screens/fails.js';
 import { renderScore } from './screens/score.js';
 import { renderTextEntry } from './screens/text-entry.js';
 import { renderSpecimen } from './screens/specimen.js';
-import { renderNext } from './screens/next-screen.js';
+// import { renderNext } from './screens/next-screen.js';
 
 export const strategies = [
     {
@@ -31,10 +31,10 @@ export const strategies = [
           name: 'score',
           render: renderScore
         },
-        {
-          name: 'next',
-          render: renderNext
-        }
+        // {
+        //   name: 'next',
+        //   render: renderNext
+        // }
       ]
     },
     {
@@ -59,10 +59,10 @@ export const strategies = [
           name: 'score',
           render: renderScore
         },
-        {
-          name: 'next',
-          render: renderNext
-        }
+        // {
+        //   name: 'next',
+        //   render: renderNext
+        // }
       ]
     },
     {
@@ -87,12 +87,15 @@ export const strategies = [
           name: 'score',
           render: renderScore
         },
-        {
-          name: 'next',
-          render: renderNext
-        }
+        // {
+        //   name: 'next',
+        //   render: renderNext
+        // }
       ]
     }
   ];
 
-  export const strategy = strategies.filter(strategy => strategy.active)[0];
+  // const changeState = () => {
+  //   strategies.map(strategy => strategy.active = false);
+  //   return R.take(1, utils.shuffleArray(strategies))[0];
+  // };

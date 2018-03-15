@@ -1,7 +1,20 @@
 import { utils } from '../utils/utils.js';
 import { types } from './learn-types.js';
+import { strategies } from './learn-strategy.js';
+import { store } from '../store/store-repo.js';
 
-export const score = (state = null, action) => {
+const initialScoreState = {
+    total: 0,
+    correct: 0,
+    wrong: 0,
+    answer: '',
+    question: '',
+    fails: [],
+    passes: [],
+    success: false
+};
+
+export const score = (state = initialScoreState, action) => {
     switch(action.type) {
         case types.MARK_ANSWER:
             const score = { ...state, question: action.data.question, answer : action.data.answer };
@@ -15,10 +28,10 @@ export const score = (state = null, action) => {
                 score.wrong++;
                 score.fails.push(score.question);
             }
-            return score;
+            return { ...state, ...score};
         default:
             return state;
-    }   
+    }       
 };
 
 export const item = (state = { index: 0 }, action) => {
@@ -26,6 +39,17 @@ export const item = (state = { index: 0 }, action) => {
         case types.NEXT_ITEM:
             return { ...state, ...action.data };
         default:
+            return state;
+    }
+};
+
+const initialStrategyState = strategies.filter(strategy => strategy.active)[0];
+
+export const strategy = (state = initialStrategyState, action) => { 
+    switch(action.type) {
+        case types.CHANGE_STRATEGY:
+            return action.data || state;
+        default: 
             return state;
     }
 };

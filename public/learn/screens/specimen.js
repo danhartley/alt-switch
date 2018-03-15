@@ -5,18 +5,18 @@ import { types } from '../learn-types.js';
 
 export const renderSpecimen = () => {
 
-    if('content' in document.createElement('template')) {
-        
-        const { strategy, items } = store.getState();
+    const { strategy, type, item, item: { images }, items } = store.getState();
+
+    if(type === types.NEXT_ITEM) {
 
         const element = strategy.elements.filter(el => el.name === 'specimen')[0];
 
         const template = document.querySelector(`.${element.template}`);
 
         const rptrSpecimen = template.content.querySelector('.js-rptr-specimen');
-        
+
         DOM.collectionTxt.innerHTML = `There are ${items.length} items in this test`;
-        
+
         let renderSpecimenImages = null;
 
         const renderImages = (specimenImages) => {
@@ -33,24 +33,13 @@ export const renderSpecimen = () => {
                 element.parent.innerHTML = '';
                 element.parent.appendChild(clone);
             };
-            // add event handler if these are answers instead of questions (or if questions, something else...)
         };
-
-        let _item = null;
-
-        const render = () => {
-            const { type, item, item: { images } } = store.getState();
-            if(!Object.is(_item,item)) { 
-                _item = item;
-                renderSpecimenImages = renderImages(images);
-                renderSpecimenImages();
-            }
-        };
+                
+        renderSpecimenImages = renderImages(images);
+        renderSpecimenImages();
 
         DOM.moreSpecimensBtn.addEventListener('click', () => {
-            renderSpecimenImages();
+        renderSpecimenImages();
         });
-
-        return render;
     }
-}
+};

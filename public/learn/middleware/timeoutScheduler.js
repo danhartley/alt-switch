@@ -3,12 +3,16 @@
  * Makes `dispatch` return a function to cancel the timeout in this case.
  */
 export const timeoutScheduler = store => next => action => {
-    if (!action.meta || !action.meta.delay) {
+    if (!action.meta || !action.meta.delay) {      
       return next(action)
     }
    
+    if(store.getState().item.index === 0) return next(action);
+    
     let timeoutId = setTimeout(
-      () => next(action),
+      () => {         
+        next(action)
+      },
       action.meta.delay
     )
    

@@ -6,57 +6,47 @@ import { types } from '../learn-types.js';
 
 export const renderTextEntry = () => {
 
-    if('content' in document.createElement('template')) {
+    const { strategy, item, type } = store.getState();
+
+    if(type === types.NEXT_ITEM) {
+
+        let sendQandA = null;
+
+        const handleEnterPress = event => {
+            if(event.key === 'Enter') {
+                sendQandA();                
+            }
+        };
 
         const { strategy } = store.getState();
 
         const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
 
-        DOM.headerTxt.innerHTML = element.header;
+        if(!element) return;
 
         const template = document.querySelector(`.${element.template}`);
 
-        const sendQandA = () => {
+        sendQandA = () => {
+            if(!document.querySelector('.js-txt-input')) return;
             const { item } = store.getState();
             const answer = document.querySelector('.js-txt-input').value;
             const qandA = { question: item[element.question], answer: answer }
             actions.boundMarkAnswer(qandA);
         };
 
-        document.addEventListener('keypress', event => {
-            if(event.key === 'Enter') {
-                sendQandA();
-            }
+        // window.addEventListener('keypress', handleEnterPress);
+        
+        template.content.querySelector('span').innerHTML = item.genus;   
+
+        const clone = document.importNode(template.content, true);
+        
+        clone.querySelector('button').addEventListener('click', event => {
+            sendQandA();
         });
 
-        // document.addEventListener('keyup', event => {
-        //     const { item } = store.getState();
-        //     console.log(event.target.value === item[element.question]);
-        // });
+        element.parent.innerHTML = '';
+        element.parent.appendChild(clone);
 
-        let _item = null;
-
-        const render = () => {
-      
-            const { item, type } = store.getState();
-
-            if(!Object.is(_item,item)) { 
-                _item = item;
-                template.content.querySelector('span').innerHTML = item.genus;   
-
-                const clone = document.importNode(template.content, true);
-                
-                clone.querySelector('button').addEventListener('click', event => {
-                    sendQandA();
-                });
-
-                element.parent.innerHTML = '';
-                element.parent.appendChild(clone);
-
-                document.querySelector('.js-txt-input').focus();
-            }
-
-        };
-        return render;
-    };
+        document.querySelector('.js-txt-input').focus();
+    }
 };

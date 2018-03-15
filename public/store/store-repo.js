@@ -1,26 +1,10 @@
 import { tejoSpecies } from '../api/eol-tejo.js';
 import { trees } from '../api/eol-trees.js';
 import { utils } from '../utils/utils.js';
-// import { createStore } from './store.js'';
 import { types } from '../learn/learn-types.js';
-import { score, item } from '../learn/learn-reducers.js'
-import { strategy as learnStategy } from '../learn/learn-strategy.js';
+import { score, item, strategy } from '../learn/learn-reducers.js'
 import { timeoutScheduler } from '../learn/middleware/timeoutScheduler.js';
 import { logger } from '../learn/middleware/logger.js';
-
-const initialState = {
-    strategy: learnStategy,
-    score: {
-        total: 0,
-        correct: 0,
-        wrong: 0,
-        answer: '',
-        question: '',
-        fails: [],
-        passes: [],
-        success: false
-    }
-};
 
 const species = utils.shuffleArray(trees)
     .map(item => {
@@ -67,32 +51,24 @@ const type = (state = null, action) => {
     }
 };
 
-const strategy = (state = null, action) => { 
-    switch(action.type) {
-        case types.CHANGE_STRATEGY:
-            return action.data || state;
-        default: 
-            return state;
-    }
-};
-
 const { combineReducers, createStore, applyMiddleware } = Redux;
 
 const reducer = combineReducers({
     score,
     items,
     item,
-    card,
-    timer,
+    // card,
+    // timer,
     type,
     strategy
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 export const store = createStore(
     reducer, 
-    initialState, 
-    applyMiddleware(
+    composeEnhancers(applyMiddleware(
         timeoutScheduler,
         logger
-    )
+    ))
 );
