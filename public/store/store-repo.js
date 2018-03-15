@@ -57,8 +57,8 @@ const reducer = combineReducers({
     score,
     items,
     item,
-    // card,
-    // timer,
+    card,
+    timer,
     type,
     strategy
 });
