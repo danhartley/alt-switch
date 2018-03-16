@@ -62,10 +62,27 @@ const shuffleArray = arr => (
     .map(a => a[1])
 );
 
+const randomiseSelection = (source, required, zeroBased = false) => {
+  let randomSelection = [];
+  const randomArray = shuffleArray(source);
+  
+  const r = randomSelection => randomSelection.concat(randomArray.map((item, index) => {
+    while(index + randomSelection.length < required) {
+      return zeroBased ? --item : item;
+    }
+  })).filter(el => el !== undefined);
+
+  randomSelection = r(randomSelection);
+  
+  return randomSelection.length < required 
+    ? r(randomSelection)
+    : randomSelection;
+};
+
 
 const nextItem = (array, index) => {    
   const item = array[index % array.length];
-  item.index = index;
+  item.index = index % array.length;
   return item;
 };
 
@@ -91,5 +108,6 @@ export const utils = {
   intervalTimer,
   shuffleArray,
   nextItem,
-  combineReducers
+  combineReducers,
+  randomiseSelection
 };

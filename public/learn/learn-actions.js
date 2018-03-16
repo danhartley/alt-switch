@@ -11,16 +11,13 @@ const makeActionCreator = action => {
     }
   }
 
-const nextItemAction = makeActionCreator(types.NEXT_ITEM);
 const markAnswerAction = makeActionCreator(types.MARK_ANSWER);
 const newScreen = makeActionCreator(types.NEW_SCREEN);
 
-const boundNextItem = data => store.dispatch(nextItemAction(data,{delay:500}));
 const boundMarkAnswer = data => store.dispatch(markAnswerAction(data));
-const boundNewScreen = data => store.dispatch(newScreen(data));
+const boundNewScreen = data => store.dispatch(newScreen(data,{delay:500}));
 
 export const actions = {
-    boundNextItem,
     boundMarkAnswer,
     boundNewScreen
 };

@@ -1,30 +1,9 @@
 import { tejoSpecies } from '../api/eol-tejo.js';
-import { trees } from '../api/eol-trees.js';
 import { utils } from '../utils/utils.js';
-import { types } from '../learn/learn-types.js';
-import { score, item, strategy } from '../learn/learn-reducers.js'
+import { score, item, strategy, items, randomiser } from '../learn/learn-reducers.js'
 import { timeoutScheduler } from '../learn/middleware/timeoutScheduler.js';
 import { logger } from '../learn/middleware/logger.js';
-
-const species = utils.shuffleArray(trees)
-    .map(item => {
-        const names = item.name.split(' ');
-        item.genus = names[0];
-        item.species = names[1];    
-        item.name = item.name.split(' ').slice(0,2).join(' ');
-        return item;
-});
-
-const items = (state = species, action) => {    
-    switch(action.type) {
-        case 'LOAD_INAT_DATA':
-        case 'LOAD_EOL_DATA':
-        if(action.data)
-            return [...action.data];
-        default:
-            return state;
-    }
-};
+import { strategies as learnStrategies } from '../learn/learn-strategy.js';
 
 const card = (state = null, action) => {
     switch(action.type) {
@@ -44,23 +23,24 @@ const timer = (state = null, action) => {
     }
 };
 
-const type = (state = null, action) => { 
+const strategies = (state = null, action) => {
     switch(action.type) {
-        default: 
-            return action.type || state; 
+        default:
+        return learnStrategies;
     }
 };
 
 const { combineReducers, createStore, applyMiddleware } = Redux;
 
 const reducer = combineReducers({
-    score,
+    strategies,
+    strategy,
     items,
     item,
+    score,
+    randomiser,
     card,
-    timer,
-    type,
-    strategy
+    timer
 });
 
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

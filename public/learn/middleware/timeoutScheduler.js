@@ -7,7 +7,7 @@ export const timeoutScheduler = store => next => action => {
       return next(action)
     }
    
-    if(store.getState().item.index === 0) return next(action);
+    if(store.getState().item === null) return next(action);
     
     let timeoutId = setTimeout(
       () => {         

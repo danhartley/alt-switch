@@ -2,51 +2,45 @@ import { DOM } from '../learn-dom.js';
 import { store } from '../../store/store-repo.js';
 import { utils } from '../../utils/utils.js';
 import { actions } from '../learn-actions.js';
-import { types } from '../learn-types.js';
 
 export const renderTextEntry = () => {
 
-    const { strategy, item, type } = store.getState();
+    const { strategy, item } = store.getState();
 
-    if(type === types.NEW_SCREEN) {
+    let sendQandA = null;
 
-        let sendQandA = null;
+    const handleEnterPress = event => {
+        if(event.key === 'Enter') {
+            sendQandA();                
+        }
+    };
 
-        const handleEnterPress = event => {
-            if(event.key === 'Enter') {
-                sendQandA();                
-            }
-        };
+    const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
 
-        const { strategy } = store.getState();
+    if(!element) return;
 
-        const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
+    const template = document.querySelector(`.${element.template}`);
 
-        if(!element) return;
+    sendQandA = () => {
+        if(!document.querySelector('.js-txt-input')) return;
+        const { item } = store.getState();
+        const answer = document.querySelector('.js-txt-input').value;
+        const qandA = { question: item[element.question], answer: answer }
+        actions.boundMarkAnswer(qandA);
+    };
 
-        const template = document.querySelector(`.${element.template}`);
+    // window.addEventListener('keypress', handleEnterPress);
+    
+    template.content.querySelector('span').innerHTML = item.genus;   
 
-        sendQandA = () => {
-            if(!document.querySelector('.js-txt-input')) return;
-            const { item } = store.getState();
-            const answer = document.querySelector('.js-txt-input').value;
-            const qandA = { question: item[element.question], answer: answer }
-            actions.boundMarkAnswer(qandA);
-        };
+    const clone = document.importNode(template.content, true);
+    
+    clone.querySelector('button').addEventListener('click', event => {
+        sendQandA();
+    });
 
-        // window.addEventListener('keypress', handleEnterPress);
-        
-        template.content.querySelector('span').innerHTML = item.genus;   
+    element.parent.innerHTML = '';
+    element.parent.appendChild(clone);
 
-        const clone = document.importNode(template.content, true);
-        
-        clone.querySelector('button').addEventListener('click', event => {
-            sendQandA();
-        });
-
-        element.parent.innerHTML = '';
-        element.parent.appendChild(clone);
-
-        document.querySelector('.js-txt-input').focus();
-    }
+    document.querySelector('.js-txt-input').focus();
 };

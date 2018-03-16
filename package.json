@@ -5,7 +5,7 @@
   "main": "switcher.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --watch learn.test.js"
+    "watch": "jest --watch utils.test.js"
   },
   "repository": {
     "type": "git",

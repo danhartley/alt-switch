@@ -1,56 +1,56 @@
 import { utils } from '../../utils/utils.js';
-import { types } from '../learn-types.js';
 import { actions } from '../learn-actions.js';
 import { store } from '../../store/store-repo.js';
 import { renderPasses } from '../screens/passes.js';
 import { renderFails } from '../screens/fails.js';
-import { strategies } from '../learn-strategy.js';
 import { DOM } from '../learn-dom.js';
 
 const screens = [ renderPasses, renderFails ];
 
 const subscriptions = [];
 
+let { score: currScore } = store.getState();
+
 export const renderNext = () => {
 
-    const { type, items, item, score } = store.getState();
+    const { randomiser, items, item, score } = store.getState();
 
-    if(type === types.MARK_ANSWER) {
+    if(score === currScore) return;
 
-        subscriptions.forEach(unsubscribe => {
-            unsubscribe();
-        });
-        subscriptions.length = 0;
+    currScore = score;
 
-        DOM.rightBody.innerHTML = '';
+    subscriptions.forEach(unsubscribe => {
+        unsubscribe();
+    });
+    subscriptions.length = 0;
 
-        strategies.map(strategy => strategy.active = false);
-        const strategy = R.take(1, utils.shuffleArray(strategies))[0];
-        strategy.active = true;                
+    DOM.rightBody.innerHTML = '';
 
-        strategy.elements.forEach(element => {
+    const strategy = randomiser.strategiesCollection.strategies[randomiser.strategiesCollection.index];
+
+    strategy.elements.forEach(element => {
+        element.render();
+    });
+
+    if(items.length === score.total) screens[0]();
+    else {
+        strategy.elements.forEach(element => { 
             element.render();
+            subscriptions.push(store.subscribe(element.render));
         });
+        subscriptions.push(store.subscribe(renderNext));
 
-        if(items.length === score.total) screens[0]();
-        else {
-            strategy.elements.forEach(element => { 
-                element.render();
-                subscriptions.push(store.subscribe(element.render));
-            });
-            subscriptions.push(store.subscribe(renderNext));
+        const newScreen = { 
+            item: utils.nextItem(items, item.index + 1),
+            strategy: strategy,
+            randomiser: { index: randomiser.strategiesCollection.index + 1 }
+        };
 
-            const newScreen = { 
-                item: utils.nextItem(items, item.index + 1),
-                strategy: strategy
-            };
-
-            actions.boundNewScreen(newScreen);
-        }
+        actions.boundNewScreen(newScreen);
     }
 };
 
-const { strategy, items, item } = store.getState();
+const { strategy, randomiser, items, item } = store.getState();
 
 subscriptions.push(store.subscribe(renderNext));
 strategy.elements.forEach(element => { 
@@ -59,10 +59,9 @@ strategy.elements.forEach(element => {
 });
 
 const newScreen = { 
-    item: utils.nextItem(items, item.index + 1),
-    strategy: strategy
+    item: utils.nextItem(items, 0),
+    strategy: strategy,
+    randomiser: { index: 0 }
 };
 
 actions.boundNewScreen(newScreen);
-
-// actions.boundNextItem(utils.nextItem(items, item.index));
