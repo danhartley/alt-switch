@@ -71,7 +71,391 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
+})({22:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var inatSpecies = exports.inatSpecies = [[{
+  "name": "Ficaria verna",
+  "common": "Lesser celandine",
+  "url": "https://farm1.staticflickr.com/176/436981696_6ec532a59a.jpg"
+}, {
+  "name": "Ficaria verna ficariiformis",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/281805/medium.jpg?1444712582"
+}, {
+  "name": "Ficaria verna verna",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/1868672/medium.jpg?1431983490"
+}, {
+  "name": "Ficaria verna fertilis",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/6775453/medium.jpg?1490783502"
+}], [{
+  "name": "Narcissus papyraceus",
+  "common": "Paperwhite",
+  "url": "https://farm9.staticflickr.com/8339/8186151274_e5a22292d8.jpg"
+}], [{
+  "name": "Narcissus papyraceus papyraceus",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/282726/medium.jpg?1444713986"
+}], [{
+  "name": "Narcissus papyraceus panizzianus",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/282357/medium.jpg?1444713298"
+}], [{
+  "name": "Pinus pinea",
+  "common": "Stone pine",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Pinien_La_Brena2004.jpg/500px-Pinien_La_Brena2004.jpg"
+}], [{
+  "name": "Anemone palmata",
+  "common": "Palmate Anemone",
+  "url": "https://static.inaturalist.org/photos/1608886/medium.jpg?1425892576"
+}], [{
+  "name": "Laurus nobilis",
+  "common": "Bay laurel",
+  "url": "https://farm4.staticflickr.com/3140/2420904621_f7d431b303.jpg"
+}], [{
+  "name": "Lobularia maritima",
+  "common": "Sweet alyssum",
+  "url": "https://static.inaturalist.org/photos/662500/medium.jpg?1391503562"
+}, {
+  "name": "Lobularia maritima maritima",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/12684178/medium.jpg?1514926743"
+}], [{
+  "name": "Ulex densus",
+  "common": "",
+  "url": "https://farm4.staticflickr.com/3077/2550720663_568269f705.jpg"
+}], [{
+  "name": "Ulex genistoides",
+  "common": "",
+  "url": "http://media.eol.org/content/2012/03/19/02/02402_580_360.jpg"
+}], [{
+  "name": "Erophaca baetica baetica",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/281464/medium.jpg?1444712305"
+}, {
+  "name": "Erophaca baetica",
+  "common": "Iberian Milkvetch",
+  "url": "https://farm8.staticflickr.com/7162/6726810035_13295eeee3.jpg"
+}], [{
+  "name": "Oxalis pes-caprae",
+  "common": "Bermuda-buttercup",
+  "url": "https://farm1.staticflickr.com/111/290289365_a8b82162e2.jpg"
+}, {
+  "name": "Oxalis pes-caprae pes-caprae",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/6235770/medium.jpg?1486628025"
+}], [{
+  "name": "Euphorbia characias",
+  "common": "Mediterranean spurge",
+  "url": "https://farm9.staticflickr.com/8214/8345956527_f7698794ab.jpg"
+}, {
+  "name": "Euphorbia characias wulfenii",
+  "common": "Wulfen spurge",
+  "url": "https://farm8.staticflickr.com/7051/6954204544_864254c97f.jpg"
+}, {
+  "name": "Euphorbia characias characias",
+  "common": "",
+  "url": "https://static.inaturalist.org/photos/723698/medium.jpg?1444488478"
+}], [{
+  "name": "Euphorbia pedroi",
+  "common": "",
+  "url": "https://farm2.staticflickr.com/1567/26015312913_d92ef63fe9.jpg"
+}], [{
+  "name": "Malva multiflora",
+  "common": "Cretan Tree-mallow",
+  "url": "https://static.inaturalist.org/photos/6257363/medium.jpg?1486866908"
+}]];
+
+var danObservations = exports.danObservations = [{
+  "id": 352803,
+  "link": "http://www.inaturalist.org/observations/352803",
+  "iurl": "https://static.inaturalist.org/photos/439868/medium.jpg?1444624389",
+  "guess": "Spanish Broom",
+  "scientific": "Spartium junceum",
+  "common": "Spanish Broom",
+  "species_id": 47406
+}, {
+  "id": 363309,
+  "link": "http://www.inaturalist.org/observations/363309",
+  "iurl": "https://static.inaturalist.org/photos/453620/medium.jpg?1444637341",
+  "guess": "Lesser Periwinkle",
+  "scientific": "Vinca minor",
+  "common": "lesser periwinkle",
+  "species_id": 55844
+}, {
+  "id": 379450,
+  "link": "http://www.inaturalist.org/observations/379450",
+  "iurl": "https://static.inaturalist.org/photos/479379/medium.jpg?1377951916",
+  "guess": "Sophora japonica",
+  "scientific": "Styphnolobium japonicum",
+  "common": "pagoda tree",
+  "species_id": 53945
+}, {
+  "id": 379451,
+  "link": "http://www.inaturalist.org/observations/379451",
+  "iurl": "",
+  "guess": "Ombú",
+  "scientific": "Phytolacca dioica",
+  "common": "Ombu",
+  "species_id": 129582
+}, {
+  "id": 379452,
+  "link": "http://www.inaturalist.org/observations/379452",
+  "iurl": "https://static.inaturalist.org/photos/479378/medium.jpg?1377951915",
+  "guess": "Jacaranda",
+  "scientific": "Jacaranda mimosifolia",
+  "common": "jacaranda",
+  "species_id": 77541
+}, {
+  "id": 379453,
+  "link": "http://www.inaturalist.org/observations/379453",
+  "iurl": "",
+  "guess": "Black Locust",
+  "scientific": "Robinia pseudoacacia",
+  "common": "black locust",
+  "species_id": 56088
+}, {
+  "id": 379461,
+  "link": "http://www.inaturalist.org/observations/379461",
+  "iurl": "",
+  "guess": "Rose of Sharon",
+  "scientific": "Hibiscus syriacus",
+  "common": "common hibiscus",
+  "species_id": 126585
+}, {
+  "id": 379462,
+  "link": "http://www.inaturalist.org/observations/379462",
+  "iurl": "",
+  "guess": "Lacebark Kurrajong",
+  "scientific": "Brachychiton populneus",
+  "common": "Kurrajong",
+  "species_id": 349248
+}, {
+  "id": 379463,
+  "link": "http://www.inaturalist.org/observations/379463",
+  "iurl": "",
+  "guess": "Cherry-plum",
+  "scientific": "Prunus cerasifera",
+  "common": "Cherry-plum",
+  "species_id": 55837
+}, {
+  "id": 379464,
+  "link": "http://www.inaturalist.org/observations/379464",
+  "iurl": "",
+  "guess": "golden wreath wattle",
+  "scientific": "Acacia saligna",
+  "common": "golden wreath wattle",
+  "species_id": 75255
+}, {
+  "id": 379465,
+  "link": "http://www.inaturalist.org/observations/379465",
+  "iurl": "",
+  "guess": "goldenrain tree",
+  "scientific": "Koelreuteria paniculata",
+  "common": "goldenrain tree",
+  "species_id": 58320
+}, {
+  "id": 379489,
+  "link": "http://www.inaturalist.org/observations/379489",
+  "iurl": "https://static.inaturalist.org/photos/479983/medium.jpg?1377985460",
+  "guess": "nettle-tree",
+  "scientific": "Celtis australis",
+  "common": "Nettle tree",
+  "species_id": 76202
+}, {
+  "id": 379490,
+  "link": "http://www.inaturalist.org/observations/379490",
+  "iurl": "",
+  "guess": "Avocado",
+  "scientific": "Persea americana",
+  "common": "Avocado",
+  "species_id": 62831
+}, {
+  "id": 379504,
+  "link": "http://www.inaturalist.org/observations/379504",
+  "iurl": "",
+  "guess": "Peruvian peppertree",
+  "scientific": "Schinus molle",
+  "common": "Peruvian peppertree",
+  "species_id": 57354
+}, {
+  "id": 379595,
+  "link": "http://www.inaturalist.org/observations/379595",
+  "iurl": "https://static.inaturalist.org/photos/474782/medium.JPG?1377617032",
+  "guess": "Platanus × hispanica",
+  "scientific": "Platanus × hispanica",
+  "common": "London Plane",
+  "species_id": 552449
+}, {
+  "id": 379695,
+  "link": "http://www.inaturalist.org/observations/379695",
+  "iurl": "",
+  "guess": "Platanus × hispanica",
+  "scientific": "Platanus × hispanica",
+  "common": "London Plane",
+  "species_id": 552449
+}, {
+  "id": 383985,
+  "link": "http://www.inaturalist.org/observations/383985",
+  "iurl": "https://static.inaturalist.org/photos/479980/medium.jpg?1377985435",
+  "guess": "Alzina",
+  "scientific": "Quercus ilex",
+  "common": "Holm oak",
+  "species_id": 78805
+}, {
+  "id": 383986,
+  "link": "http://www.inaturalist.org/observations/383986",
+  "iurl": "https://static.inaturalist.org/photos/479984/medium.jpg?1377985462",
+  "guess": "Tipuana tipu",
+  "scientific": "Tipuana tipu",
+  "common": "Pride of Bolivia",
+  "species_id": 121263
+}, {
+  "id": 383987,
+  "link": "http://www.inaturalist.org/observations/383987",
+  "iurl": "https://static.inaturalist.org/photos/479987/medium.jpg?1377985491",
+  "guess": "Chinese parasol tree",
+  "scientific": "Firmiana simplex",
+  "common": "Chinese parasol tree",
+  "species_id": 162991
+}, {
+  "id": 383988,
+  "link": "http://www.inaturalist.org/observations/383988",
+  "iurl": "https://static.inaturalist.org/photos/479986/medium.jpg?1377985490",
+  "guess": "Tilia europaea",
+  "scientific": "",
+  "common": "",
+  "species_id": ""
+}, {
+  "id": 383989,
+  "link": "http://www.inaturalist.org/observations/383989",
+  "iurl": "",
+  "guess": "Tipuanu tipu",
+  "scientific": "",
+  "common": "",
+  "species_id": ""
+}, {
+  "id": 384814,
+  "link": "http://www.inaturalist.org/observations/384814",
+  "iurl": "https://static.inaturalist.org/photos/480933/medium.jpg?1378055829",
+  "guess": "Silver Lime",
+  "scientific": "Tilia tomentosa",
+  "common": "Silver Lime",
+  "species_id": 143800
+}, {
+  "id": 384815,
+  "link": "http://www.inaturalist.org/observations/384815",
+  "iurl": "https://static.inaturalist.org/photos/480934/medium.jpg?1378055848",
+  "guess": "Parrotia persica",
+  "scientific": "",
+  "common": "",
+  "species_id": ""
+}, {
+  "id": 384816,
+  "link": "http://www.inaturalist.org/observations/384816",
+  "iurl": "https://static.inaturalist.org/photos/480931/medium.jpg?1378055802",
+  "guess": "Judas-tree",
+  "scientific": "Cercis siliquastrum",
+  "common": "Judas-tree",
+  "species_id": 153440
+}, {
+  "id": 384817,
+  "link": "http://www.inaturalist.org/observations/384817",
+  "iurl": "https://static.inaturalist.org/photos/480932/medium.jpg?1378055804",
+  "guess": "Mule Fat",
+  "scientific": "Baccharis salicifolia",
+  "common": "mule fat",
+  "species_id": 57913
+}, {
+  "id": 384818,
+  "link": "http://www.inaturalist.org/observations/384818",
+  "iurl": "https://static.inaturalist.org/photos/480930/medium.jpg?1378055782",
+  "guess": "Coast Redwood",
+  "scientific": "Sequoia sempervirens",
+  "common": "coast redwood",
+  "species_id": 47372
+}, {
+  "id": 384819,
+  "link": "http://www.inaturalist.org/observations/384819",
+  "iurl": "https://static.inaturalist.org/photos/480935/medium.jpg?1378055854",
+  "guess": "Pomegranate",
+  "scientific": "Punica granatum",
+  "common": "Pomegranate",
+  "species_id": 58300
+}, {
+  "id": 384820,
+  "link": "http://www.inaturalist.org/observations/384820",
+  "iurl": "https://static.inaturalist.org/photos/480936/medium.jpg?1378055872",
+  "guess": "carob tree",
+  "scientific": "Ceratonia siliqua",
+  "common": "carob tree",
+  "species_id": 82742
+}, {
+  "id": 384821,
+  "link": "http://www.inaturalist.org/observations/384821",
+  "iurl": "https://static.inaturalist.org/photos/480940/medium.jpg?1378055910",
+  "guess": "Olivier",
+  "scientific": "Olea europaea",
+  "common": "Olive",
+  "species_id": 57140
+}, {
+  "id": 384822,
+  "link": "http://www.inaturalist.org/observations/384822",
+  "iurl": "https://static.inaturalist.org/photos/480943/medium.jpg?1378055934",
+  "guess": "Pin d'Alep",
+  "scientific": "Pinus halepensis",
+  "common": "Aleppo pine",
+  "species_id": 82722
+}, {
+  "id": 384823,
+  "link": "http://www.inaturalist.org/observations/384823",
+  "iurl": "https://static.inaturalist.org/photos/480945/medium.jpg?1378055950",
+  "guess": "Mediterranean Fan Palm",
+  "scientific": "Chamaerops humilis",
+  "common": "Mediterranean fan palm",
+  "species_id": 132759
+}, {
+  "id": 384824,
+  "link": "http://www.inaturalist.org/observations/384824",
+  "iurl": "https://static.inaturalist.org/photos/480947/medium.jpg?1378055977",
+  "guess": "Tamarix canariensis",
+  "scientific": "Tamarix canariensis",
+  "common": "",
+  "species_id": 56016
+}, {
+  "id": 384825,
+  "link": "http://www.inaturalist.org/observations/384825",
+  "iurl": "https://static.inaturalist.org/photos/481534/medium.jpg?1378071920",
+  "guess": "pi pinyer",
+  "scientific": "Pinus pinea",
+  "common": "Stone pine",
+  "species_id": 63621
+}];
+
+var flora = ['Narcissus papyraceus', 'Fumaria agraria'];
+//, 'Erica erigena', 'Verbascum levanticum', 'Rosmarinus officialis'
+//'Narcissus papyraceus', 'Iris planifolia',  'Polypodium interjectum', 'Chamaemelum fuscatum', 'Calendula arvensis'
+//, 'Fraxinus angustifolia'
+
+//'Oxalis purpurea', 'Borago officinalis', 'Cistus monspeliensis', 'Veronica persica', 'Bellis perennis'
+
+var february = ['Pinus pinea', 'Anemone palmata', 'Ranunculus  ficaria', 'Laurus nobilis', 'Lobularia maritima', 'Ulex densus', 'Stauracanthus genistoides', 'Astragalus lusitanicus', 'Oxalis pes-caprae', 'Euphorbia characias', 'Euphorbia pedroi', 'Lavatera cretica'];
+
+//const dan = danObservations.map(observation => {return ({ id, scientific, common } = observation)}).map(log('Dan\'s observations'));
+
+// results/community_taxon/taxon_photos
+
+
+var inatCollections = exports.inatCollections = {
+  flora: flora,
+  february: february
+};
+},{}],20:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -195,6 +579,70 @@ var utils = exports.utils = {
   randomiseSelection: randomiseSelection
 };
 },{}],14:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchLiveDataFromInat = undefined;
+
+var _inatLisbonSetubal = require('../api/inat-lisbon-setubal.js');
+
+var _utils = require('../utils/utils.js');
+
+var inat = 'https://api.inaturalist.org/v1/';
+var inatTaxa = inat + 'taxa/autocomplete?q=';
+
+var urls = _inatLisbonSetubal.inatCollections.february.map(function (species) {
+  return '' + inatTaxa + _utils.utils.encodeQuery(species);
+});
+
+var observationsWithPhotos = function observationsWithPhotos(observations) {
+  return observations.filter(function (observation) {
+    return observation.default_photo && observation.default_photo.medium_url;
+  });
+};
+var observationsToCards = function observationsToCards(observations) {
+  return observations.map(function (observation) {
+    var id = observation.id,
+        _observation$name = observation.name,
+        name = _observation$name === undefined ? '' : _observation$name,
+        _observation$preferre = observation.preferred_common_name,
+        common = _observation$preferre === undefined ? '' : _observation$preferre,
+        _observation$default_ = observation.default_photo.medium_url,
+        url = _observation$default_ === undefined ? '' : _observation$default_;
+
+    return { id: id, name: name, common: common, url: url, language: 'en' };
+  });
+};
+
+var flattenObservations = function flattenObservations(observations) {
+  return observations.map(function (observation) {
+    var _R$head = R.head(observations),
+        id = _R$head.id,
+        name = _R$head.name,
+        language = _R$head.language;
+
+    var images = observations.map(function (obs) {
+      return obs.url;
+    });
+    var names = [{ language: 'en', vernacularName: observations[0].common }];
+    return { id: id, name: name, language: language, images: images, names: names };
+  });
+};
+
+var fetchLiveDataFromInat = exports.fetchLiveDataFromInat = function fetchLiveDataFromInat() {
+  return urls.map(function (url) {
+    return fetch(url).then(function (res) {
+      return res.json().then(function (res) {
+        return res.results;
+      }).then(observationsWithPhotos).then(observationsToCards).then(flattenObservations).then(function (obs) {
+        return obs[0];
+      });
+    });
+  });
+};
+},{"../api/inat-lisbon-setubal.js":22,"../utils/utils.js":20}],19:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3264,7 +3712,7 @@ var tejoSpecies = exports.tejoSpecies = [
   }],
   "thumbs": [null, "http://media.eol.org/content/2012/06/13/03/85842_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/10611_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/42580_98_68.jpg", "http://media.eol.org/content/2015/04/30/07/50307_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/13189_98_68.jpg", "http://media.eol.org/content/2012/08/07/03/99483_98_68.jpg", "http://media.eol.org/content/2013/11/16/20/39151_98_68.jpg", "http://media.eol.org/content/2014/07/08/07/99782_98_68.jpg", "http://media.eol.org/content/2012/06/13/03/27893_98_68.jpg", "http://media.eol.org/content/2012/07/19/01/84150_98_68.jpg"]
 }];
-},{}],13:[function(require,module,exports) {
+},{}],38:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3277,7 +3725,7 @@ var types = exports.types = {
     MARK_ANSWER: MARK_ANSWER,
     NEW_SCREEN: NEW_SCREEN
 };
-},{}],9:[function(require,module,exports) {
+},{}],39:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3303,7 +3751,43 @@ var DOM = exports.DOM = {
     totalTxt: document.getElementsByClassName('js-txt-total')[0],
     correctTxt: document.getElementsByClassName('js-txt-correct')[0]
 };
-},{}],20:[function(require,module,exports) {
+},{}],46:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.actions = undefined;
+
+var _storeRepo = require('../store/store-repo.js');
+
+var _learnTypes = require('./learn-types.js');
+
+var makeActionCreator = function makeActionCreator(action) {
+  return function (value, meta) {
+    return {
+      type: action,
+      data: value,
+      meta: meta
+    };
+  };
+};
+
+var markAnswerAction = makeActionCreator(_learnTypes.types.MARK_ANSWER);
+var newScreen = makeActionCreator(_learnTypes.types.NEW_SCREEN);
+
+var boundMarkAnswer = function boundMarkAnswer(data) {
+  return _storeRepo.store.dispatch(markAnswerAction(data));
+};
+var boundNewScreen = function boundNewScreen(data) {
+  return _storeRepo.store.dispatch(newScreen(data, { delay: 500 }));
+};
+
+var actions = exports.actions = {
+  boundMarkAnswer: boundMarkAnswer,
+  boundNewScreen: boundNewScreen
+};
+},{"../store/store-repo.js":16,"./learn-types.js":38}],40:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3371,7 +3855,7 @@ var renderSpecies = exports.renderSpecies = function renderSpecies() {
     _learnDom.DOM.rightBody.innerHTML = '';
     _learnDom.DOM.rightBody.appendChild(clone);
 };
-},{"../learn-dom.js":9,"../../store/store-repo.js":8,"../learn-actions.js":7,"../../utils/utils.js":6}],11:[function(require,module,exports) {
+},{"../learn-dom.js":39,"../../store/store-repo.js":16,"../learn-actions.js":46,"../../utils/utils.js":20}],42:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3423,7 +3907,7 @@ var renderFails = exports.renderFails = function renderFails() {
         _learnDom.DOM.rightBody.appendChild(clone);
     }
 };
-},{"../learn-dom.js":9,"../../store/store-repo.js":8}],10:[function(require,module,exports) {
+},{"../learn-dom.js":39,"../../store/store-repo.js":16}],41:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3467,7 +3951,7 @@ var renderPasses = exports.renderPasses = function renderPasses() {
         }, 5000);
     }
 };
-},{"../learn-dom.js":9,"../../store/store-repo.js":8,"./fails.js":11}],21:[function(require,module,exports) {
+},{"../learn-dom.js":39,"../../store/store-repo.js":16,"./fails.js":42}],43:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3508,7 +3992,7 @@ var renderScore = exports.renderScore = function renderScore() {
     _learnDom.DOM.rightFooter.innerHTML = '';
     _learnDom.DOM.rightFooter.appendChild(clone);
 };
-},{"../learn-dom.js":9,"../../store/store-repo.js":8}],22:[function(require,module,exports) {
+},{"../learn-dom.js":39,"../../store/store-repo.js":16}],44:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3571,7 +4055,7 @@ var renderTextEntry = exports.renderTextEntry = function renderTextEntry() {
 
     document.querySelector('.js-txt-input').focus();
 };
-},{"../learn-dom.js":9,"../../store/store-repo.js":8,"../../utils/utils.js":6,"../learn-actions.js":7}],23:[function(require,module,exports) {
+},{"../learn-dom.js":39,"../../store/store-repo.js":16,"../../utils/utils.js":20,"../learn-actions.js":46}],45:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3634,7 +4118,7 @@ var renderSpecimen = exports.renderSpecimen = function renderSpecimen() {
         renderSpecimenImages();
     });
 };
-},{"../../utils/utils.js":6,"../learn-dom.js":9,"../../store/store-repo.js":8}],16:[function(require,module,exports) {
+},{"../../utils/utils.js":20,"../learn-dom.js":39,"../../store/store-repo.js":16}],35:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3714,7 +4198,7 @@ var strategies = exports.strategies = [{
     render: _score.renderScore
   }]
 }];
-},{"./learn-dom.js":9,"./screens/species.js":20,"./screens/passes.js":10,"./screens/fails.js":11,"./screens/score.js":21,"./screens/text-entry.js":22,"./screens/specimen.js":23}],19:[function(require,module,exports) {
+},{"./learn-dom.js":39,"./screens/species.js":40,"./screens/passes.js":41,"./screens/fails.js":42,"./screens/score.js":43,"./screens/text-entry.js":44,"./screens/specimen.js":45}],25:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4009,7 +4493,7 @@ var trees = exports.trees = [{
   }],
   "thumbs": [null, "http://media.eol.org/content/2014/10/17/01/88260_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/65845_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/38573_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/10539_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/77145_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2014/08/15/04/23595_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/85277_98_68.jpg", "http://media.eol.org/content/2012/06/13/08/47054_98_68.jpg", "http://media.eol.org/content/2014/10/17/01/69881_98_68.jpg"]
 }];
-},{}],15:[function(require,module,exports) {
+},{}],34:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4152,7 +4636,7 @@ var randomiser = exports.randomiser = function randomiser() {
             return state;
     }
 };
-},{"../utils/utils.js":6,"./learn-types.js":13,"./learn-strategy.js":16,"../store/store-repo.js":8,"../api/eol-trees.js":19}],17:[function(require,module,exports) {
+},{"../utils/utils.js":20,"./learn-types.js":38,"./learn-strategy.js":35,"../store/store-repo.js":16,"../api/eol-trees.js":25}],36:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4181,7 +4665,7 @@ var timeoutScheduler = exports.timeoutScheduler = function timeoutScheduler(stor
     };
   };
 };
-},{}],18:[function(require,module,exports) {
+},{}],37:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4201,7 +4685,7 @@ var logger = exports.logger = function logger(store) {
     };
   };
 };
-},{}],8:[function(require,module,exports) {
+},{}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4279,134 +4763,1196 @@ var reducer = combineReducers({
 var store = exports.store = createStore(reducer,
 // composeEnhancers(applyMiddleware(
 applyMiddleware(_timeoutScheduler.timeoutScheduler, _logger.logger));
-},{"../api/eol-tejo.js":14,"../utils/utils.js":6,"../learn/learn-reducers.js":15,"../learn/middleware/timeoutScheduler.js":17,"../learn/middleware/logger.js":18,"../learn/learn-strategy.js":16}],7:[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.actions = undefined;
-
-var _storeRepo = require('../store/store-repo.js');
-
-var _learnTypes = require('./learn-types.js');
-
-var makeActionCreator = function makeActionCreator(action) {
-  return function (value, meta) {
-    return {
-      type: action,
-      data: value,
-      meta: meta
-    };
-  };
-};
-
-var markAnswerAction = makeActionCreator(_learnTypes.types.MARK_ANSWER);
-var newScreen = makeActionCreator(_learnTypes.types.NEW_SCREEN);
-
-var boundMarkAnswer = function boundMarkAnswer(data) {
-  return _storeRepo.store.dispatch(markAnswerAction(data));
-};
-var boundNewScreen = function boundNewScreen(data) {
-  return _storeRepo.store.dispatch(newScreen(data, { delay: 500 }));
-};
-
-var actions = exports.actions = {
-  boundMarkAnswer: boundMarkAnswer,
-  boundNewScreen: boundNewScreen
-};
-},{"../store/store-repo.js":8,"./learn-types.js":13}],4:[function(require,module,exports) {
+},{"../api/eol-tejo.js":19,"../utils/utils.js":20,"../learn/learn-reducers.js":34,"../learn/middleware/timeoutScheduler.js":36,"../learn/middleware/logger.js":37,"../learn/learn-strategy.js":35}],15:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.renderNext = undefined;
+exports.createDeck = exports.iterateOverItems = undefined;
 
-var _utils = require('../../utils/utils.js');
+var _storeRepo = require('../store/store-repo.js');
 
-var _learnActions = require('../learn-actions.js');
+var _utils = require('../utils/utils.js');
 
-var _storeRepo = require('../../store/store-repo.js');
+var dispatchToStore = function dispatchToStore(data, type) {
+    _storeRepo.store.dispatch({ type: type, data: data });
+};
 
-var _passes = require('../screens/passes.js');
+var renderTitle = function renderTitle(collection) {
+    var title = document.getElementById('title');
+    title.innerHTML = '<a target="_blank" href=\'' + collection.link + '\'>' + collection.name + '</a>';
+};
 
-var _fails = require('../screens/fails.js');
+var renderBinomialName = function renderBinomialName(value) {
+    var binomial = document.getElementById('name');
+    var name = value.split(' ');
+    binomial.innerHTML = name[0] + ' ' + name[1];
+};
 
-var _learnDom = require('../learn-dom.js');
-
-var screens = [_passes.renderPasses, _fails.renderFails];
-
-var subscriptions = [];
-
-var _store$getState = _storeRepo.store.getState(),
-    currScore = _store$getState.score;
-
-var renderNext = exports.renderNext = function renderNext() {
-    var _store$getState2 = _storeRepo.store.getState(),
-        randomiser = _store$getState2.randomiser,
-        items = _store$getState2.items,
-        item = _store$getState2.item,
-        score = _store$getState2.score;
-
-    if (score === currScore) return;
-
-    currScore = score;
-
-    subscriptions.forEach(function (unsubscribe) {
-        unsubscribe();
-    });
-    subscriptions.length = 0;
-
-    _learnDom.DOM.rightBody.innerHTML = '';
-
-    var strategy = randomiser.strategiesCollection.strategies[randomiser.strategiesCollection.index];
-
-    strategy.elements.forEach(function (element) {
-        element.render();
-    });
-
-    if (items.length === score.total) screens[0]();else {
-        strategy.elements.forEach(function (element) {
-            element.render();
-            subscriptions.push(_storeRepo.store.subscribe(element.render));
+var renderCommonNames = function renderCommonNames(collection) {
+    var vernacularList = document.getElementById('vernacular');
+    if (collection.length === 0) vernacularList.innerHTML = '';else {
+        vernacularList.innerHTML = '';
+        collection.forEach(function (names) {
+            names = names.length ? names : [names];
+            names.forEach(function (name) {
+                vernacularList.innerHTML += '<li>' + name.language + ': ' + name.vernacularName + '</li>';
+            });
         });
-        subscriptions.push(_storeRepo.store.subscribe(renderNext));
-
-        var _newScreen = {
-            item: _utils.utils.nextItem(items, item.index + 1),
-            strategy: strategy,
-            randomiser: { index: randomiser.strategiesCollection.index + 1 }
-        };
-
-        _learnActions.actions.boundNewScreen(_newScreen);
     }
 };
 
-var _store$getState3 = _storeRepo.store.getState(),
-    strategy = _store$getState3.strategy,
-    randomiser = _store$getState3.randomiser,
-    items = _store$getState3.items,
-    item = _store$getState3.item;
-
-subscriptions.push(_storeRepo.store.subscribe(renderNext));
-strategy.elements.forEach(function (element) {
-    element.render();
-    subscriptions.push(_storeRepo.store.subscribe(element.render));
-});
-
-var newScreen = {
-    item: _utils.utils.nextItem(items, 0),
-    strategy: strategy,
-    randomiser: { index: 0 }
+var renderImage = function renderImage(url) {
+    var imgElem = document.getElementById('image');
+    imgElem.src = url;
 };
 
-_learnActions.actions.boundNewScreen(newScreen);
-},{"../../utils/utils.js":6,"../learn-actions.js":7,"../../store/store-repo.js":8,"../screens/passes.js":10,"../screens/fails.js":11,"../learn-dom.js":9}],3:[function(require,module,exports) {
+var iterateOverItems = exports.iterateOverItems = function iterateOverItems(iterator, callback, iteratorFunction) {
+    return function () {
+        var nextItem = iterator.next();
+        if (nextItem.done) {
+            callback();
+        } else {
+            iteratorFunction(nextItem.value);
+        }
+    };
+};
+
+var createDeck = exports.createDeck = function createDeck(collection) {
+    renderTitle(collection);
+    var cards = [];
+    var iterator = null;
+    var delay = 1000;
+    return {
+        next: function next() {
+            iterator = iterator || cards[Symbol.iterator]();
+            var card = iterator.next();
+            dispatchToStore(card.value, 'NEXT_SPECIES');
+            if (card.done) {
+                iterator = cards[Symbol.iterator]();
+                card = iterator.next();
+                iterator = null;
+            }
+            setTimeout(function () {
+                renderBinomialName(card.value.name);
+                var names = [R.reject(R.isEmpty, R.take(3, card.value.names.filter(function (x) {
+                    return x.language === 'en';
+                }))), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'fr';
+                })), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'es';
+                })), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'pt';
+                })), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'de';
+                })), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'it';
+                })), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'ar';
+                })), R.head(card.value.names.filter(function (x) {
+                    return x.language === 'zh';
+                }))];
+                names = R.reject(R.isEmpty, R.reject(R.isNil, names));
+                renderCommonNames(names);
+            }, delay);
+            this.renderImages(card.value.images);
+        },
+        add: function add(card) {
+            cards.push(card);
+        },
+        renderImages: function renderImages(images) {
+            var _this = this;
+
+            var imageInterval = null;
+            var imageIterator = images[Symbol.iterator]();
+            var imageIteratorDone = function imageIteratorDone() {
+                if (imageInterval) clearInterval(imageInterval.getId());
+                imageInterval = null;
+                imageIterator = null;
+                _this.next();
+            };
+            var iterateOverImages = iterateOverItems(imageIterator, imageIteratorDone, renderImage);
+            imageInterval = _utils.utils.intervalTimer(iterateOverImages, delay);
+            dispatchToStore(imageInterval, 'CURRENT_TIMER');
+        }
+    };
+};
+},{"../store/store-repo.js":16,"../utils/utils.js":20}],23:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var tejo = exports.tejo = [{
+  "name": "Flora Lisboa e Vale do Tejo",
+  "description": null,
+  "logo_url": null,
+  "created": "2016-04-21T10:15:43Z",
+  "modified": "2017-05-10T13:42:06Z",
+  "total_items": 70,
+  "item_types": [{
+    "item_type": "TaxonConcept",
+    "item_count": 68
+  }, {
+    "item_type": "Text",
+    "item_count": 0
+  }, {
+    "item_type": "Video",
+    "item_count": 0
+  }, {
+    "item_type": "Image",
+    "item_count": 0
+  }, {
+    "item_type": "Sound",
+    "item_count": 0
+  }, {
+    "item_type": "Community",
+    "item_count": 0
+  }, {
+    "item_type": "User",
+    "item_count": 0
+  }, {
+    "item_type": "Collection",
+    "item_count": 0
+  }],
+  "collection_items": [{
+    "name": "Veronica persica Poir.",
+    "object_type": "TaxonConcept",
+    "object_id": 578523,
+    "title": null,
+    "created": "2017-05-10T13:42:05Z",
+    "updated": "2017-05-10T13:42:05Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 500
+  }, {
+    "name": "Digitalis purpurea subsp. purpurea L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1247200,
+    "title": null,
+    "created": "2017-05-10T13:41:35Z",
+    "updated": "2017-05-10T13:41:35Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Cichorium intybus L.",
+    "object_type": "TaxonConcept",
+    "object_id": 467862,
+    "title": null,
+    "created": "2017-05-10T13:40:19Z",
+    "updated": "2017-05-10T13:40:19Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Scabiosa atropurpurea var. maritima",
+    "object_type": "TaxonConcept",
+    "object_id": 5235143,
+    "title": null,
+    "created": "2017-05-10T13:37:47Z",
+    "updated": "2017-05-10T13:37:47Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Acanthus mollis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 483777,
+    "title": null,
+    "created": "2017-05-10T13:36:27Z",
+    "updated": "2017-05-10T13:36:27Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Salvia verbenaca L.",
+    "object_type": "TaxonConcept",
+    "object_id": 579419,
+    "title": null,
+    "created": "2017-05-10T13:35:55Z",
+    "updated": "2017-05-10T13:35:55Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Veronica arvensis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 578491,
+    "title": null,
+    "created": "2017-05-10T13:32:58Z",
+    "updated": "2017-05-10T13:32:58Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Anchusa azurea Mill.",
+    "object_type": "TaxonConcept",
+    "object_id": 580760,
+    "title": null,
+    "created": "2017-05-10T13:32:08Z",
+    "updated": "2017-05-10T13:32:08Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 200
+  }, {
+    "name": "Bellis perennis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 467843,
+    "title": null,
+    "created": "2017-05-10T13:31:27Z",
+    "updated": "2017-05-10T13:31:27Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Trifolium campestre Schreb.",
+    "object_type": "TaxonConcept",
+    "object_id": 703392,
+    "title": null,
+    "created": "2017-05-10T13:30:18Z",
+    "updated": "2017-05-10T13:30:18Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 600
+  }, {
+    "name": "Fumaria capreolata L.",
+    "object_type": "TaxonConcept",
+    "object_id": 487222,
+    "title": null,
+    "created": "2017-05-10T13:29:02Z",
+    "updated": "2017-05-10T13:29:02Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Malva multiflora (Cav.) Soldano, Banfi & Galasso",
+    "object_type": "TaxonConcept",
+    "object_id": 586697,
+    "title": null,
+    "created": "2017-05-10T13:28:07Z",
+    "updated": "2017-05-10T13:28:07Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Coronilla valentina subsp. glauca (L.) Batt.",
+    "object_type": "TaxonConcept",
+    "object_id": 1230687,
+    "title": null,
+    "created": "2017-05-10T13:27:18Z",
+    "updated": "2017-05-10T13:27:18Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Bituminaria bituminosa (L.) C. H. Stirt.",
+    "object_type": "TaxonConcept",
+    "object_id": 702952,
+    "title": null,
+    "created": "2017-05-09T11:14:36Z",
+    "updated": "2017-05-09T11:14:36Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Oxalis corniculata L.",
+    "object_type": "TaxonConcept",
+    "object_id": 582447,
+    "title": null,
+    "created": "2017-05-09T11:13:04Z",
+    "updated": "2017-05-09T11:13:04Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 600
+  }, {
+    "name": "Lysimachia foemina (Mill.) U.Manns & Anderb., 2009",
+    "object_type": "TaxonConcept",
+    "object_id": 40488428,
+    "title": null,
+    "created": "2017-05-09T11:01:54Z",
+    "updated": "2017-05-09T11:01:54Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Campanula erinus L.",
+    "object_type": "TaxonConcept",
+    "object_id": 5133070,
+    "title": null,
+    "created": "2017-05-09T10:55:31Z",
+    "updated": "2017-05-09T10:55:31Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Plantago lanceolata L.",
+    "object_type": "TaxonConcept",
+    "object_id": 579215,
+    "title": null,
+    "created": "2017-05-09T10:51:09Z",
+    "updated": "2017-05-09T10:51:09Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Dactylis glomerata subsp. hispanica",
+    "object_type": "TaxonConcept",
+    "object_id": 5838420,
+    "title": null,
+    "created": "2017-05-09T10:46:09Z",
+    "updated": "2017-05-09T10:46:09Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Dactylis glomerata L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1114101,
+    "title": null,
+    "created": "2017-05-09T10:43:13Z",
+    "updated": "2017-05-09T10:43:13Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Cistus crispus",
+    "object_type": "TaxonConcept",
+    "object_id": 2867531,
+    "title": null,
+    "created": "2017-05-09T10:41:17Z",
+    "updated": "2017-05-09T10:41:17Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Crataegus monogyna auct.",
+    "object_type": "TaxonConcept",
+    "object_id": 628306,
+    "title": null,
+    "created": "2017-05-09T10:22:17Z",
+    "updated": "2017-05-09T10:22:17Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Galactites tomentosus",
+    "object_type": "TaxonConcept",
+    "object_id": 6269866,
+    "title": null,
+    "created": "2017-05-09T09:41:14Z",
+    "updated": "2017-05-09T09:41:14Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Lagurus ovatus L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1114993,
+    "title": null,
+    "created": "2017-05-09T09:39:03Z",
+    "updated": "2017-05-09T09:39:03Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Trifolium repens L.",
+    "object_type": "TaxonConcept",
+    "object_id": 703436,
+    "title": null,
+    "created": "2017-05-09T09:37:09Z",
+    "updated": "2017-05-09T09:37:09Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Crepis capillaris",
+    "object_type": "TaxonConcept",
+    "object_id": 46321664,
+    "title": null,
+    "created": "2017-05-09T09:33:08Z",
+    "updated": "2017-05-09T09:33:08Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Cistus monspeliensis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 483190,
+    "title": null,
+    "created": "2017-05-08T08:05:21Z",
+    "updated": "2017-05-08T08:05:21Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Cistus ladanifer L.",
+    "object_type": "TaxonConcept",
+    "object_id": 488251,
+    "title": null,
+    "created": "2017-05-08T08:02:31Z",
+    "updated": "2017-05-08T08:02:31Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Cistus ladanifer subsp. ladanifer",
+    "object_type": "TaxonConcept",
+    "object_id": 5732250,
+    "title": null,
+    "created": "2017-05-08T08:00:43Z",
+    "updated": "2017-05-08T08:00:43Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Taraxacum officinale",
+    "object_type": "Text",
+    "object_id": 32431305,
+    "title": null,
+    "created": "2017-05-08T07:58:00Z",
+    "updated": "2017-05-08T07:58:00Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "data_rating": 2.5,
+    "object_guid": "08aeca8b304c2e202b1de6c5ceac38c8"
+  }, {
+    "name": "Avena fatua L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1114782,
+    "title": null,
+    "created": "2017-05-08T07:54:59Z",
+    "updated": "2017-05-08T07:54:59Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Avena sativa L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1114783,
+    "title": null,
+    "created": "2017-05-08T07:34:40Z",
+    "updated": "2017-05-08T07:34:40Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Briza maxima L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1114041,
+    "title": null,
+    "created": "2017-05-05T13:30:16Z",
+    "updated": "2017-05-05T13:30:16Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Lapsana communis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 841400,
+    "title": null,
+    "created": "2017-05-02T08:49:46Z",
+    "updated": "2017-05-02T08:49:46Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Asphodelus ramosus L.",
+    "object_type": "TaxonConcept",
+    "object_id": 991197,
+    "title": null,
+    "created": "2017-04-28T16:32:11Z",
+    "updated": "2017-04-28T16:32:11Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Foeniculum vulgare Mill.",
+    "object_type": "TaxonConcept",
+    "object_id": 585008,
+    "title": null,
+    "created": "2017-04-28T16:15:57Z",
+    "updated": "2017-04-28T16:15:57Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Silybum marianum (L.) Gaertn.",
+    "object_type": "TaxonConcept",
+    "object_id": 509366,
+    "title": null,
+    "created": "2017-04-28T16:13:52Z",
+    "updated": "2017-04-28T16:13:52Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Lactuca virosa Habl.",
+    "object_type": "TaxonConcept",
+    "object_id": 486948,
+    "title": null,
+    "created": "2017-04-28T16:11:45Z",
+    "updated": "2017-04-28T16:11:45Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Urtica pilulifera",
+    "object_type": "TaxonConcept",
+    "object_id": 2885404,
+    "title": null,
+    "created": "2017-04-28T16:09:02Z",
+    "updated": "2017-04-28T16:09:02Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Urtica dioica L.",
+    "object_type": "TaxonConcept",
+    "object_id": 595063,
+    "title": null,
+    "created": "2017-04-28T16:07:10Z",
+    "updated": "2017-04-28T16:07:10Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Beta vulgaris L.",
+    "object_type": "TaxonConcept",
+    "object_id": 585884,
+    "title": null,
+    "created": "2017-04-28T16:03:57Z",
+    "updated": "2017-04-28T16:03:57Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Chenopodium album L.",
+    "object_type": "TaxonConcept",
+    "object_id": 587522,
+    "title": null,
+    "created": "2017-04-28T16:02:18Z",
+    "updated": "2017-04-28T16:02:18Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Brassica nigra (L.) W. D. J. Koch",
+    "object_type": "TaxonConcept",
+    "object_id": 583895,
+    "title": null,
+    "created": "2017-04-28T15:58:12Z",
+    "updated": "2017-04-28T15:58:12Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Malva sylvestris L.",
+    "object_type": "TaxonConcept",
+    "object_id": 584656,
+    "title": null,
+    "created": "2017-04-28T12:05:57Z",
+    "updated": "2017-04-28T12:05:57Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 500
+  }, {
+    "name": "Galium aparine L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1098038,
+    "title": null,
+    "created": "2017-04-28T12:04:55Z",
+    "updated": "2017-04-28T12:04:55Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Campanula patula L.",
+    "object_type": "TaxonConcept",
+    "object_id": 577759,
+    "title": null,
+    "created": "2017-04-28T12:02:14Z",
+    "updated": "2017-04-28T12:02:14Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Ophrys apifera Huds.",
+    "object_type": "TaxonConcept",
+    "object_id": 1136554,
+    "title": null,
+    "created": "2017-04-28T11:26:25Z",
+    "updated": "2017-04-28T11:26:25Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 200
+  }, {
+    "name": "Anagallis arvensis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 583434,
+    "title": null,
+    "created": "2017-04-28T11:16:04Z",
+    "updated": "2017-04-28T11:16:04Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Echium plantagineum L.",
+    "object_type": "TaxonConcept",
+    "object_id": 579906,
+    "title": null,
+    "created": "2017-04-28T10:59:13Z",
+    "updated": "2017-04-28T10:59:13Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Arbutus unedo L.",
+    "object_type": "TaxonConcept",
+    "object_id": 583608,
+    "title": null,
+    "created": "2017-04-27T11:56:26Z",
+    "updated": "2017-04-27T11:56:26Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Quercus ilex L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1151536,
+    "title": null,
+    "created": "2017-04-27T11:06:38Z",
+    "updated": "2017-04-27T11:06:38Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 200
+  }, {
+    "name": "Hordeum murinum L.",
+    "object_type": "TaxonConcept",
+    "object_id": 1114459,
+    "title": null,
+    "created": "2017-04-27T09:04:35Z",
+    "updated": "2017-04-27T09:04:35Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 400
+  }, {
+    "name": "Echium vulgare L.",
+    "object_type": "TaxonConcept",
+    "object_id": 579910,
+    "title": null,
+    "created": "2017-04-27T08:33:23Z",
+    "updated": "2017-04-27T08:33:23Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Galactites tomentosa Moench",
+    "object_type": "TaxonConcept",
+    "object_id": 2864808,
+    "title": null,
+    "created": "2017-04-27T07:28:59Z",
+    "updated": "2017-04-27T07:28:59Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Sinapis alba subsp. mairei (H. Lindb.) Maire",
+    "object_type": "TaxonConcept",
+    "object_id": 5152569,
+    "title": null,
+    "created": "2016-04-21T10:41:35Z",
+    "updated": "2016-04-21T10:41:35Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 0
+  }, {
+    "name": "Pulicaria dysenterica (L.) Gaertn.",
+    "object_type": "TaxonConcept",
+    "object_id": 509700,
+    "title": null,
+    "created": "2016-04-21T10:26:56Z",
+    "updated": "2016-04-21T10:26:56Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 200
+  }, {
+    "name": "Pinus pinaster Aiton",
+    "object_type": "TaxonConcept",
+    "object_id": 1061780,
+    "title": null,
+    "created": "2016-04-21T10:20:18Z",
+    "updated": "2016-04-21T10:20:18Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }]
+}];
+},{}],24:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var portugueseTrees = exports.portugueseTrees = [{
+  "name": "Common Portuguese Trees",
+  "description": "Native, naturalised and commonly found introduced species",
+  "logo_url": null,
+  "created": "2017-04-11T12:35:58Z",
+  "modified": "2017-04-27T11:56:27Z",
+  "total_items": 6,
+  "item_types": [{
+    "item_type": "TaxonConcept",
+    "item_count": 5
+  }, {
+    "item_type": "Text",
+    "item_count": 0
+  }, {
+    "item_type": "Video",
+    "item_count": 0
+  }, {
+    "item_type": "Image",
+    "item_count": 0
+  }, {
+    "item_type": "Sound",
+    "item_count": 0
+  }, {
+    "item_type": "Community",
+    "item_count": 0
+  }, {
+    "item_type": "User",
+    "item_count": 1
+  }, {
+    "item_type": "Collection",
+    "item_count": 0
+  }],
+  "collection_items": [{
+    "name": "Arbutus unedo L.",
+    "object_type": "TaxonConcept",
+    "object_id": 583608,
+    "title": null,
+    "created": "2017-04-27T11:56:27Z",
+    "updated": "2017-04-27T11:56:27Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 100
+  }, {
+    "name": "Pinus pinaster Aiton",
+    "object_type": "TaxonConcept",
+    "object_id": 1061780,
+    "title": null,
+    "created": "2017-04-15T17:19:15Z",
+    "updated": "2017-04-15T17:19:15Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Tilia platyphyllos Scop.",
+    "object_type": "TaxonConcept",
+    "object_id": 584812,
+    "title": null,
+    "created": "2017-04-13T07:58:01Z",
+    "updated": "2017-04-13T07:58:01Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Tilia cordata Mill.",
+    "object_type": "TaxonConcept",
+    "object_id": 486446,
+    "title": null,
+    "created": "2017-04-12T08:55:29Z",
+    "updated": "2017-04-12T08:55:29Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 300
+  }, {
+    "name": "Celtis australis L.",
+    "object_type": "TaxonConcept",
+    "object_id": 591115,
+    "title": null,
+    "created": "2017-04-11T12:37:48Z",
+    "updated": "2017-04-11T12:37:48Z",
+    "annotation": null,
+    "sort_field": null,
+    "references": [],
+    "richness_score": 200
+  }]
+}];
+},{}],17:[function(require,module,exports) {
 'use strict';
 
-var _nextScreen = require('./screens/next-screen.js');
-},{"./screens/next-screen.js":4}],24:[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.fetchLiveDataFromEOL = exports.getEOLSpeciesData = undefined;
+
+var _utils = require('../utils/utils.js');
+
+var _eolDanValeDoTejo = require('../api/eol-dan-vale-do-tejo.js');
+
+var _eolDanPortugueseTrees = require('../api/eol-dan-portuguese-trees.js');
+
+var createLookupUrl = function createLookupUrl(id) {
+    return 'http://eol.org/api/pages/1.0.json?\n    batch=false&id=' + _utils.utils.encodeQuery(id) + '&images_per_page=10&images_page=1\n    &videos_per_page=0&videos_page=0&sounds_per_page=0&sounds_page=0&maps_per_page=0\n    &maps_page=0&texts_per_page=1&texts_page=1&subjects=overview&licenses=all\n    &details=true&common_names=true&synonyms=false&references=false&taxonomy=false&vetted=0&cache_ttl=&language=en';
+};
+
+// let speciesUrls = [];
+
+var getEOLSpeciesData = exports.getEOLSpeciesData = function getEOLSpeciesData(collection) {
+    var eolCollection = collection[0].collection_items.map(function (item) {
+        return { id: item.object_id, name: item.name };
+    });
+
+    return eolCollection
+    // .filter(species => species.id === 1114783)
+    .map(function (species) {
+        species.detailsUrl = createLookupUrl(species.id);
+        return species;
+    });
+};
+
+var fetchLiveDataFromEOL = exports.fetchLiveDataFromEOL = function fetchLiveDataFromEOL(collection) {
+    return collection.map(function (collectionItem) {
+        return fetch(collectionItem.detailsUrl).then(function (res) {
+            return res.json();
+        }).then(function (results) {
+            var thumbsCollection = results.dataObjects.map(function (media) {
+                return media.eolThumbnailURL;
+            });
+            var imagesCollection = results.dataObjects.filter(function (item) {
+                return item.mediaURL || item.eolMediaURL;
+            }).map(function (media) {
+                return media.eolMediaURL;
+            });
+            var namesCollection = results.vernacularNames.filter(function (item) {
+                return item.language === 'en' || item.language === 'fr' || item.language === 'es' || item.language === 'pt-BR' || item.language === 'pt' || item.language === 'de' || item.language === 'it' || item.language === 'ar' || item.language === 'cat' || item.language === 'zh';
+            }
+            // see logic in learn.js for R.contains
+            // const languages = [ 'en', 'pt', 'es', 'de', 'fr', 'it', 'ar', 'zh' ];
+            );
+            return { id: collectionItem.id, name: collectionItem.name, images: imagesCollection, names: namesCollection, thumbs: thumbsCollection };
+        });
+    });
+};
+},{"../utils/utils.js":20,"../api/eol-dan-vale-do-tejo.js":23,"../api/eol-dan-portuguese-trees.js":24}],18:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.wikiListener = exports.formatWiki = exports.formatUrl = undefined;
+
+var _utils = require('../utils/utils.js');
+
+var _storeRepo = require('../store/store-repo.js');
+
+var root = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&limit=1&search=';
+
+var formatUrl = function formatUrl(name, root, encode) {
+    var binomial = name;
+    if (name.indexOf(' ') > 0) {
+        var ranks = name.split(' ');
+        binomial = ranks[0] + ' ' + ranks[1];
+    }
+    return root + encode(binomial);
+};
+
+var fetchWiki = function fetchWiki(name, missingMessage) {
+    if (name === undefined) {
+        var errorPromise = new Promise(function (resolve, reject) {
+            resolve(missingMessage);
+        });
+        return errorPromise;
+    }
+
+    var url = formatUrl(name, root, _utils.utils.encodeQuery);
+    var config = {
+        method: 'GET'
+    };
+    return fetch(url, config).then(function (json) {
+        return json.json();
+    }).then(R.flatten);
+};
+
+var formatWiki = function formatWiki(entry) {
+    var html = '';
+    if (entry.length === 1) return '<li><i>Species: ' + entry[0] + '</i></li>';
+    if (entry[0]) html += '<li><h3>' + entry[0] + '</h3></li>';
+    if (entry[1]) html += '<li><p>' + entry[1] + '</p></li>';
+    if (entry[2]) if (entry[2].indexOf('https') !== -1) html += '<li><a target="_blank" href="' + entry[2] + '">' + entry[0] + '</a></li>';else html += '<li><p>' + entry[2] + '</p></li>';
+    if (entry[3]) if (entry[3].indexOf('https') !== -1) html += '<li><a target="_blank" href="' + entry[3] + '">' + entry[0] + '</a></li>';else html += '<li><p>' + entry[3] + '</p></li>';
+    return html;
+};
+
+var renderWiki = function renderWiki(wikiNode, state) {
+    var missingMessage = 'No Wikipedia entry is available for this plant. Sorry!';
+    if (state.card) {
+        var binomial = state.card.name;
+        wikiNode.innerHTML = "";
+        window.setTimeout(function () {
+            fetchWiki(binomial, missingMessage).then(function (entry) {
+                if (entry === missingMessage) wikiNode.innerHTML = missingMessage;else if (entry.length > 3 && entry[2] === '') {
+                    var genus = binomial.split(' ')[0];
+                    fetchWiki(genus).then(function (genusEntry) {
+                        wikiNode.innerHTML = '<li><i>Species: ' + entry[0] + '</i></li>';
+                        wikiNode.innerHTML += formatWiki(genusEntry.slice(1));
+                    });
+                } else if (entry.length > 3) wikiNode.innerHTML = formatWiki(entry.slice(1));else {
+                    var _genus = binomial.split(' ')[0];
+                    fetchWiki(_genus).then(function (genusEntry) {
+                        wikiNode.innerHTML = formatWiki(entry);
+                        wikiNode.innerHTML += formatWiki(genusEntry.slice(1));
+                    });
+                }
+            });
+        }, 3000);
+    }
+};
+
+var currentId = 0;
+
+var wikiListener = function wikiListener() {
+    var wikiNode = document.getElementById('wiki');
+    var state = _storeRepo.store.getState();
+    if (state && state.card && currentId !== state.card.id) {
+        renderWiki(wikiNode, state);
+        currentId = state.card.id;
+    }
+};
+
+exports.formatUrl = formatUrl;
+exports.formatWiki = formatWiki;
+exports.wikiListener = wikiListener;
+},{"../utils/utils.js":20,"../store/store-repo.js":16}],21:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.gbifListener = undefined;
+
+var _storeRepo = require('../store/store-repo.js');
+
+var currentName = 0;
+
+var gbifListener = exports.gbifListener = function gbifListener() {
+    var gbifNode = document.getElementById('family');
+    var state = _storeRepo.store.getState();
+    if (state && state.card && currentName !== state.card.name) {
+        var binomial = state.card.name;
+        var url = 'https://api.gbif.org/v1/species/match?name=' + binomial;
+        fetch(url).then(function (json) {
+            return json.json();
+        }).then(function (taxonomy) {
+            gbifNode.innerHTML = taxonomy.family;
+        });
+        currentName = state.card.name;
+    }
+};
+},{"../store/store-repo.js":16}],8:[function(require,module,exports) {
+'use strict';
+
+var _inat = require('./inat/inat.js');
+
+var _card = require('./card/card.js');
+
+var _storeRepo = require('./store/store-repo.js');
+
+var _eol = require('./eol/eol.js');
+
+var _wikipedia = require('./wikipedia/wikipedia.js');
+
+var _eolTejo = require('./api/eol-tejo.js');
+
+var _utils = require('./utils/utils.js');
+
+var _inatLisbonSetubal = require('./api/inat-lisbon-setubal.js');
+
+var _gbif = require('./gbif/gbif.js');
+
+var _eolDanValeDoTejo = require('./api/eol-dan-vale-do-tejo.js');
+
+var _eolDanPortugueseTrees = require('./api/eol-dan-portuguese-trees.js');
+
+var _eolTrees = require('./api/eol-trees.js');
+
+var deck = void 0;
+
+var dispatchToStore = function dispatchToStore(data, type) {
+    _storeRepo.store.dispatch({ type: type, data: data });
+};
+var render = function render() {
+    var promises = _storeRepo.store.getState().items;
+    promises.forEach(function (element) {
+        element.then(function (card) {
+            deck.add(card);
+        });
+    });
+    config.filter(function (flag) {
+        return flag.enabled;
+    }).map(function (active) {
+        active.subscribe[0][1]();
+    });
+};
+
+var eolLive = function eolLive() {
+    return dispatchToStore((0, _eol.fetchLiveDataFromEOL)((0, _eol.getEOLSpeciesData)(_eolDanValeDoTejo.tejo)), 'LOAD_EOL_DATA');
+};
+var eolLive2 = function eolLive2() {
+    return dispatchToStore((0, _eol.fetchLiveDataFromEOL)((0, _eol.getEOLSpeciesData)(_eolDanPortugueseTrees.portugueseTrees)), 'LOAD_EOL_DATA');
+};
+var eolLocal = function eolLocal() {
+    return _utils.utils.shuffleArray(_eolTejo.tejoSpecies);
+};
+var eolLocal2 = function eolLocal2() {
+    return _utils.utils.shuffleArray(_eolTrees.trees);
+};
+var inatLive = function inatLive() {
+    return dispatchToStore((0, _inat.fetchLiveDataFromInat)(), 'LOAD_INAT_DATA');
+};
+var inatLocal = function inatLocal() {
+    return _utils.utils.shuffleArray(_inatLisbonSetubal.inatSpecies).forEach(function (species) {
+        return deck.add(species);
+    });
+};
+
+var config = [{ enabled: false, live: true, subscribe: [[render], [_wikipedia.wikiListener], [_gbif.gbifListener]], call: eolLocal2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189' }, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' }, { enabled: true, live: true, subscribe: [[render], [_wikipedia.wikiListener], [_gbif.gbifListener]], call: eolLive2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189' }, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' }, { enabled: false, live: false, subscribe: [[_wikipedia.wikiListener], [_gbif.gbifListener]], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189' } }, { enabled: false, live: true, subscribe: [[render], [_wikipedia.wikiListener], [_gbif.gbifListener]], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189' }, api: 'http://eol.org/api/collections/1.0/130560.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' }, { enabled: false, live: true, subscribe: [[render], [_wikipedia.wikiListener], [_gbif.gbifListener]], call: inatLive, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal' } }, { enabled: false, live: false, subscribe: [[_wikipedia.wikiListener], [_gbif.gbifListener]], call: inatLocal, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal' } }];
+
+config.filter(function (flag) {
+    return flag.enabled;
+}).map(function (active) {
+    active.subscribe.map(function (listener) {
+        listener[1] = _storeRepo.store.subscribe(listener[0]);
+    });
+    deck = (0, _card.createDeck)(active.collection);
+    active.live ? active.call() : active.call().forEach(function (species) {
+        return deck.add(species);
+    });
+});
+
+var pause = document.getElementById('pause');
+var resume = document.getElementById('resume');
+
+var timer = null;
+
+var paused = false;
+
+$(function () {
+    $('#start').asEventStream('click').map(function (event) {
+        deck.next();
+    }).onValue(function () {});
+
+    $('#pause').asEventStream('click').map(function (event) {
+        timer = _storeRepo.store.getState().timer;
+        timer.pause();
+        paused = true;
+    }).onValue(function () {});
+
+    $('#resume').asEventStream('click').map(function (event) {
+        timer = _storeRepo.store.getState().timer;
+        timer.resume();
+        paused = false;
+    }).onValue(function () {});
+
+    document.addEventListener('keypress', function (event) {
+        if (event.keyCode === 13) {
+            deck.next();
+        }
+        if (event.keyCode === 32) {
+            timer = _storeRepo.store.getState().timer;
+            if (paused) {
+                timer.resume();
+                paused = false;
+            } else {
+                timer.pause();
+                paused = true;
+            }
+        }
+    });
+});
+
+document.getElementById('control-panel').addEventListener('click', function (event) {
+    var button = event.target;
+    var pause = document.getElementById('pause');
+    var resume = document.getElementById('resume');
+
+    if (button.id === 'start') {
+        button.disabled = true;
+        pause.disabled = false;
+    }
+    if (button.id === 'pause') {
+        pause.disabled = true;
+        resume.disabled = false;
+    }
+    if (button.id === 'resume') {
+        pause.disabled = false;
+        resume.disabled = true;
+    }
+});
+},{"./inat/inat.js":14,"./card/card.js":15,"./store/store-repo.js":16,"./eol/eol.js":17,"./wikipedia/wikipedia.js":18,"./api/eol-tejo.js":19,"./utils/utils.js":20,"./api/inat-lisbon-setubal.js":22,"./gbif/gbif.js":21,"./api/eol-dan-vale-do-tejo.js":23,"./api/eol-dan-portuguese-trees.js":24,"./api/eol-trees.js":25}],47:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -4428,7 +5974,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54033' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53768' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -4529,5 +6075,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[24,3])
-//# sourceMappingURL=/dist/56bc5b813ba0c9dbe1a4787fdc98f1c0.map
+},{}]},{},[47,8])
+//# sourceMappingURL=/dist/541d29d2b24b91c8b4735b548be7cec1.map

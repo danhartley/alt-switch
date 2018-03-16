@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="/dist/200bbb7a8c8ed2092a86fca92a2d4a5b.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="/dist/bfd256ba150d7f40328312b2d116c66c.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>
+    </head>
+    <body>
+        <div class="grid">
+            <div class="specimen-grid">
+                <div class="title-wrapper"><span id="title"></span></div>
+                <div id="img-holder">
+                <img id="image" src="https://media.eol.org/content/2014/08/15/05/17177_orig.jpg" alt="Specimen image is not available..." onerror="this.src='https://media.eol.org/content/2015/04/30/18/20117_orig.jpg';">
+                </div>
+                <div id="specimen-footer"><a href="https://danhartley.github.io/alt-switch/public/learn/dist/learn.html">Test yourself =></a></div>
+            </div>            
+            <div class="species-grid">
+                <div id="taxonomy"><span id="name">Scientific name</span><span id="family"></span></div>
+                <div id="synonyms"> 
+                    <ul id="vernacular">
+                        <li>Common names</li>
+                    </ul>             
+                </div>
+                <div id="control-panel">
+                    <p><button id="start">Start</button></p>
+                    <p><button id="pause" disabled="">Pause</button></p>
+                    <p><button id="resume" disabled="">Resume</button></p>
+                </div>           
+                <div id="wiki-text">
+                    <h4>Wikipedia entry</h4>
+                    <ul id="wiki">
+                    </ul>                    
+                </div>
+        </div>
+        <script src="/dist/541d29d2b24b91c8b4735b548be7cec1.js" type="module"></script>
+    </div></body>
+</html>
