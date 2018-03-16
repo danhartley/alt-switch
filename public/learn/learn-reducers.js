@@ -3,6 +3,7 @@ import { types } from './learn-types.js';
 import { strategies } from './learn-strategy.js';
 import { store } from '../store/store-repo.js';
 import { trees } from '../api/eol-trees.js';
+// import { tejoSpecies as trees } from '../api/eol-tejo.js';
 
 const initialScoreState = {
     total: 0,
@@ -77,6 +78,7 @@ export const items = (state = species, action) => {
             return state;
     }
 };
+
 const answersCollection = [];
 const numberOfAlternateAnswers = (species.length > 6 ? 6 : species.length) -1;
 species.forEach(correctAnswer => {

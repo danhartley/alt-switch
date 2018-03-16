@@ -3,17 +3,20 @@ import { store } from '../../store/store-repo.js';
 import { utils } from '../../utils/utils.js';
 import { actions } from '../learn-actions.js';
 
+let loaded = false;
+
+const sendQandA = () => {
+    const { strategy, item } = store.getState();
+    const question = item[strategy.elements.filter(el => el.name === 'text-entry')[0].question];
+    if(!document.querySelector('.js-txt-input')) return;
+    const answer = document.querySelector('.js-txt-input').value;
+    const qandA = { question: question, answer: answer }
+    actions.boundMarkAnswer(qandA);
+};
+
 export const renderTextEntry = () => {
 
     const { strategy, item } = store.getState();
-
-    let sendQandA = null;
-
-    const handleEnterPress = event => {
-        if(event.key === 'Enter') {
-            sendQandA();                
-        }
-    };
 
     const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
 
@@ -21,16 +24,6 @@ export const renderTextEntry = () => {
 
     const template = document.querySelector(`.${element.template}`);
 
-    sendQandA = () => {
-        if(!document.querySelector('.js-txt-input')) return;
-        const { item } = store.getState();
-        const answer = document.querySelector('.js-txt-input').value;
-        const qandA = { question: item[element.question], answer: answer }
-        actions.boundMarkAnswer(qandA);
-    };
-
-    // window.addEventListener('keypress', handleEnterPress);
-    
     template.content.querySelector('span').innerHTML = item.genus;   
 
     const clone = document.importNode(template.content, true);
@@ -43,4 +36,16 @@ export const renderTextEntry = () => {
     element.parent.appendChild(clone);
 
     document.querySelector('.js-txt-input').focus();
+
+    const handleEnterPress = event => {
+        if(event.key === 'Enter') {
+            sendQandA();                
+        }
+    };
+
+    if(!loaded) {
+        window.addEventListener('keypress', handleEnterPress);
+        loaded = true;
+    }
 };
+

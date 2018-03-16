@@ -15,7 +15,7 @@ const markAnswerAction = makeActionCreator(types.MARK_ANSWER);
 const newScreen = makeActionCreator(types.NEW_SCREEN);
 
 const boundMarkAnswer = data => store.dispatch(markAnswerAction(data));
-const boundNewScreen = data => store.dispatch(newScreen(data,{delay:500}));
+const boundNewScreen = data => store.dispatch(newScreen(data,{delay:2000}));
 
 export const actions = {
     boundMarkAnswer,

@@ -28,30 +28,33 @@ export const renderNext = () => {
 
     const strategy = randomiser.strategiesCollection.strategies[randomiser.strategiesCollection.index];
 
+    if(!strategy) {
+        screens[0]();
+        return;
+    }
+
     strategy.elements.forEach(element => {
         element.render();
     });
 
-    if(items.length === score.total) screens[0]();
-    else {
-        strategy.elements.forEach(element => { 
-            element.render();
-            subscriptions.push(store.subscribe(element.render));
-        });
-        subscriptions.push(store.subscribe(renderNext));
+    strategy.elements.forEach(element => { 
+        element.render();
+        subscriptions.push(store.subscribe(element.render));
+    });
+    subscriptions.push(store.subscribe(renderNext));
 
-        const newScreen = { 
-            item: utils.nextItem(items, item.index + 1),
-            strategy: strategy,
-            randomiser: { index: randomiser.strategiesCollection.index + 1 }
-        };
+    const newScreen = { 
+        item: utils.nextItem(items, item.index + 1),
+        strategy: strategy,
+        randomiser: { index: randomiser.strategiesCollection.index + 1 }
+    };
 
-        actions.boundNewScreen(newScreen);
-    }
+    actions.boundNewScreen(newScreen);   
 };
 
-const { strategy, randomiser, items, item } = store.getState();
+const { randomiser, items, item } = store.getState();
 
+const strategy = randomiser.strategiesCollection.strategies[randomiser.strategiesCollection.index];
 subscriptions.push(store.subscribe(renderNext));
 strategy.elements.forEach(element => { 
     element.render();
@@ -61,7 +64,7 @@ strategy.elements.forEach(element => {
 const newScreen = { 
     item: utils.nextItem(items, 0),
     strategy: strategy,
-    randomiser: { index: 0 }
+    randomiser: { index: randomiser.strategiesCollection.index + 1 }
 };
 
 actions.boundNewScreen(newScreen);

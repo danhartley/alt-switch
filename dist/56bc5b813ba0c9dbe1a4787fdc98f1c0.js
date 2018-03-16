@@ -3524,18 +3524,26 @@ var _utils = require('../../utils/utils.js');
 
 var _learnActions = require('../learn-actions.js');
 
-var renderTextEntry = exports.renderTextEntry = function renderTextEntry() {
+var loaded = false;
+
+var sendQandA = function sendQandA() {
     var _store$getState = _storeRepo.store.getState(),
         strategy = _store$getState.strategy,
         item = _store$getState.item;
 
-    var sendQandA = null;
+    var question = item[strategy.elements.filter(function (el) {
+        return el.name === 'text-entry';
+    })[0].question];
+    if (!document.querySelector('.js-txt-input')) return;
+    var answer = document.querySelector('.js-txt-input').value;
+    var qandA = { question: question, answer: answer };
+    _learnActions.actions.boundMarkAnswer(qandA);
+};
 
-    var handleEnterPress = function handleEnterPress(event) {
-        if (event.key === 'Enter') {
-            sendQandA();
-        }
-    };
+var renderTextEntry = exports.renderTextEntry = function renderTextEntry() {
+    var _store$getState2 = _storeRepo.store.getState(),
+        strategy = _store$getState2.strategy,
+        item = _store$getState2.item;
 
     var element = strategy.elements.filter(function (el) {
         return el.name === 'text-entry';
@@ -3544,19 +3552,6 @@ var renderTextEntry = exports.renderTextEntry = function renderTextEntry() {
     if (!element) return;
 
     var template = document.querySelector('.' + element.template);
-
-    sendQandA = function sendQandA() {
-        if (!document.querySelector('.js-txt-input')) return;
-
-        var _store$getState2 = _storeRepo.store.getState(),
-            item = _store$getState2.item;
-
-        var answer = document.querySelector('.js-txt-input').value;
-        var qandA = { question: item[element.question], answer: answer };
-        _learnActions.actions.boundMarkAnswer(qandA);
-    };
-
-    // window.addEventListener('keypress', handleEnterPress);
 
     template.content.querySelector('span').innerHTML = item.genus;
 
@@ -3570,6 +3565,17 @@ var renderTextEntry = exports.renderTextEntry = function renderTextEntry() {
     element.parent.appendChild(clone);
 
     document.querySelector('.js-txt-input').focus();
+
+    var handleEnterPress = function handleEnterPress(event) {
+        if (event.key === 'Enter') {
+            sendQandA();
+        }
+    };
+
+    if (!loaded) {
+        window.addEventListener('keypress', handleEnterPress);
+        loaded = true;
+    }
 };
 },{"../learn-dom.js":9,"../../store/store-repo.js":8,"../../utils/utils.js":6,"../learn-actions.js":7}],23:[function(require,module,exports) {
 'use strict';
@@ -3714,7 +3720,7 @@ var strategies = exports.strategies = [{
     render: _score.renderScore
   }]
 }];
-},{"./learn-dom.js":9,"./screens/species.js":20,"./screens/passes.js":10,"./screens/fails.js":11,"./screens/score.js":21,"./screens/text-entry.js":22,"./screens/specimen.js":23}],19:[function(require,module,exports) {
+},{"./learn-dom.js":9,"./screens/species.js":20,"./screens/passes.js":10,"./screens/fails.js":11,"./screens/score.js":21,"./screens/text-entry.js":22,"./screens/specimen.js":23}],29:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4031,6 +4037,8 @@ var _eolTrees = require('../api/eol-trees.js');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+// import { tejoSpecies as trees } from '../api/eol-tejo.js';
+
 var initialScoreState = {
     total: 0,
     correct: 0,
@@ -4115,6 +4123,7 @@ var items = exports.items = function items() {
             return state;
     }
 };
+
 var answersCollection = [];
 var numberOfAlternateAnswers = (species.length > 6 ? 6 : species.length) - 1;
 species.forEach(function (correctAnswer) {
@@ -4152,7 +4161,7 @@ var randomiser = exports.randomiser = function randomiser() {
             return state;
     }
 };
-},{"../utils/utils.js":6,"./learn-types.js":13,"./learn-strategy.js":16,"../store/store-repo.js":8,"../api/eol-trees.js":19}],17:[function(require,module,exports) {
+},{"../utils/utils.js":6,"./learn-types.js":13,"./learn-strategy.js":16,"../store/store-repo.js":8,"../api/eol-trees.js":29}],17:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4274,11 +4283,9 @@ var reducer = combineReducers({
     timer: timer
 });
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-var store = exports.store = createStore(reducer,
-// composeEnhancers(applyMiddleware(
-applyMiddleware(_timeoutScheduler.timeoutScheduler, _logger.logger));
+var store = exports.store = createStore(reducer, composeEnhancers(applyMiddleware(_timeoutScheduler.timeoutScheduler, _logger.logger)));
 },{"../api/eol-tejo.js":14,"../utils/utils.js":6,"../learn/learn-reducers.js":15,"../learn/middleware/timeoutScheduler.js":17,"../learn/middleware/logger.js":18,"../learn/learn-strategy.js":16}],7:[function(require,module,exports) {
 'use strict';
 
@@ -4308,7 +4315,7 @@ var boundMarkAnswer = function boundMarkAnswer(data) {
   return _storeRepo.store.dispatch(markAnswerAction(data));
 };
 var boundNewScreen = function boundNewScreen(data) {
-  return _storeRepo.store.dispatch(newScreen(data, { delay: 500 }));
+  return _storeRepo.store.dispatch(newScreen(data, { delay: 2000 }));
 };
 
 var actions = exports.actions = {
@@ -4362,33 +4369,36 @@ var renderNext = exports.renderNext = function renderNext() {
 
     var strategy = randomiser.strategiesCollection.strategies[randomiser.strategiesCollection.index];
 
+    if (!strategy) {
+        screens[0]();
+        return;
+    }
+
     strategy.elements.forEach(function (element) {
         element.render();
     });
 
-    if (items.length === score.total) screens[0]();else {
-        strategy.elements.forEach(function (element) {
-            element.render();
-            subscriptions.push(_storeRepo.store.subscribe(element.render));
-        });
-        subscriptions.push(_storeRepo.store.subscribe(renderNext));
+    strategy.elements.forEach(function (element) {
+        element.render();
+        subscriptions.push(_storeRepo.store.subscribe(element.render));
+    });
+    subscriptions.push(_storeRepo.store.subscribe(renderNext));
 
-        var _newScreen = {
-            item: _utils.utils.nextItem(items, item.index + 1),
-            strategy: strategy,
-            randomiser: { index: randomiser.strategiesCollection.index + 1 }
-        };
+    var newScreen = {
+        item: _utils.utils.nextItem(items, item.index + 1),
+        strategy: strategy,
+        randomiser: { index: randomiser.strategiesCollection.index + 1 }
+    };
 
-        _learnActions.actions.boundNewScreen(_newScreen);
-    }
+    _learnActions.actions.boundNewScreen(newScreen);
 };
 
 var _store$getState3 = _storeRepo.store.getState(),
-    strategy = _store$getState3.strategy,
     randomiser = _store$getState3.randomiser,
     items = _store$getState3.items,
     item = _store$getState3.item;
 
+var strategy = randomiser.strategiesCollection.strategies[randomiser.strategiesCollection.index];
 subscriptions.push(_storeRepo.store.subscribe(renderNext));
 strategy.elements.forEach(function (element) {
     element.render();
@@ -4398,7 +4408,7 @@ strategy.elements.forEach(function (element) {
 var newScreen = {
     item: _utils.utils.nextItem(items, 0),
     strategy: strategy,
-    randomiser: { index: 0 }
+    randomiser: { index: randomiser.strategiesCollection.index + 1 }
 };
 
 _learnActions.actions.boundNewScreen(newScreen);
