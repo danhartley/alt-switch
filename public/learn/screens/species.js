@@ -25,10 +25,12 @@ export const renderSpecies = () => {
 
     const languages = [ 'en', 'pt' ];            
         rptrSpecies.innerHTML = answers.map(species => {
-        const vernacularNames = R.take(5, 
+        const vernacularNames = 
             species.names
                 .filter(name => R.contains(name.language, languages))
-                .map(name => `<p>${name.vernacularName}</p>`)).join(''); 
+                .map(name => `<p>${name.vernacularName}</p>`)
+                .slice(0,5)
+                .join(''); 
                 return `<div class="rectangle">
                             <div class="answer" id="${species.id}">
                                 <button>${species.name}</button>

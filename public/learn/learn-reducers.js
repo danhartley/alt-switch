@@ -70,12 +70,13 @@ export const items = (state = api.species, action) => {
 };
 
 const answersCollection = [];
-const numberOfAlternateAnswers = (api.species.length > 6 ? 6 : api.species.length) -1;
+const numberOfAlternateAnswers = (api.species.length > 5 ? 5 : api.species.length);
 api.species.forEach(correctAnswer => {
     const answers = {};
-    const alternateAnswers = api.species.filter(s => s.id !== correctAnswer.id);
+    const alternateAnswers = api.species.filter(s => {
+        return s.id !== correctAnswer.id
+    });
     answers.species = utils.randomiseSelection(alternateAnswers, numberOfAlternateAnswers);
-    answers.species = R.take(5, api.species);
     answers.species.push(correctAnswer);
     answers.id = correctAnswer.id;
     answersCollection.push(answers);
