@@ -55,50 +55,30 @@ function intervalTimer (sink, delay) {
   return this;
 };
 
-const shuffleArray = arr => (
-  arr
+const shuffleArray = arr => {
+  return (arr
     .map(a => [Math.random(), a])
     .sort((a, b) => a[0] - b[0])
-    .map(a => a[1])
-);
-
-const randomiseSelection = (source, required, zeroBased = false) => {
-  let randomSelection = [];
-  const randomArray = shuffleArray(source);
-  
-  const r = randomSelection => randomSelection.concat(randomArray.map((item, index) => {
-    while(index + randomSelection.length < required) {
-      return zeroBased ? --item : item;
-    }
-  })).filter(el => el !== undefined);
-
-  randomSelection = r(randomSelection);
-  
-  return randomSelection.length < required 
-    ? r(randomSelection)
-    : randomSelection;
+    .map(a => a[1]))
 };
 
+const randomiseSelection = (source, required, zeroBased = false) => {
+  const r = selection => {
+    const arr = shuffleArray(source);
+    selection = selection.concat(arr.map((item, index) => {
+      if(index + selection.length < required) {
+        return zeroBased ? --item : item;
+      }      
+    })).filter(item => item !== undefined);
+    return selection.length < required ? r(selection) : selection;
+  }
+  return r([]);
+};
 
 const nextItem = (array, index) => {    
   const item = array[index % array.length];
   item.index = index % array.length;
   return item;
-};
-
-const combineReducers = (reducers) => {
-  return (state = {}, action) => {
-      return Object.keys(reducers).reduce(
-        (nextState, key) => {
-          nextState[key] = reducers[key](
-            state[key],
-            action
-          );
-          return nextState;
-        },
-      {}
-    );
-  };
 };
 
 export const utils = {
@@ -108,6 +88,5 @@ export const utils = {
   intervalTimer,
   shuffleArray,
   nextItem,
-  combineReducers,
   randomiseSelection
 };

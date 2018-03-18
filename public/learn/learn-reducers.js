@@ -2,8 +2,7 @@ import { utils } from '../utils/utils.js';
 import { types } from './learn-types.js';
 import { strategies } from './learn-strategy.js';
 import { store } from '../store/store-repo.js';
-import { trees } from '../api/eol-trees.js';
-// import { tejoSpecies as trees } from '../api/eol-tejo.js';
+import { api } from '../api/api.js';
 
 const initialScoreState = {
     total: 0,
@@ -59,16 +58,7 @@ export const strategy = (state = initialStrategyState, action) => {
     }
 };
 
-const species = utils.shuffleArray(trees)
-    .map(item => {
-        const names = item.name.split(' ');
-        item.genus = names[0];
-        item.species = names[1];    
-        item.name = item.name.split(' ').slice(0,2).join(' ');
-        return item;
-});
-
-export const items = (state = species, action) => {    
+export const items = (state = api.species, action) => {    
     switch(action.type) {
         case 'LOAD_INAT_DATA':
         case 'LOAD_EOL_DATA':
@@ -80,23 +70,27 @@ export const items = (state = species, action) => {
 };
 
 const answersCollection = [];
-const numberOfAlternateAnswers = (species.length > 6 ? 6 : species.length) -1;
-species.forEach(correctAnswer => {
+const numberOfAlternateAnswers = (api.species.length > 6 ? 6 : api.species.length) -1;
+api.species.forEach(correctAnswer => {
     const answers = {};
-    const alternateAnswers = species.filter(s => s.id !== correctAnswer.id);
+    const alternateAnswers = api.species.filter(s => s.id !== correctAnswer.id);
     answers.species = utils.randomiseSelection(alternateAnswers, numberOfAlternateAnswers);
+    answers.species = R.take(5, api.species);
     answers.species.push(correctAnswer);
     answers.id = correctAnswer.id;
     answersCollection.push(answers);
 });
 
+const initStrategies = utils.randomiseSelection(strategies, api.species.length)
+    .map(strategy => {
+        strategy.active = true;
+        return strategy;
+    });
+
 const initialRandomState = {
     imageIndices : utils.randomiseSelection([1,2,3,4,5,6,7,8,9,10], 10, true),
     strategiesCollection : {
-        strategies: utils.randomiseSelection(strategies, species.length, false).map(strategy => {
-        strategy.active = true;
-        return strategy;
-        }),
+        strategies: initStrategies,
         index: 0
     },
     answersCollection: answersCollection
@@ -105,6 +99,7 @@ const initialRandomState = {
 export const randomiser = (state = initialRandomState, action) => {
     switch(action.type) {
         case types.NEW_SCREEN:
+        case 'RANDOMISER':
         const strategiesCollection = { strategiesCollection: { ...state.strategiesCollection, ...action.data.randomiser} };
             return { ...state, ...strategiesCollection };
         default: 

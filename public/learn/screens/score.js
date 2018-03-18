@@ -2,9 +2,15 @@
 import { DOM } from '../learn-dom.js';
 import { store } from '../../store/store-repo.js';
 
+let currScore = null;
+
 export const renderScore = () => {
     
     const { score, item } = store.getState();
+
+    if(score === currScore) return;
+
+    currScore = score;
 
     const template = document.querySelector('.js-score-template');
 
