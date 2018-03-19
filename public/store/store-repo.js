@@ -3,7 +3,6 @@ import { utils } from '../utils/utils.js';
 import { score, item, strategy, items, randomiser, strategies } from '../learn/reducers/learn-reducers.js'
 import { timeoutScheduler } from '../learn/middleware/timeoutScheduler.js';
 import { logger } from '../learn/middleware/logger.js';
-// import { strategies } from '../learn/learn-strategy.js';
 
 const card = (state = null, action) => {
     switch(action.type) {
