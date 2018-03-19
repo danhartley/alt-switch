@@ -1,8 +1,8 @@
-import { utils } from '../utils/utils.js';
-import { types } from './learn-types.js';
-import { strategies } from './learn-strategy.js';
-import { store } from '../store/store-repo.js';
-import { api } from '../api/api.js';
+import { utils } from '../../utils/utils.js';
+import { types } from '../learn-types.js';
+import { learnStrategies } from '../learn-strategy.js';
+import { store } from '../../store/store-repo.js';
+import { api } from '../../api/api.js';
 
 const initialScoreState = {
     total: 0,
@@ -47,16 +47,9 @@ export const item = (state = null, action) => {
     }
 };
 
-const initialStrategyState = strategies.filter(strategy => strategy.active)[0];
+// const initialStrategyState = strategies.filter(strategy => strategy.active)[0];
 
-export const strategy = (state = initialStrategyState, action) => { 
-    switch(action.type) {
-        case types.NEW_SCREEN:
-            return { ...state, ...action.data.strategy }
-        default: 
-            return state;
-    }
-};
+
 
 export const items = (state = api.species, action) => {    
     switch(action.type) {
@@ -82,7 +75,7 @@ api.species.forEach(correctAnswer => {
     answersCollection.push(answers);
 });
 
-const initStrategies = utils.randomiseSelection(strategies, api.species.length)
+const initStrategies = utils.randomiseSelection(learnStrategies, api.species.length)
     .map(strategy => {
         strategy.active = true;
         return strategy;
@@ -95,6 +88,22 @@ const initialRandomState = {
         index: 0
     },
     answersCollection: answersCollection
+};
+
+export const strategy = (state = initialRandomState.strategiesCollection.strategies[0], action) => { 
+    switch(action.type) {
+        case types.NEW_SCREEN:
+            return { ...state, ...action.data.strategy }
+        default: 
+            return state;
+    }
+};
+
+export const strategies = (state = null, action) => {
+    switch(action.type) {
+        default:
+        return learnStrategies;
+    }
 };
 
 export const randomiser = (state = initialRandomState, action) => {

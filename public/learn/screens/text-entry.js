@@ -14,9 +14,15 @@ const sendQandA = () => {
     actions.boundMarkAnswer(qandA);
 };
 
+let currItem = null;
+
 export const renderTextEntry = () => {
 
     const { strategy, item } = store.getState();
+
+    if(item === currItem) return;
+
+    currItem = item;
 
     const element = strategy.elements.filter(el => el.name === 'text-entry')[0];
 

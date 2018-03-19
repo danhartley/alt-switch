@@ -1,5 +1,5 @@
 import { score, item } from './learn-reducers.js';
-import { types } from './learn-types.js';
+import { types } from '../learn-types.js';
 
 it('learn state should reflect correct answer', () => {
 
@@ -93,3 +93,4 @@ it('learn state should return the next item', () => {
 
   expect(item(stateBefore, action)).toEqual(stateAfter);
 });
+

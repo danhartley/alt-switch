@@ -6,7 +6,7 @@ import { renderScore } from './screens/score.js';
 import { renderTextEntry } from './screens/text-entry.js';
 import { renderSpecimen } from './screens/specimen.js';
 
-export const strategies = [
+export const learnStrategies = [
     {
       id: 1,
       active: false,
