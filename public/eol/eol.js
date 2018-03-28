@@ -1,6 +1,7 @@
 import { utils } from '../utils/utils.js';
 import { tejo } from '../api/eol-dan-vale-do-tejo.js';
 import { portugueseTrees } from '../api/eol-dan-portuguese-trees.js'; 
+import { winterFlowers } from '../api/eol-winter-flowers.js';
 
 const createLookupUrl = id => {
     return `http://eol.org/api/pages/1.0.json?
@@ -13,7 +14,7 @@ const createLookupUrl = id => {
 // let speciesUrls = [];
 
 export const getEOLSpeciesData = (collection) => {    
-    let eolCollection = collection[0].collection_items
+    let eolCollection = collection.collection_items
     .map(item => ({ id: item.object_id, name: item.name }));
 
     return eolCollection

@@ -10,6 +10,8 @@ import { gbifListener } from './gbif/gbif.js';
 import { tejo } from './api/eol-dan-vale-do-tejo.js';
 import { portugueseTrees } from './api/eol-dan-portuguese-trees.js'; 
 import { trees } from './api/eol-trees.js';
+import { winterFlowers } from './api/eol-winter-flowers.js';
+import { commonHerbs } from './api/eol-common-herbs.js';
 
 let deck;
 
@@ -30,14 +32,18 @@ const render = () => {
 
 const eolLive = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(tejo)), 'LOAD_EOL_DATA');
 const eolLive2 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(portugueseTrees)), 'LOAD_EOL_DATA');
+const eolLive3 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(winterFlowers)), 'LOAD_EOL_DATA');
+const eolLive4 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(commonHerbs)), 'LOAD_EOL_DATA');
 const eolLocal = () => utils.shuffleArray(tejoSpecies);
 const eolLocal2 = () => utils.shuffleArray(trees);
 const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'LOAD_INAT_DATA');
 const inatLocal = () => utils.shuffleArray(inatSpecies).forEach(species => deck.add(species));
     
 const config = [
+    { enabled: true, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive4, collection: { name: '12 Common Herbs', link: 'http://eol.org/collections/139051'}, api: 'http://eol.org/api/collections/1.0/139051.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive3, collection: { name: 'Common Portuguese Flowers Winter', link: 'http://eol.org/collections/134395'}, api: 'http://eol.org/api/collections/1.0/134395.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLocal2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
-    { enabled: true, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
     { enabled: false, live: false, subscribe: [ [wikiListener], [gbifListener] ], call: eolLocal, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'} },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive, collection: { name: 'Flora Lisboa e Vale do Tejo', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/130560.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: inatLive, collection: { name: 'Lisbon and Setúbal', link: 'https://www.inaturalist.org/lists/921392-Lisbon-and-Set-bal'} },
