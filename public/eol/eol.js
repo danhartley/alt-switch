@@ -5,7 +5,7 @@ import { winterFlowers } from '../api/eol-winter-flowers.js';
 
 const createLookupUrl = id => {
     return `http://eol.org/api/pages/1.0.json?
-    batch=false&id=${utils.encodeQuery(id)}&images_per_page=10&images_page=1
+    batch=false&id=${utils.encodeQuery(id)}&images_per_page=12&images_page=1
     &videos_per_page=0&videos_page=0&sounds_per_page=0&sounds_page=0&maps_per_page=0
     &maps_page=0&texts_per_page=1&texts_page=1&subjects=overview&licenses=all
     &details=true&common_names=true&synonyms=false&references=false&taxonomy=false&vetted=0&cache_ttl=&language=en`;
