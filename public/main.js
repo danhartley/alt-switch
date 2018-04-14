@@ -12,6 +12,7 @@ import { portugueseTrees } from './api/eol-dan-portuguese-trees.js';
 import { trees } from './api/eol-trees.js';
 import { winterFlowers } from './api/eol-winter-flowers.js';
 import { commonHerbs } from './api/eol-common-herbs.js';
+import { lamiaceae } from './api/eol-lamiaceae.js';
 
 let deck;
 
@@ -34,13 +35,16 @@ const eolLive = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(tej
 const eolLive2 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(portugueseTrees)), 'LOAD_EOL_DATA');
 const eolLive3 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(winterFlowers)), 'LOAD_EOL_DATA');
 const eolLive4 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(commonHerbs)), 'LOAD_EOL_DATA');
+const eolLive5 = () => dispatchToStore(fetchLiveDataFromEOL(getEOLSpeciesData(lamiaceae)), 'LOAD_EOL_DATA');
+
 const eolLocal = () => utils.shuffleArray(tejoSpecies);
 const eolLocal2 = () => utils.shuffleArray(trees);
 const inatLive = () => dispatchToStore(fetchLiveDataFromInat(), 'LOAD_INAT_DATA');
 const inatLocal = () => utils.shuffleArray(inatSpecies).forEach(species => deck.add(species));
     
 const config = [
-    { enabled: true, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive4, collection: { name: '12 Common Herbs', link: 'http://eol.org/collections/139051'}, api: 'http://eol.org/api/collections/1.0/139051.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
+    { enabled: true, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive5, collection: { name: 'Lamiaceae: Mint and Basil Family', link: 'http://eol.org/collections/139275'}, api: 'http://eol.org/api/collections/1.0/139275.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
+    { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive4, collection: { name: '12 Common Herbs', link: 'http://eol.org/collections/139051'}, api: 'http://eol.org/api/collections/1.0/139051.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive3, collection: { name: 'Common Portuguese Flowers Winter', link: 'http://eol.org/collections/134395'}, api: 'http://eol.org/api/collections/1.0/134395.json?page=1&per_page=50&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLocal2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },
     { enabled: false, live: true, subscribe: [ [render], [wikiListener], [gbifListener] ], call: eolLive2, collection: { name: 'Common Portuguese Trees', link: 'http://eol.org/collections/124189'}, api: 'http://eol.org/api/collections/1.0/124189.json?page=1&per_page=100&filter=&sort_by=recently_added&sort_field=&cache_ttl=&language=en' },

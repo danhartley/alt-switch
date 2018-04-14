@@ -28,6 +28,7 @@ Simple flip card game for botanical identification
 
 To run the app in Terminal e.g. http-server (http-server can be found in node-modules)
 * No cache option: http-server -c-1
+* Home page: http://localhost:8081/index.html
 
 Bacon library used to handle the stream of events (clicks) in main.js
 Lodash library used for piping functions
